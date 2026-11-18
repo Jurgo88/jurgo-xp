@@ -7,6 +7,7 @@ const emit = defineEmits<{ toggleStart: []; toggleBalloon: [] }>()
 const store = useWindowsStore()
 const { l, locale } = useL10n()
 const { t } = useI18n()
+const { titleFor } = useApps()
 const switchLocalePath = useSwitchLocalePath()
 
 const clock = ref('')
@@ -29,10 +30,10 @@ onBeforeUnmount(() => clearInterval(timer))
         :key="w.id"
         class="task"
         :class="{ on: store.active === w.id }"
-        :title="l(appById(w.id)!.title)"
+        :title="titleFor(w.id)"
         @click="store.taskbarClick(w.id)"
       >
-        <img :src="appById(w.id)!.icon" alt=""><span>{{ l(appById(w.id)!.title) }}</span>
+        <img :src="appById(w.id)!.icon" alt=""><span>{{ titleFor(w.id) }}</span>
       </button>
     </nav>
     <div class="tray">

@@ -25,6 +25,8 @@ export const useWindowsStore = defineStore('windows', {
     cascade: 0,
     desk: { ...FALLBACK_DESK },
     measured: false,
+    /** blog post (slug) shown in the Notepad window */
+    doc: null as string | null,
   }),
 
   getters: {

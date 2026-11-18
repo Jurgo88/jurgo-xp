@@ -13,7 +13,8 @@ const text = computed(() => {
   if (role) return t('positions', { n: role.jobs.length, p: role.projects.length })
   switch (props.id) {
     case 'about': return `${profile.name} · ${profile.city}`
-    case 'blog': return t('notepad_line')
+    case 'blog': return t('objects', { n: blogPosts.length })
+    case 'notepad': return t('notepad_line')
     case 'floorball': return `${floorball.team.name} · ${l({ en: 'Legendary Floorball League', sk: 'Legendárna florbalová liga' })}`
     case 'sport': return t('objects', { n: 3 })
     case 'recycle-bin': return t('objects', { n: 2 })

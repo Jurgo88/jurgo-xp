@@ -51,10 +51,21 @@ export const apps: AppDef[] = [
   },
   {
     id: 'blog',
-    icon: '/icons/notepad.svg',
-    title: { en: 'blog.txt – Notepad', sk: 'blog.txt – Poznámkový blok' },
+    icon: '/icons/folder.png',
+    title: { en: 'Blog', sk: 'Blog' },
     label: { en: 'Blog', sk: 'Blog' },
     description: { en: 'Notes and blog posts by Jurgo.', sk: 'Poznámky a blog od Jurga.' },
+    width: 620,
+    height: 400,
+    menu: 'explorer',
+  },
+  {
+    // one blog post opened from the Blog folder (?file=<slug>); title is per file, see useApps().titleFor
+    id: 'notepad',
+    icon: '/icons/notepad.svg',
+    title: { en: 'Untitled – Notepad', sk: 'Bez názvu – Poznámkový blok' },
+    label: { en: 'Notepad', sk: 'Poznámkový blok' },
+    description: { en: 'A blog post by Jurgo.', sk: 'Článok z blogu od Jurga.' },
     width: 680,
     height: 520,
     menu: 'notepad',
@@ -120,15 +131,14 @@ export type DesktopItem =
   | { type: 'link'; key: 'cv' | 'classic'; icon: string; label: L10n }
 
 export const desktopItems: DesktopItem[] = [
+  { type: 'app', id: 'about' },
   { type: 'app', id: 'frontend' },
   { type: 'app', id: 'fullstack' },
   { type: 'app', id: 'analyst' },
   { type: 'app', id: 'ai-engineer' },
-  { type: 'app', id: 'about' },
   { type: 'link', key: 'cv', icon: '/icons/pdf.svg', label: { en: 'CV.pdf', sk: 'CV.pdf' } },
-  { type: 'app', id: 'music' },
   { type: 'app', id: 'blog' },
-  { type: 'app', id: 'floorball' },
+  { type: 'app', id: 'music' },
   { type: 'app', id: 'sport' },
   { type: 'app', id: 'contact' },
   { type: 'link', key: 'classic', icon: '/icons/ie.svg', label: { en: 'Classic view', sk: 'Klasický pohľad' } },

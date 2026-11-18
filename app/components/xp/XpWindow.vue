@@ -5,7 +5,7 @@ import { useWindowsStore } from '~/stores/windows'
 
 const props = defineProps<{ id: AppId }>()
 const store = useWindowsStore()
-const { l } = useL10n()
+const { titleFor } = useApps()
 const { t, tm, rt } = useI18n()
 
 const win = computed(() => store.get(props.id)!)
@@ -57,13 +57,13 @@ function startDrag(e: PointerEvent, kind: 'move' | 'resize') {
     :class="{ inactive: store.active !== id, max: win.maximized }"
     :style="style"
     :hidden="win.minimized"
-    :aria-label="l(def.title)"
+    :aria-label="titleFor(id)"
     role="dialog"
     @pointerdown="store.focus(id)"
   >
     <header class="title-bar" @pointerdown="startDrag($event, 'move')" @dblclick="store.toggleMaximize(id)">
       <div class="title-bar-text">
-        <img :src="def.icon" alt="" width="16" height="16">{{ l(def.title) }}
+        <img :src="def.icon" alt="" width="16" height="16">{{ titleFor(id) }}
       </div>
       <div class="title-bar-controls">
         <button :aria-label="'Minimize'" :title="t('minimize')" @click.stop="store.minimize(id)" />

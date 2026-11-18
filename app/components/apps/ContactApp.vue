@@ -10,6 +10,9 @@ const { t } = useI18n()
       <span class="yr">{{ t('contact_to') }}</span><a :href="`mailto:${profile.email}`"><b>{{ profile.email }}</b></a>
     </div>
     <div class="job" style="grid-template-columns:70px 1fr">
+      <span class="yr">{{ t('phone_label') }}</span><span><XpPhone /></span>
+    </div>
+    <div class="job" style="grid-template-columns:70px 1fr">
       <span class="yr">LinkedIn:</span><a :href="profile.linkedin" target="_blank" rel="noopener">{{ profile.linkedin.replace('https://www.', '') }}</a>
     </div>
     <div class="job" style="grid-template-columns:70px 1fr">
