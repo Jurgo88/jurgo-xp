@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { desktopItems, appById } from '~/data/apps'
-import { profile } from '~/data/profile'
+import { cvPdf } from '~/data/profile'
 
-const { l } = useL10n()
+const { l, locale } = useL10n()
 const { t } = useI18n()
 const { pathFor } = useApps()
 const localePath = useLocalePath()
@@ -14,7 +14,7 @@ const items = computed(() => desktopItems.map((it) => {
     return { key: it.id, icon: a.icon, label: l(a.label), to: pathFor(it.id), external: false }
   }
   return it.key === 'cv'
-    ? { key: 'cv', icon: it.icon, label: l(it.label), to: profile.cvPdf, external: true }
+    ? { key: 'cv', icon: it.icon, label: l(it.label), to: cvPdf(locale.value), external: true }
     : { key: 'classic', icon: it.icon, label: l(it.label), to: localePath('/cv'), external: false }
 }))
 

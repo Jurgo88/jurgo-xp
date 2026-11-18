@@ -14,7 +14,7 @@ export const experience: ExperienceItem[] = [
     id: 'kanadevia',
     role: { en: 'IT Application Developer', sk: 'IT Application Developer' },
     company: { en: 'Kanadevia Inova', sk: 'Kanadevia Inova' },
-    period: { en: '2025 – Present', sk: '2025 – dnes' },
+    period: { en: '2025 – 2026', sk: '2025 – 2026' },
     description: {
       en: 'Developing and implementing new functionalities for an internal application supporting business process management. Administering and supporting the application including configuration and user support. Working with the database to query, update, and maintain data, and managing user access via Active Directory.',
       sk: 'Vývoj a implementácia nových funkcií internej aplikácie pre správu procesov. Administrácia a podpora aplikácie vrátane konfigurácie a podpory používateľov. Práca s databázou a správa prístupov cez Active Directory.',
