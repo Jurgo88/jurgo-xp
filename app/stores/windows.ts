@@ -24,6 +24,7 @@ export const useWindowsStore = defineStore('windows', {
     zTop: 10,
     cascade: 0,
     desk: { ...FALLBACK_DESK },
+    measured: false,
   }),
 
   getters: {
@@ -39,14 +40,24 @@ export const useWindowsStore = defineStore('windows', {
   actions: {
     setDesk(w: number, h: number) {
       this.desk = { w, h: h - TASKBAR_H }
-      for (const win of this.windows) this.clamp(win)
+      const first = !this.measured
+      this.measured = true
+      for (const win of this.windows) {
+        // windows opened during SSR used a guessed desktop size: re-fit them once
+        if (first) {
+          const def = appById(win.id)
+          if (def) { win.w = def.width; win.h = def.height }
+        }
+        this.clamp(win)
+      }
     },
 
     clamp(win: WinState) {
+      // keep the whole window on screen: shrink first, then shift left/up if needed
       win.w = Math.min(win.w, Math.max(260, this.desk.w - 16))
       win.h = Math.min(win.h, Math.max(160, this.desk.h - 16))
-      win.x = Math.max(0, Math.min(win.x, this.desk.w - 80))
-      win.y = Math.max(0, Math.min(win.y, this.desk.h - 30))
+      win.x = Math.max(0, Math.min(win.x, this.desk.w - win.w - 8))
+      win.y = Math.max(0, Math.min(win.y, this.desk.h - win.h - 8))
     },
 
     open(id: AppId) {
@@ -115,9 +126,9 @@ export const useWindowsStore = defineStore('windows', {
     move(id: AppId, x: number, y: number) {
       const w = this.get(id)
       if (!w) return
-      w.x = x
-      w.y = y
-      this.clamp(w)
+      // like XP: may hang off the edge, but the title bar stays reachable
+      w.x = Math.max(80 - w.w, Math.min(x, this.desk.w - 80))
+      w.y = Math.max(0, Math.min(y, this.desk.h - 30))
     },
 
     resize(id: AppId, width: number, height: number) {

@@ -29,8 +29,8 @@ const roleApps: AppDef[] = roles.map(r => ({
     en: `Juraj Paluš as ${r.title.en}: ${r.lead.en}`,
     sk: `Juraj Paluš ako ${r.title.sk}: ${r.lead.sk}`,
   },
-  width: 680,
-  height: 460,
+  width: 920,
+  height: 640,
   menu: 'explorer',
 }))
 
@@ -45,8 +45,8 @@ export const apps: AppDef[] = [
       en: 'About Juraj Paluš, developer from Bratislava: full career history.',
       sk: 'O Jurajovi Palušovi, developerovi z Bratislavy: celá kariéra.',
     },
-    width: 620,
-    height: 440,
+    width: 860,
+    height: 620,
     menu: 'explorer',
   },
   {
@@ -55,8 +55,8 @@ export const apps: AppDef[] = [
     title: { en: 'blog.txt – Notepad', sk: 'blog.txt – Poznámkový blok' },
     label: { en: 'Blog', sk: 'Blog' },
     description: { en: 'Notes and blog posts by Jurgo.', sk: 'Poznámky a blog od Jurga.' },
-    width: 560,
-    height: 400,
+    width: 680,
+    height: 520,
     menu: 'notepad',
   },
   {
@@ -76,8 +76,8 @@ export const apps: AppDef[] = [
     title: { en: 'floorball_stats.xls', sk: 'florbal_statistiky.xls' },
     label: { en: 'Floorball', sk: 'Florbal' },
     description: { en: 'My floorball league stats.', sk: 'Moje štatistiky z florbalovej ligy.' },
-    width: 640,
-    height: 340,
+    width: 760,
+    height: 420,
     menu: 'excel',
   },
   {
@@ -86,8 +86,8 @@ export const apps: AppDef[] = [
     title: { en: 'Sport', sk: 'Šport' },
     label: { en: 'Sport', sk: 'Šport' },
     description: { en: 'Floorball and other sports.', sk: 'Florbal a ďalšie športy.' },
-    width: 480,
-    height: 300,
+    width: 600,
+    height: 380,
     menu: 'explorer',
   },
   {
@@ -96,8 +96,8 @@ export const apps: AppDef[] = [
     title: { en: 'New Message', sk: 'Nová správa' },
     label: { en: 'Contact', sk: 'Kontakt' },
     description: { en: 'Get in touch with Juraj Paluš.', sk: 'Kontaktujte Juraja Paluša.' },
-    width: 460,
-    height: 320,
+    width: 560,
+    height: 400,
     menu: 'none',
   },
   {
@@ -106,8 +106,8 @@ export const apps: AppDef[] = [
     title: { en: 'Recycle Bin', sk: 'Kôš' },
     label: { en: 'Recycle Bin', sk: 'Kôš' },
     description: { en: 'Old versions of this website.', sk: 'Staré verzie tohto webu.' },
-    width: 460,
-    height: 280,
+    width: 560,
+    height: 360,
     menu: 'explorer',
   },
 ]
