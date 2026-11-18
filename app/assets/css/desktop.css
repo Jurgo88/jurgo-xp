@@ -1,0 +1,222 @@
+/* JurgoXP desktop. Window chrome comes from xp.css (.window, .title-bar...);
+   this file adds the desktop, taskbar, start menu and app content styles. */
+:root {
+  color-scheme: light;
+  --luna: #0054e3;
+  --face: #ece9d8;
+  --pane-a: #7ba2e7;
+  --pane-b: #6375d6;
+  --pane-text: #215dc6;
+  --ink: #1b1b1b;
+  --muted: #5b5b5b;
+  --sel: #316ac5;
+  --ui: Tahoma, 'Segoe UI', Verdana, Geneva, sans-serif;
+  --title: 'Trebuchet MS', 'Segoe UI', Tahoma, sans-serif;
+  --mono: 'Lucida Console', 'Courier New', monospace;
+  --taskbar-h: 30px;
+}
+html, body { height: 100%; margin: 0; }
+body {
+  background: #000;
+  color: var(--ink);
+  font: 11px/1.35 var(--ui);
+  overflow: hidden;
+}
+/* first visit: hide SSR desktop until the boot screen takes over (no flash) */
+html.boot-pending body { background: #000; }
+html.boot-pending .xp-root { visibility: hidden; }
+
+.xp-root { position: fixed; inset: 0; user-select: none; -webkit-user-select: none; }
+:focus-visible { outline: 1px dotted #000; outline-offset: 1px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Desktop ---------- */
+.desktop {
+  position: absolute; inset: 0 0 var(--taskbar-h) 0; overflow: hidden;
+  background: #3a6ea5 center / cover no-repeat;
+}
+.icons {
+  position: absolute; top: 10px; left: max(8px, env(safe-area-inset-left, 0px)); bottom: 10px;
+  display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 82px);
+  grid-auto-columns: 84px; gap: 4px 6px; z-index: 1; margin: 0; padding: 0; list-style: none;
+}
+.icon {
+  all: unset; box-sizing: border-box; width: 84px; height: 80px; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; padding-top: 4px; cursor: default; text-align: center; font: 11px var(--ui);
+}
+.icon img { width: 40px; height: 40px; image-rendering: auto; filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)); pointer-events: none; }
+.icon span { color: #fff; text-shadow: 1px 1px 1px #000, 0 0 2px #000; padding: 0 2px; line-height: 1.2; max-width: 80px; }
+.icon.sel img { filter: drop-shadow(1px 2px 1px rgba(0,0,0,.35)) brightness(.7) sepia(1) hue-rotate(180deg) saturate(4); }
+.icon.sel span { background: var(--sel); text-shadow: none; outline: 1px dotted #fff; }
+.icon:focus-visible span { outline: 1px dotted #fff; }
+
+/* ---------- Windows (on top of xp.css) ---------- */
+.xpwin { position: absolute; display: flex; flex-direction: column; min-width: 260px; min-height: 160px; margin: 0; }
+.xpwin[hidden] { display: none; }
+.xpwin .title-bar { flex: none; touch-action: none; cursor: default; }
+.xpwin .title-bar-text { display: flex; align-items: center; gap: 5px; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.xpwin .title-bar-text img { width: 16px; height: 16px; flex: none; }
+.xpwin.inactive .title-bar { filter: saturate(.45) brightness(1.15); }
+.xpwin.max { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; border-radius: 0; }
+.xpwin .window-body { flex: 1; min-height: 0; margin: 0; overflow: auto; background: #fff; user-select: text; -webkit-user-select: text; }
+.xpwin .status-bar { flex: none; }
+.menubar { display: flex; gap: 2px; padding: 2px 4px; border-bottom: 1px solid #d8d2bd; background: var(--face); flex: none; }
+.menubar span { padding: 1px 6px; }
+.menubar span:hover { background: var(--sel); color: #fff; }
+.grip {
+  position: absolute; right: 0; bottom: 0; width: 14px; height: 14px; cursor: nwse-resize; touch-action: none;
+  background: repeating-linear-gradient(135deg, transparent 0 3px, #aca899 3px 4px, #fff 4px 5px);
+}
+
+/* Explorer layout with the blue task pane */
+.ex { display: grid; grid-template-columns: 190px 1fr; min-height: 100%; }
+.pane { background: linear-gradient(180deg, var(--pane-a), var(--pane-b)); padding: 12px 10px; display: flex; flex-direction: column; gap: 12px; }
+.box { background: #d6dff7; border-radius: 3px 3px 0 0; overflow: hidden; }
+.box h4 { margin: 0; padding: 5px 9px; font: bold 11px var(--ui); color: var(--pane-text); background: linear-gradient(90deg, #fff, #c6d3f7); }
+.box ul { list-style: none; margin: 0; padding: 7px 9px; display: flex; flex-direction: column; gap: 6px; }
+.box .lnk { all: unset; color: var(--pane-text); cursor: pointer; display: flex; gap: 6px; align-items: center; }
+.box .lnk:hover { text-decoration: underline; color: #428eff; }
+.box img { width: 16px; height: 16px; flex: none; }
+.box .txt { color: #000; white-space: pre-line; }
+.main { padding: 14px 18px 20px; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+.main h2 { margin: 0; font: bold 18px var(--title); color: #1c3f94; }
+.main h3 { margin: 0 0 6px; font: bold 12px var(--ui); color: #1c3f94; border-bottom: 1px solid #c5d1ee; padding-bottom: 3px; }
+.lead { font-size: 12px; max-width: 60ch; margin: 0; }
+.job { display: grid; grid-template-columns: 90px 1fr; gap: 2px 10px; padding: 6px 0; border-bottom: 1px dotted #d3d3d3; }
+.job:last-child { border: 0; }
+.job .yr { color: var(--muted); font-variant-numeric: tabular-nums; }
+.job b { font-size: 12px; }
+.job p { margin: 2px 0 4px; color: #333; max-width: 70ch; }
+.tags { display: flex; flex-wrap: wrap; gap: 3px; }
+.tag { border: 1px solid #9db3e6; background: #eef3fd; padding: 0 5px; border-radius: 2px; font-size: 10px; }
+.files { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+.file { all: unset; box-sizing: border-box; display: flex; gap: 8px; align-items: center; padding: 6px; border: 1px solid transparent; border-radius: 2px; cursor: default; }
+a.file, button.file { cursor: pointer; }
+.file:hover { background: #e8effd; border-color: #9db3e6; }
+.file img { width: 32px; height: 32px; flex: none; }
+.file small { display: block; color: var(--muted); }
+.todo { background: #ffffe1; border: 1px solid #000; padding: 6px 8px; max-width: 60ch; }
+
+.np { font: 13px/1.5 var(--mono); padding: 8px 10px; white-space: pre-wrap; margin: 0; }
+.np article + article { margin-top: 1.2em; }
+.np h2 { font: inherit; font-weight: bold; margin: 0; }
+.np p { margin: 0; }
+
+.xl { border-collapse: collapse; font-variant-numeric: tabular-nums; width: 100%; min-width: 520px; }
+.xl th, .xl td { border: 1px solid #d0d7e5; padding: 2px 6px; text-align: right; white-space: nowrap; }
+.xl th { background: linear-gradient(#f9fcfd, #d3dbe9); font-weight: normal; color: #333; text-align: center; }
+.xl td:first-child, .xl th:first-child { background: linear-gradient(90deg, #f9fcfd, #d3dbe9); text-align: center; color: #333; width: 24px; }
+.xl td.l { text-align: left; }
+.xl tr.tot td { font-weight: bold; background: #fff8d6; }
+.fbar { display: flex; gap: 6px; align-items: center; padding: 3px 6px; border-bottom: 1px solid #d8d2bd; background: var(--face); }
+.fbar i { font-style: italic; font-family: serif; font-weight: bold; color: #555; }
+.fbar span { flex: 1; background: #fff; border: 1px solid #7f9db9; padding: 1px 4px; font-family: var(--mono); }
+
+/* ---------- Taskbar ---------- */
+.taskbar {
+  position: absolute; left: 0; right: 0; bottom: 0; height: var(--taskbar-h); display: flex; align-items: stretch; z-index: 10000;
+  padding-left: env(safe-area-inset-left, 0px); padding-right: env(safe-area-inset-right, 0px);
+  background: linear-gradient(180deg, #1f2f86 0, #3165c4 3%, #3682e5 6%, #4490e6 10%, #3883e5 12%, #2b71e0 15%, #2663da 18%, #235bd6 20%, #2258d5 23%, #2157d6 38%, #245ddb 54%, #2562df 86%, #245fdc 89%, #2158d4 92%, #1d4ec0 95%, #1941a5 98%);
+}
+.start-btn {
+  all: unset; display: flex; align-items: center; gap: 5px; padding: 0 22px 0 10px; border-radius: 0 10px 10px 0; cursor: pointer;
+  color: #fff; font: italic bold 18px var(--title); text-shadow: 1px 1px 2px #222; box-shadow: inset 0 0 3px #1a501a;
+  background: radial-gradient(circle at 20% 0, #7ac77a 0, transparent 55%), linear-gradient(180deg, #3c9a3c, #2e8b2e 60%, #1f6b1f);
+}
+.start-btn:hover { filter: brightness(1.1); }
+.start-btn.down { filter: brightness(.85); }
+.start-btn svg { width: 20px; height: 20px; }
+.tasks { flex: 1; min-width: 0; display: flex; gap: 3px; padding: 3px 6px; overflow: hidden; }
+.task {
+  all: unset; flex: 0 1 160px; min-width: 40px; display: flex; align-items: center; gap: 5px; padding: 0 8px; border-radius: 3px; color: #fff; cursor: pointer;
+  background: #3c81f3; box-shadow: inset -1px 0 #1645a6, inset 1px 1px #77a7f8; white-space: nowrap; overflow: hidden; font: 11px var(--ui);
+}
+.task span { overflow: hidden; text-overflow: ellipsis; }
+.task.on { background: #1e52b7; box-shadow: inset 1px 1px 2px #0c2f73; }
+.task img { width: 16px; height: 16px; flex: none; }
+.tray {
+  display: flex; align-items: center; gap: 8px; padding: 0 10px; color: #fff; border-left: 1px solid #1042af;
+  background: linear-gradient(180deg, #0c59b9 1%, #139ee9 6%, #18b5f2 10%, #139beb 14%, #1290e8 19%, #0d8dea 63%, #0d9ff1 81%, #0f9eed 88%, #119be9 91%, #1392e2 94%, #137ed7 97%, #095bc9 100%);
+}
+.tray button, .tray a { all: unset; cursor: pointer; display: grid; place-items: center; }
+.tray svg { width: 16px; height: 16px; }
+.lang { font-weight: bold; font-size: 10px; background: #1a49b8; padding: 1px 3px; border: 1px solid #9cc3ff; }
+.clock { font-variant-numeric: tabular-nums; }
+
+/* Balloon tip */
+.balloon {
+  position: absolute; right: max(12px, env(safe-area-inset-right, 0px)); bottom: 42px; width: 290px; max-width: calc(100% - 24px);
+  background: #ffffe1; border: 1px solid #000; border-radius: 7px; padding: 8px 10px 10px; z-index: 10100; box-shadow: 2px 2px 6px rgba(0,0,0,.4);
+}
+.balloon::after { content: ''; position: absolute; right: 34px; bottom: -12px; border: 12px solid transparent; border-top-color: #000; border-bottom: 0; border-right: 0; }
+.balloon b { display: flex; align-items: center; gap: 6px; }
+.balloon p { margin: 6px 0 8px; }
+.balloon .x { all: unset; position: absolute; top: 4px; right: 6px; cursor: pointer; width: 14px; height: 14px; border: 1px solid #aaa; border-radius: 2px; text-align: center; line-height: 12px; }
+.balloon .row { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ---------- Start menu ---------- */
+.startmenu {
+  position: absolute; left: env(safe-area-inset-left, 0px); bottom: var(--taskbar-h); width: 400px; max-width: 100%; z-index: 10050;
+  border-radius: 7px 7px 0 0; overflow: hidden; box-shadow: 3px 0 8px rgba(0,0,0,.5); border: 1px solid #0b3cb4; background: #fff;
+}
+.sm-head {
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px; color: #fff; font: bold 15px var(--title); text-shadow: 1px 1px 1px #0b3cb4;
+  background: linear-gradient(180deg, #1868ce 0, #0e60cb 12%, #0e60cb 20%, #1164cf 32%, #1667cf 33%, #1b6cd3 47%, #1e70d9 54%, #2476dc 60%, #297ae0 65%, #3482e3 77%, #3786e5 79%, #428ee9 90%, #4791eb 100%);
+}
+.avatar { width: 44px; height: 44px; border: 2px solid #d8e4f8; border-radius: 4px; background: linear-gradient(135deg, #f7b733, #fc4a1a); display: grid; place-items: center; font: bold 20px var(--title); }
+.sm-cols { display: grid; grid-template-columns: 1fr 1fr; border-top: 2px solid #e57a2a; }
+.sm-l { padding: 6px 0; display: flex; flex-direction: column; }
+.sm-r { padding: 6px 0; background: #d3e5fa; border-left: 1px solid #95bdee; display: flex; flex-direction: column; }
+.sm-i { all: unset; display: flex; align-items: center; gap: 8px; padding: 4px 8px; cursor: pointer; font: 11px var(--ui); }
+.sm-i:hover, .sm-i:focus-visible { background: var(--sel); color: #fff; }
+.sm-i img { width: 30px; height: 30px; flex: none; }
+.sm-r .sm-i img { width: 22px; height: 22px; }
+.sm-i b { display: block; }
+.sm-i small { display: block; color: #666; font-size: 10px; }
+.sm-i:hover small { color: #dbe6f8; }
+.sm-r .sm-i { color: #0a246a; font-weight: bold; }
+.sm-r .sm-i:hover { color: #fff; }
+.sm-sep { height: 1px; margin: 4px 8px; background: linear-gradient(90deg, transparent, #c2c2c2, transparent); }
+.sm-foot {
+  display: flex; justify-content: flex-end; gap: 10px; padding: 6px 10px;
+  background: linear-gradient(180deg, #4282d6 0, #3b85e0 3%, #418ae3 5%, #418ae3 17%, #3c87e2 21%, #3786e4 26%, #3482e3 29%, #2e7ee1 39%, #2374df 49%, #2072db 57%, #196edb 62%, #176bd8 72%, #1468d5 75%, #1165d2 83%, #0f61cb 88%);
+}
+.sm-foot button, .sm-foot a { all: unset; display: flex; align-items: center; gap: 5px; color: #fff; cursor: pointer; padding: 2px 4px; font: 11px var(--ui); }
+.sm-foot button:hover, .sm-foot a:hover { background: rgba(255,255,255,.15); }
+.sm-foot svg { width: 22px; height: 22px; }
+
+/* Display properties dialog */
+.dispdlg { left: 50%; top: 50%; transform: translate(-50%, -55%); width: 360px; max-width: calc(100% - 24px); z-index: 10200; }
+.dispdlg .window-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; background: var(--face); }
+.mon { align-self: center; width: 180px; height: 120px; border: 10px solid #d4d0c8; border-bottom-width: 18px; border-radius: 4px; background: #3a6ea5 center / cover; box-shadow: inset 0 0 0 1px #777; }
+.dispdlg .row { display: flex; gap: 6px; justify-content: flex-end; flex-wrap: wrap; }
+.dispdlg input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.ctx { position: absolute; z-index: 10150; background: #fff; border: 1px solid #aca899; box-shadow: 2px 2px 4px rgba(0,0,0,.4); padding: 2px; min-width: 180px; }
+.ctx button { all: unset; display: block; padding: 4px 18px; cursor: default; font: 11px var(--ui); }
+.ctx button:hover { background: var(--sel); color: #fff; }
+
+/* ---------- Phone: icon grid + full-screen windows ---------- */
+@media (max-width: 700px) {
+  .icons {
+    position: static; grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); grid-template-rows: none; grid-auto-rows: 86px;
+    padding: 14px max(10px, env(safe-area-inset-right, 0px)) 14px max(10px, env(safe-area-inset-left, 0px)); gap: 6px;
+  }
+  .icon { width: auto; }
+  .icon img { width: 46px; height: 46px; }
+  .xpwin { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; min-width: 0; border-radius: 0; }
+  .xpwin .title-bar { height: 34px; }
+  .xpwin .title-bar-controls button[aria-label=Maximize], .xpwin .title-bar-controls button[aria-label=Restore], .grip { display: none; }
+  .ex { grid-template-columns: 1fr; }
+  .pane { flex-direction: row; overflow-x: auto; padding: 8px; }
+  .box { flex: none; min-width: 190px; }
+  .main { padding: 12px 14px 20px; }
+  .lead { font-size: 13px; }
+  .job { grid-template-columns: 1fr; }
+  .startmenu { width: 100%; }
+  .sm-cols { grid-template-columns: 1fr; }
+  .sm-r { border-left: 0; border-top: 1px solid #95bdee; }
+  .start-btn { padding-right: 16px; }
+  .task { flex-basis: 110px; }
+  .tray .hide-s { display: none; }
+}
+.icon:focus { outline: none; }
