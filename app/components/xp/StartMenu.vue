@@ -13,7 +13,7 @@ const right: AppId[] = ['about', 'blog', 'music', 'sport', 'contact']
 
 <template>
   <div class="startmenu" role="menu" @click.stop>
-    <div class="sm-head"><div class="avatar">J</div>{{ profile.name }}</div>
+    <div class="sm-head"><img class="avatar" src="/avatar.jpg" alt="" width="44" height="44">{{ profile.name }}</div>
     <div class="sm-cols">
       <div class="sm-l">
         <NuxtLink v-for="r in roles" :key="r.id" class="sm-i" role="menuitem" :to="pathFor(r.id)" @click="emit('close')">
