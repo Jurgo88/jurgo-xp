@@ -1,0 +1,803 @@
+{
+  "updatedAt": "2026-11-18T22:30:22.924Z",
+  "source": "https://legendarnaliga.sk/tim/dynamo-typilsi/",
+  "team": {
+    "name": "Dynamo TyPilsi",
+    "url": "https://legendarnaliga.sk/tim/dynamo-typilsi/"
+  },
+  "player": {
+    "name": "Juraj Paluš",
+    "url": "https://legendarnaliga.sk/hrac/88-juraj-palus/"
+  },
+  "standings": {
+    "season": "2026/2027",
+    "group": "Skupina A",
+    "rows": [
+      {
+        "position": 1,
+        "team": "Dynamo TyPilsi",
+        "played": 3,
+        "won": 3,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 0,
+        "score": "17-9",
+        "points": 9
+      },
+      {
+        "position": 2,
+        "team": "ŠK Lido Bratislava",
+        "played": 3,
+        "won": 3,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 0,
+        "score": "18-12",
+        "points": 9
+      },
+      {
+        "position": 3,
+        "team": "JElita-Pirates Bratislava",
+        "played": 4,
+        "won": 2,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 2,
+        "score": "23-19",
+        "points": 6
+      },
+      {
+        "position": 4,
+        "team": "Tsunami Riders Bratislava",
+        "played": 4,
+        "won": 2,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 2,
+        "score": "21-18",
+        "points": 6
+      },
+      {
+        "position": 5,
+        "team": "Hurikán Oldboys Bratislava",
+        "played": 3,
+        "won": 1,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 2,
+        "score": "13-14",
+        "points": 3
+      },
+      {
+        "position": 6,
+        "team": "FBC Lions Bratislava",
+        "played": 4,
+        "won": 1,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 3,
+        "score": "13-23",
+        "points": 3
+      },
+      {
+        "position": 7,
+        "team": "HP Hlavne Prišli Bratislava",
+        "played": 3,
+        "won": 0,
+        "wonOt": 0,
+        "lostOt": 0,
+        "lost": 3,
+        "score": "9-19",
+        "points": 0
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "id": "9157",
+      "season": "2026/2027",
+      "league": "Legendárna florbalová liga",
+      "club": "Dynamo TyPilsi",
+      "me": {
+        "number": null,
+        "games": 0,
+        "goals": 0,
+        "assists": 0,
+        "points": 0,
+        "pim": 0
+      },
+      "team": {
+        "played": 3,
+        "won": 3,
+        "lost": 0,
+        "goalsFor": 17,
+        "goalsAgainst": 9
+      },
+      "players": [
+        {
+          "number": 10,
+          "name": "Matúš Medžo",
+          "goals": 3,
+          "assists": 3,
+          "points": 6,
+          "pim": 0
+        },
+        {
+          "number": 81,
+          "name": "Peter Čuporák",
+          "goals": 5,
+          "assists": 0,
+          "points": 5,
+          "pim": 0
+        },
+        {
+          "number": 61,
+          "name": "Patrik Bachan",
+          "goals": 1,
+          "assists": 3,
+          "points": 4,
+          "pim": 0
+        },
+        {
+          "number": 73,
+          "name": "Timotej Dedinský",
+          "goals": 1,
+          "assists": 2,
+          "points": 3,
+          "pim": 0
+        },
+        {
+          "number": 67,
+          "name": "Mário Porubec",
+          "goals": 2,
+          "assists": 0,
+          "points": 2,
+          "pim": 2
+        },
+        {
+          "number": 69,
+          "name": "Martin Pressburger",
+          "goals": 2,
+          "assists": 0,
+          "points": 2,
+          "pim": 0
+        },
+        {
+          "number": 72,
+          "name": "Ervín Lušpay",
+          "goals": 0,
+          "assists": 2,
+          "points": 2,
+          "pim": 0
+        },
+        {
+          "number": 20,
+          "name": "Jakub Král",
+          "goals": 1,
+          "assists": 0,
+          "points": 1,
+          "pim": 0
+        },
+        {
+          "number": 27,
+          "name": "Branislav Bulla",
+          "goals": 1,
+          "assists": 0,
+          "points": 1,
+          "pim": 0
+        },
+        {
+          "number": 68,
+          "name": "Rastislav Laššo",
+          "goals": 1,
+          "assists": 0,
+          "points": 1,
+          "pim": 2
+        },
+        {
+          "number": 85,
+          "name": "Ladislav Mókus",
+          "goals": 0,
+          "assists": 1,
+          "points": 1,
+          "pim": 0
+        },
+        {
+          "number": 89,
+          "name": "Martin Ujček",
+          "goals": 0,
+          "assists": 1,
+          "points": 1,
+          "pim": 0
+        },
+        {
+          "number": 90,
+          "name": "Matej Beňo",
+          "goals": 0,
+          "assists": 1,
+          "points": 1,
+          "pim": 2
+        },
+        {
+          "number": 14,
+          "name": "Tomáš Ujhelyi",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 0
+        },
+        {
+          "number": 17,
+          "name": "Tomáš Ralbovský",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 0
+        },
+        {
+          "number": 21,
+          "name": "Michal Guba",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 0
+        },
+        {
+          "number": 96,
+          "name": "Dominik Hanzalík",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 0
+        }
+      ],
+      "matches": [
+        {
+          "date": "2026-10-17T15:00",
+          "opponent": "Hurikán Oldboys Bratislava",
+          "home": true,
+          "score": "6:3",
+          "result": "W",
+          "played": false
+        },
+        {
+          "date": "2026-10-18T15:30",
+          "opponent": "HP Hlavne Prišli Bratislava",
+          "home": false,
+          "score": "8:4",
+          "result": "W",
+          "played": false
+        },
+        {
+          "date": "2026-11-15T09:30",
+          "opponent": "JElita-Pirates Bratislava",
+          "home": true,
+          "score": "3:2",
+          "result": "W",
+          "played": false
+        },
+        {
+          "date": "2026-11-28T15:30",
+          "opponent": "FBC Lions Bratislava",
+          "home": false,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2026-12-12T11:00",
+          "opponent": "Tsunami Riders Bratislava",
+          "home": true,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-01-09T08:00",
+          "opponent": "Hurikán Oldboys Bratislava",
+          "home": false,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-02-06T12:30",
+          "opponent": "HP Hlavne Prišli Bratislava",
+          "home": true,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-02-07T09:30",
+          "opponent": "Tsunami Riders Bratislava",
+          "home": false,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-02-13T08:00",
+          "opponent": "ŠK Lido Bratislava",
+          "home": false,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-02-21T09:30",
+          "opponent": "ŠK Lido Bratislava",
+          "home": true,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-03-06T15:30",
+          "opponent": "JElita-Pirates Bratislava",
+          "home": false,
+          "score": null,
+          "result": null,
+          "played": false
+        },
+        {
+          "date": "2027-03-07T09:30",
+          "opponent": "FBC Lions Bratislava",
+          "home": true,
+          "score": null,
+          "result": null,
+          "played": false
+        }
+      ]
+    },
+    {
+      "id": "8709",
+      "season": "2025/2026",
+      "league": "Legendárna florbalová liga",
+      "club": "Dynamo TyPilsi",
+      "me": {
+        "number": 24,
+        "games": 16,
+        "goals": 6,
+        "assists": 4,
+        "points": 10,
+        "pim": 2
+      },
+      "team": {
+        "played": 19,
+        "won": 19,
+        "lost": 0,
+        "goalsFor": 170,
+        "goalsAgainst": 63
+      },
+      "players": [
+        {
+          "number": 81,
+          "name": "Peter Čuporák",
+          "goals": 19,
+          "assists": 15,
+          "points": 34,
+          "pim": 4
+        },
+        {
+          "number": 47,
+          "name": "Stanislav Šenšel",
+          "goals": 23,
+          "assists": 6,
+          "points": 29,
+          "pim": 0
+        },
+        {
+          "number": 27,
+          "name": "Branislav Bulla",
+          "goals": 8,
+          "assists": 19,
+          "points": 27,
+          "pim": 4
+        },
+        {
+          "number": 21,
+          "name": "Michal Guba",
+          "goals": 4,
+          "assists": 23,
+          "points": 27,
+          "pim": 10
+        },
+        {
+          "number": 10,
+          "name": "Matúš Medžo",
+          "goals": 15,
+          "assists": 11,
+          "points": 26,
+          "pim": 0
+        },
+        {
+          "number": 33,
+          "name": "Ondrej Potkany",
+          "goals": 15,
+          "assists": 8,
+          "points": 23,
+          "pim": 0
+        },
+        {
+          "number": 72,
+          "name": "Ervín Lušpay",
+          "goals": 11,
+          "assists": 10,
+          "points": 21,
+          "pim": 4
+        },
+        {
+          "number": 73,
+          "name": "Timotej Dedinský",
+          "goals": 10,
+          "assists": 7,
+          "points": 17,
+          "pim": 0
+        },
+        {
+          "number": 28,
+          "name": "Tomáš Krajmer",
+          "goals": 13,
+          "assists": 1,
+          "points": 14,
+          "pim": 2
+        },
+        {
+          "number": 68,
+          "name": "Rastislav Laššo",
+          "goals": 10,
+          "assists": 4,
+          "points": 14,
+          "pim": 4
+        },
+        {
+          "number": 90,
+          "name": "Matej Beňo",
+          "goals": 6,
+          "assists": 7,
+          "points": 13,
+          "pim": 2
+        },
+        {
+          "number": 96,
+          "name": "Dominik Hanzalík",
+          "goals": 5,
+          "assists": 7,
+          "points": 12,
+          "pim": 0
+        },
+        {
+          "number": 24,
+          "name": "Juraj Paluš",
+          "goals": 6,
+          "assists": 4,
+          "points": 10,
+          "pim": 2
+        },
+        {
+          "number": 13,
+          "name": "Viliam Szász",
+          "goals": 5,
+          "assists": 4,
+          "points": 9,
+          "pim": 2
+        },
+        {
+          "number": 88,
+          "name": "Matúš Ringer",
+          "goals": 5,
+          "assists": 3,
+          "points": 8,
+          "pim": 4
+        },
+        {
+          "number": 14,
+          "name": "Tomáš Ujhelyi",
+          "goals": 3,
+          "assists": 5,
+          "points": 8,
+          "pim": 4
+        },
+        {
+          "number": 89,
+          "name": "Martin Ujček",
+          "goals": 3,
+          "assists": 2,
+          "points": 5,
+          "pim": 2
+        },
+        {
+          "number": 17,
+          "name": "Tomáš Ralbovský",
+          "goals": 4,
+          "assists": 0,
+          "points": 4,
+          "pim": 0
+        },
+        {
+          "number": 11,
+          "name": "Michal Manina",
+          "goals": 0,
+          "assists": 4,
+          "points": 4,
+          "pim": 2
+        },
+        {
+          "number": 67,
+          "name": "Mário Porubec",
+          "goals": 1,
+          "assists": 2,
+          "points": 3,
+          "pim": 0
+        },
+        {
+          "number": 29,
+          "name": "Samuel Hrstka",
+          "goals": 0,
+          "assists": 1,
+          "points": 1,
+          "pim": 0
+        },
+        {
+          "number": 20,
+          "name": "Jakub Král",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 2
+        },
+        {
+          "number": 85,
+          "name": "Ladislav Mókus",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 0
+        },
+        {
+          "number": 96,
+          "name": "Patrik Piterka",
+          "goals": 0,
+          "assists": 0,
+          "points": 0,
+          "pim": 0
+        }
+      ],
+      "matches": [
+        {
+          "date": "2025-09-28T17:00",
+          "opponent": "Hurikán Oldboys Bratislava",
+          "home": true,
+          "score": "10:8",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 1,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2025-10-05T18:30",
+          "opponent": "Tsunami Riders Bratislava",
+          "home": false,
+          "score": "7:1",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2025-10-19T17:00",
+          "opponent": "TJ Sokol Gajary",
+          "home": false,
+          "score": "11:4",
+          "result": "W",
+          "played": false
+        },
+        {
+          "date": "2025-11-23T15:30",
+          "opponent": "JElita-Pirates Bratislava",
+          "home": false,
+          "score": "5:4",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2025-12-07T14:00",
+          "opponent": "HP Hlavne Prišli Bratislava",
+          "home": true,
+          "score": "8:2",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-01-11T12:30",
+          "opponent": "ŠK Lido Bratislava",
+          "home": true,
+          "score": "11:1",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-01-18T18:30",
+          "opponent": "Zbojnícke legendy",
+          "home": false,
+          "score": "9:0",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 1,
+            "assists": 2,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-01-25T09:30",
+          "opponent": "Hurikán Oldboys Bratislava",
+          "home": false,
+          "score": "10:2",
+          "result": "W",
+          "played": false
+        },
+        {
+          "date": "2026-02-08T12:30",
+          "opponent": "Tsunami Riders Bratislava",
+          "home": true,
+          "score": "14:4",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 1,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-02-22T11:00",
+          "opponent": "JElita-Pirates Bratislava",
+          "home": true,
+          "score": "5:3",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-03-08T12:30",
+          "opponent": "HP Hlavne Prišli Bratislava",
+          "home": false,
+          "score": "9:5",
+          "result": "W",
+          "played": false
+        },
+        {
+          "date": "2026-03-15T11:00",
+          "opponent": "ŠK Lido Bratislava",
+          "home": false,
+          "score": "8:3",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-03-22T15:30",
+          "opponent": "TJ Sokol Gajary",
+          "home": true,
+          "score": "9:5",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 1,
+            "assists": 0,
+            "penalties": 1
+          }
+        },
+        {
+          "date": "2026-03-29T18:45",
+          "opponent": "Zbojnícke legendy",
+          "home": true,
+          "score": "7:6",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 1,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-04-26T18:00",
+          "opponent": "TJ Sokol Gajary",
+          "home": true,
+          "score": "7:2",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 2,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-05-06T20:00",
+          "opponent": "TJ Sokol Gajary",
+          "home": false,
+          "score": "8:4",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 1,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-05-13T20:00",
+          "opponent": "HP Hlavne Prišli Bratislava",
+          "home": true,
+          "score": "13:4",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-05-18T20:00",
+          "opponent": "HP Hlavne Prišli Bratislava",
+          "home": false,
+          "score": "13:1",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        },
+        {
+          "date": "2026-05-23T17:00",
+          "opponent": "JElita-Pirates Bratislava",
+          "home": true,
+          "score": "6:4",
+          "result": "W",
+          "played": true,
+          "events": {
+            "goals": 0,
+            "assists": 0,
+            "penalties": 0
+          }
+        }
+      ]
+    }
+  ]
+}
