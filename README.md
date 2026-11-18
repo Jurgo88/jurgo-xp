@@ -22,10 +22,12 @@ Užitočné URL parametre: `?boot` vždy prehrá bootovanie, `?noboot` ho presko
 - **Winamp**: skutočný Webamp 2.3.1. Hrá len MP3, ktoré hostujeme sami (`public/music/` + `tracks` v `personal.ts`). Spotify sa do Webampu prehrať nedá; „práve počúvam“ cez Netlify funkciu je plán na neskôr.
 - **Mobil**: mriežka ikon, okná na celú obrazovku, ťuknutie otvára. **Klasický pohľad** `/cv` je obyčajné CV s prepínaním rolí (`/cv?role=fullstack`).
 
+## CV v PDF
+
+`public/cv/` obsahuje CV pre každú rolu (EN/SK) a všeobecné CV, vygenerované z `Jurgo88/job-hunting-pro` (`cv/build.py`, profily general, frontend, fullstack, analyst, ai) **bez telefónneho čísla**. Po zmene CV ich treba pregenerovať a nakopírovať sem (názvy `Juraj-Palus-CV-<rola>-<en|sk>.pdf`, `Juraj-Palus-CV-<en|sk>.pdf`).
+
 ## Čo treba doplniť (TODO)
 
-- `public/cv/Juraj-Palus-CV.pdf` – PDF životopis.
-- AI projekty: `app/data/projects.ts` (`ai-1`, `ai-2`) a text v `roles.ts` (`ai-engineer`).
 - Florbal: klub, odkaz na štatistiky ligy, reálne čísla v `app/data/personal.ts`.
 - Blog: texty príspevkov v `personal.ts`.
 - Hudba: vlastné MP3 do `public/music/` a zoznam `tracks`.
@@ -34,4 +36,4 @@ Užitočné URL parametre: `?boot` vždy prehrá bootovanie, `?noboot` ho presko
 
 ## Nasadenie
 
-Netlify: build `npm run generate`, publish `.output/public` (viď `netlify.toml`). Súčasný jurgo.sk (portfolio-v2) beží ďalej; doménu prepneme, keď bude tento web hotový.
+Netlify: build `npm run generate`, publish `dist` (Nitro preset netlify-static) (viď `netlify.toml`). Súčasný jurgo.sk (portfolio-v2) beží ďalej; doménu prepneme, keď bude tento web hotový.

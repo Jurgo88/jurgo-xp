@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { roles } from '~/data/roles'
 import type { Role } from '~/data/roles'
-import { profile } from '~/data/profile'
+import { profile, cvPdf } from '~/data/profile'
 
 // "Classic view": a plain one-page CV for recruiters in a hurry. Also the
 // natural landing page for a link in a job application.
-const { l } = useL10n()
+const { l, locale } = useL10n()
 const { t } = useI18n()
 const { years } = useCareer()
 const localePath = useLocalePath()
@@ -61,7 +61,7 @@ useSeoMeta({
           <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
           <a :href="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
           <a :href="profile.github" target="_blank" rel="noopener">GitHub</a>
-          <a :href="profile.cvPdf" target="_blank" rel="noopener">CV.pdf</a>
+          <a :href="cvPdf(locale, role.id)" target="_blank" rel="noopener">CV.pdf ({{ l(role.title) }})</a>
         </div>
       </section>
     </div>

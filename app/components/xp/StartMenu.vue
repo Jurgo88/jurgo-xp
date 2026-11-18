@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { roles } from '~/data/roles'
 import { appById } from '~/data/apps'
-import { profile } from '~/data/profile'
+import { profile, cvPdf } from '~/data/profile'
 import type { AppId } from '~/data/app-ids'
 
 const emit = defineEmits<{ close: []; wallpaper: []; restart: [] }>()
-const { l } = useL10n()
+const { l, locale } = useL10n()
 const { t } = useI18n()
 const { pathFor } = useApps()
 const right: AppId[] = ['about', 'blog', 'music', 'floorball', 'sport', 'contact']
@@ -25,7 +25,7 @@ const right: AppId[] = ['about', 'blog', 'music', 'floorball', 'sport', 'contact
           <img src="/icons/my-computer.png" alt="">
           <span><b>{{ t('start_wallpaper') }}</b><small>{{ t('start_wallpaper_hint') }}</small></span>
         </button>
-        <a class="sm-i" role="menuitem" :href="profile.cvPdf" target="_blank" rel="noopener" @click="emit('close')">
+        <a class="sm-i" role="menuitem" :href="cvPdf(locale)" target="_blank" rel="noopener" @click="emit('close')">
           <img src="/icons/pdf.svg" alt="">
           <span><b>CV.pdf</b><small>{{ t('start_cv_hint') }}</small></span>
         </a>

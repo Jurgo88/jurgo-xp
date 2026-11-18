@@ -17,8 +17,8 @@ export const projects: Project[] = [
     name: 'Pristupio Platform',
     stack: ['Vue 3', 'Nuxt', 'TypeScript', 'Pinia', 'Supabase'],
     description: {
-      en: 'Scalable SaaS platform built with modular Vue architecture, Pinia state management, and Supabase backend.',
-      sk: 'Škálovateľná SaaS platforma s modulárnou Vue architektúrou, Pinia state managementom a Supabase backendom.',
+      en: 'WCAG accessibility audit SaaS. AI (OpenAI, structured JSON output) turns audit findings into clear fixes in Slovak and English.',
+      sk: 'SaaS na audit prístupnosti podľa WCAG. AI (OpenAI, štruktúrovaný JSON) prekladá nálezy auditu na zrozumiteľné kroky opravy po slovensky aj anglicky.',
     },
     url: 'https://pristupio.com',
   },
@@ -60,18 +60,42 @@ export const projects: Project[] = [
     },
   },
   {
-    id: 'ai-1',
-    name: 'AI project #1',
-    stack: ['LLM', 'RAG'],
-    description: { en: 'To be filled in by Jurgo.', sk: 'Doplní Jurgo.' },
-    placeholder: true,
+    id: 'japs',
+    name: 'JAPS – Just Another Portfolio Site',
+    stack: ['TypeScript', 'Astro', 'Vue 3', 'Cloudflare Workers', 'OpenAI / Gemini / Groq / Ollama'],
+    description: {
+      en: 'Generates a static portfolio from deployed Netlify sites and their GitHub repos. Grounded AI copywriting: any number not in the extracted facts is rejected.',
+      sk: 'Generuje statické portfólio z nasadených Netlify webov a ich GitHub repozitárov. Grounded AI texty: čísla mimo extrahovaných faktov sú zamietnuté.',
+    },
+    url: 'https://japs.app',
   },
   {
-    id: 'ai-2',
-    name: 'AI project #2',
-    stack: ['Claude API', 'Agents'],
-    description: { en: 'To be filled in by Jurgo.', sk: 'Doplní Jurgo.' },
-    placeholder: true,
+    id: 'rag',
+    name: 'Slovak RAG assistant',
+    stack: ['TypeScript', 'Supabase', 'pgvector', 'MCP', 'GitHub Actions'],
+    description: {
+      en: 'Slovak-language retrieval-augmented assistant over my own projects, with swappable embedding/LLM providers and a 40-question evaluation set.',
+      sk: 'Slovenský RAG asistent nad mojimi projektmi s vymeniteľnými embedding/LLM providermi a evaluačnou sadou 40 otázok.',
+    },
+  },
+  {
+    id: 'ci-review',
+    name: 'AI code review in CI',
+    stack: ['Claude Code', 'GitHub Actions'],
+    description: {
+      en: 'Interactive and automatic pull-request review workflows powered by Claude.',
+      sk: 'Interaktívne aj automatické review pull requestov pomocou Claude.',
+    },
+  },
+  {
+    id: 'loqsy',
+    name: 'Loqsy',
+    stack: ['Vue 3', 'TypeScript', 'Supabase', 'Netlify'],
+    description: {
+      en: 'Subscription PWA pairing two user roles, 2,000+ registered users. End-to-end delivery incl. RLS, payment webhooks and server-side tracking.',
+      sk: 'Predplatiteľská PWA párujúca dve role používateľov, 2 000+ registrovaných. Dodávka end-to-end vrátane RLS, platobných webhookov a server-side trackingu.',
+    },
+    url: 'https://loqsy.app',
   },
 ]
 

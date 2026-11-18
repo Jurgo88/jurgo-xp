@@ -10,7 +10,6 @@ export interface Role {
   skills: string[]
   jobs: string[]
   projects: string[]
-  todo?: L10n
 }
 
 export const roles: Role[] = [
@@ -24,7 +23,7 @@ export const roles: Role[] = [
     },
     skills: ['Vue 3', 'Nuxt', 'TypeScript', 'React', 'SCSS', 'GSAP', 'Pinia'],
     jobs: ['foundation', 'nds', 'accenture', 'ensentia'],
-    projects: ['pristupio', 'e-passport', 'photographer-portfolio'],
+    projects: ['pristupio', 'japs', 'loqsy', 'e-passport', 'photographer-portfolio'],
   },
   {
     id: 'fullstack',
@@ -36,7 +35,7 @@ export const roles: Role[] = [
     },
     skills: ['PHP', 'Laravel', 'Vue', 'Supabase', 'SQL Server', 'REST API'],
     jobs: ['kanadevia', 'nds', 'accenture'],
-    projects: ['pristupio', 'nds-events', 'e-passport'],
+    projects: ['loqsy', 'pristupio', 'japs', 'nds-events'],
   },
   {
     id: 'analyst',
@@ -60,11 +59,7 @@ export const roles: Role[] = [
     },
     skills: ['LLM APIs', 'Prompting', 'Agents', 'RAG', 'TypeScript', 'Supabase'],
     jobs: ['kanadevia', 'nds'],
-    projects: ['ai-1', 'ai-2'],
-    todo: {
-      en: 'AI projects coming soon.',
-      sk: 'Sem doplníme AI projekty a čo presne som v nich robil.',
-    },
+    projects: ['japs', 'rag', 'ci-review', 'pristupio'],
   },
 ]
 
