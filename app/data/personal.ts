@@ -36,28 +36,6 @@ export const blogPosts: BlogPost[] = [
   },
 ]
 
-export interface Season {
-  season: string
-  club: string
-  league: string
-  games: number
-  goals: number
-  assists: number
-}
-
-// TODO(Jurgo): club name + link to the league stats page. Later we can fetch
-// these automatically at build time.
-export const floorball = {
-  sample: true,
-  statsUrl: '',
-  seasons: [
-    { season: '2022/23', club: 'Club (TBD)', league: '1. liga', games: 18, goals: 9, assists: 7 },
-    { season: '2023/24', club: 'Club (TBD)', league: '1. liga', games: 20, goals: 12, assists: 10 },
-    { season: '2024/25', club: 'Club (TBD)', league: '1. liga', games: 19, goals: 11, assists: 8 },
-    { season: '2025/26', club: 'Club (TBD)', league: '1. liga', games: 8, goals: 5, assists: 4 },
-  ] as Season[],
-}
-
 export const otherSports: { name: L10n; note: L10n }[] = [
   { name: { en: 'Another sport', sk: 'Ďalší šport' }, note: { en: 'to be filled in', sk: 'doplniť' } },
   { name: { en: 'Match photos', sk: 'Fotky zo zápasov' }, note: { en: 'to be filled in', sk: 'doplniť' } },

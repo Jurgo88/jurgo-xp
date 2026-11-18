@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "nuxt dev --port 3002",
     "build": "nuxt build",
+    "pregenerate": "node scripts/fetch-floorball.mjs",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "typecheck": "nuxt typecheck",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "floorball": "node scripts/fetch-floorball.mjs"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^10.6.0",
@@ -22,6 +24,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
+    "node-html-parser": "^9.0.7",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.14"
   }
