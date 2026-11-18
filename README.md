@@ -36,4 +36,4 @@ Užitočné URL parametre: `?boot` vždy prehrá bootovanie, `?noboot` ho presko
 
 ## Nasadenie
 
-Netlify: build `npm run generate`, publish `.output/public` (viď `netlify.toml`). Súčasný jurgo.sk (portfolio-v2) beží ďalej; doménu prepneme, keď bude tento web hotový.
+Netlify: build `npm run generate`, publish `dist` (Nitro preset netlify-static) (viď `netlify.toml`). Súčasný jurgo.sk (portfolio-v2) beží ďalej; doménu prepneme, keď bude tento web hotový.
