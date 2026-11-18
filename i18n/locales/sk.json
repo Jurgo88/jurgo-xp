@@ -33,7 +33,7 @@
   "positions": "Pozície: {n}, projekty: {p}",
   "objects": "Objekty: {n}",
   "about_h": "Ahoj, som Jurgo",
-  "about_lead": "Developer z Bratislavy. Začínal som v .NET, prešiel cez frontend, analýzu v banke a fullstack v Národnej diaľničnej spoločnosti. Dnes robím PHP a SQL a vo voľnom čase staviam AI projekty. Hľadám ďalšiu výzvu.",
+  "about_lead": "Developer z Bratislavy. Začínal som v .NET, prešiel cez frontend, analýzu v banke a fullstack v Národnej diaľničnej spoločnosti. Dnes robím kompletný vývoj, od návrhu cez frontend a backend až po nasadenie. Moderné AI nástroje mi pri tom šetria veľa času, takže sa viem sústrediť na to, čo prináša výsledok. Hľadám ďalšiu výzvu.",
   "about_system": "JurgoXP Professional\nVerzia 2016 – {year}\n{years} rokov praxe",
   "sample_data": "Ukážkové dáta",
   "floorball_status": "Ukážkové dáta · reálne štatistiky natiahneme z webu ligy",

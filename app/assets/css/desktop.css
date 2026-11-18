@@ -220,3 +220,10 @@ a.file, button.file { cursor: pointer; }
   .tray .hide-s { display: none; }
 }
 .icon:focus { outline: none; }
+
+/* Webamp uses a .title-bar class too; undo the xp.css window title bar styles on it
+   (they made the equalizer title bar 10px wider than the window). */
+#webamp .title-bar {
+  padding: 0; border: 0; border-radius: 0; box-shadow: none; text-shadow: none;
+  background-color: transparent; background-image: none; display: block; font: inherit;
+}
