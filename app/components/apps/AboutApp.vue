@@ -18,7 +18,7 @@ const { pathFor } = useApps()
       <div class="box">
         <h4>{{ t('other_places') }}</h4>
         <ul>
-          <li v-for="id in (['blog', 'music', 'floorball', 'contact'] as const)" :key="id">
+          <li v-for="id in (['blog', 'music', 'sport', 'contact'] as const)" :key="id">
             <NuxtLink class="lnk" :to="pathFor(id)"><img :src="appById(id)!.icon" alt="">{{ l(appById(id)!.label) }}</NuxtLink>
           </li>
         </ul>
