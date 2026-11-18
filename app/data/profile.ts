@@ -6,6 +6,15 @@ export const profile = {
   email: 'palus.dev@gmail.com',
   linkedin: 'https://www.linkedin.com/in/juraj-palus',
   github: 'https://github.com/Jurgo88',
+  /**
+   * Phone number, deliberately NOT in plain text (scrapers): base64 of the
+   * reversed number. Decoded only in the browser after a click – see XpPhone.vue.
+   */
+  phoneEnc: 'ODg0IDI4OCAxMTkgMTI0Kw==',
+}
+
+export function decodePhone(enc = profile.phoneEnc) {
+  return atob(enc).split('').reverse().join('')
 }
 
 /**

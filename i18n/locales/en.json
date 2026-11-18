@@ -86,5 +86,7 @@
     "Booting JurgoXP..."
   ],
   "boot_copyright": "Copyright © Juraj Paluš",
-  "welcome": "welcome"
+  "welcome": "welcome",
+  "phone_show": "Show number",
+  "phone_label": "Phone:"
 }

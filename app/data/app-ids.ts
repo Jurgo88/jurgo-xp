@@ -6,6 +6,7 @@ export const appIds = [
   'ai-engineer',
   'about',
   'blog',
+  'notepad',
   'music',
   'floorball',
   'sport',

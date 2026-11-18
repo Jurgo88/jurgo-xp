@@ -59,6 +59,7 @@ useSeoMeta({
         <h2>{{ t('cv_contact') }}</h2>
         <div class="contact">
           <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
+          <XpPhone />
           <a :href="profile.linkedin" target="_blank" rel="noopener">LinkedIn</a>
           <a :href="profile.github" target="_blank" rel="noopener">GitHub</a>
           <a :href="cvPdf(locale, role.id)" target="_blank" rel="noopener">CV.pdf ({{ l(role.title) }})</a>

@@ -86,5 +86,7 @@
     "Spustam JurgoXP..."
   ],
   "boot_copyright": "Copyright © Juraj Paluš",
-  "welcome": "vitajte"
+  "welcome": "vitajte",
+  "phone_show": "Zobraziť číslo",
+  "phone_label": "Telefón:"
 }
