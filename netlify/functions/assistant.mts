@@ -30,7 +30,7 @@ const MAX_TOTAL_CHARS = 10_000
 
 const ALLOWED_ORIGINS = [
   /^https:\/\/(www\.)?jurgo\.sk$/,
-  /^https:\/\/([a-z0-9-]+--)?jurgo-xp\.netlify\.app$/, // production + deploy previews
+  /^https:\/\/([a-z0-9-]+--)?jurgo(-xp)?\.netlify\.app$/, // Netlify sites + deploy previews
   /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/,
 ]
 

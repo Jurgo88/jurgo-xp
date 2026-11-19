@@ -66,7 +66,7 @@ that answers recruiters' questions about Jurgo. It posts to `/api/assistant`, a 
 - **Grounding**: the model only gets `netlify/lib/assistant-knowledge.ts`, i.e. the public CV text plus the
   site data (`app/data/*`: roles, experience, projects, blog, floorball). No phone number. When you change the
   CV, update the `CV` text there too.
-- **Guards**: allowed origins (jurgo.sk, jurgo-xp.netlify.app + deploy previews, localhost), input limits
+- **Guards**: allowed origins (jurgo.sk, jurgo.netlify.app / jurgo-xp.netlify.app + deploy previews, localhost), input limits
   (500 chars per question, last 12 messages), per-visitor limits (hashed IP, 20/hour, 60/day) and a site-wide
   daily cost cap, kept in Netlify Blobs; system prompt rules against off-topic use and prompt injection;
   `max_tokens` 700, prompt caching for the big system prompt.
