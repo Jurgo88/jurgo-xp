@@ -16,17 +16,59 @@ import { useWindowsStore } from '~/stores/windows'
  *
  * Nothing is loaded on localhost or in automated browsers, so dev work and
  * tests don't end up in the stats.
+ *
+ * Owner opt-out: open any page with ?notrack=1 once per device/browser and
+ * neither Clarity nor PostHog is ever loaded there again (flag in localStorage).
+ * ?notrack=0 turns analytics back on. The parameter is removed from the URL.
  */
 type Props = Record<string, string | number | boolean | null>
 type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] }
 type Win = Window & { clarity?: ClarityFn }
 
 const roleIds = new Set<string>(roles.map(r => r.id))
+const OPT_OUT_KEY = 'jurgo-notrack'
+
+/** Reads/updates the owner opt-out flag; returns [optedOut, changedNow]. */
+function ownerOptOut(): [boolean, boolean] {
+  const param = new URLSearchParams(location.search).get('notrack')
+  try {
+    if (param === '1') localStorage.setItem(OPT_OUT_KEY, '1')
+    else if (param === '0') localStorage.removeItem(OPT_OUT_KEY)
+    return [localStorage.getItem(OPT_OUT_KEY) === '1', param === '1' || param === '0']
+  }
+  catch {
+    // storage blocked: honour the parameter for this page load only
+    return [param === '1', false]
+  }
+}
+
+function toast(text: string) {
+  const el = document.createElement('div')
+  el.textContent = text
+  el.setAttribute('role', 'status')
+  el.style.cssText = 'position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:99999;'
+    + 'background:#ffffe1;color:#000;border:1px solid #000;border-radius:6px;padding:8px 12px;'
+    + 'font:13px Tahoma,Verdana,sans-serif;box-shadow:2px 2px 6px rgba(0,0,0,.35)'
+  document.body.appendChild(el)
+  setTimeout(() => el.remove(), 4000)
+}
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { clarityId, postHogKey } = useRuntimeConfig().public
   const host = location.hostname
-  const enabled = !navigator.webdriver && !/^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(host)
+  const [optedOut, optOutChanged] = ownerOptOut()
+  const enabled = !optedOut && !navigator.webdriver && !/^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(host)
+
+  if (optOutChanged) {
+    nuxtApp.hook('app:mounted', () => {
+      const router = useRouter()
+      const { notrack: _, ...query } = router.currentRoute.value.query
+      void router.replace({ query, hash: router.currentRoute.value.hash })
+      toast(optedOut
+        ? 'Analytika je na tomto zariadení vypnutá (Clarity aj PostHog).'
+        : 'Analytika je na tomto zariadení znova zapnutá.')
+    })
+  }
 
   let posthog: PostHog | null = null
   const queue: [string, Props][] = []
