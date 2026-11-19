@@ -23,8 +23,8 @@ export const blogPosts: BlogPost[] = [
       en: 'How I rebuilt my website as Windows XP in one night',
     },
     summary: {
-      sk: 'Prvý návrh nového webu vyzeral ako každé AI portfólio, tak som z neho spravil plochu Windows XP. S Claude Code za jeden večer a noc: Nuxt 4, Webamp so Spotify, florbalové štatistiky a AI asistent v štýle MSN.',
-      en: 'The first draft of my new site looked like every AI portfolio, so I turned it into a Windows XP desktop. Built with Claude Code over one evening and night: Nuxt 4, Webamp with Spotify, floorball stats and an MSN-style AI assistant.',
+      sk: 'Chcel som osobnejší a originálny web, ktorý nekričí „AI“, tak som dokončil svoj nápad s plochou Windows XP z roku 2022. S Claude Code za jeden večer a noc: Nuxt 4, Webamp so Spotify, florbalové štatistiky a AI asistent v štýle MSN.',
+      en: 'I wanted a more personal, original site that doesn't scream "AI", so I finished my Windows XP desktop idea from 2022. Built with Claude Code over one evening and night: Nuxt 4, Webamp with Spotify, floorball stats and an MSN-style AI assistant.',
     },
   },
   {

@@ -1,6 +1,6 @@
-I'm looking for a job, so I needed a new website. The first draft came together fast: split screen, big headline, a few project cards. It looked exactly like every other portfolio an AI spits out today. Nothing about it was mine.
+I wasn't happy with my previous website. Not because of how it looked, it looked fine. I just wanted something more personal and original, not another site that screams "made by AI" at first glance.
 
-So I went back to something I had built before: a Windows XP desktop in the browser. I had an older project like that and I just like XP. This time it had to be the whole site, not a toy.
+I first had the idea of a Windows XP desktop in the browser back in 2022. I built the first version in plain JavaScript, rewrote it in Vue in January 2024, and now I've finally given it its final form. This time it isn't a side toy, it's my whole website.
 
 ## What you'll find here
 
@@ -19,6 +19,6 @@ Claude Code wrote most of the code. My job was deciding what I wanted, checking 
 
 ## What I take from it
 
-AI saved me hours of typing code, but it didn't decide what the site should look like. That first generic draft is exactly what you get when you leave the deciding to it. The faster code gets written, the more it matters what you actually want to build.
+AI saved me hours of typing code, but it didn't decide what the site should look like. A generic site that screams "AI" is exactly what you get when you leave the deciding to it. The faster code gets written, the more it matters what you actually want to build.
 
 And it's fun. I haven't enjoyed my own website this much in a long time.

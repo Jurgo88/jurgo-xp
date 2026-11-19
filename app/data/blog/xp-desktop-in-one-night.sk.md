@@ -1,6 +1,6 @@
-Hľadám prácu, takže som potreboval nový web. Prvý návrh som mal rýchlo: rozdelená obrazovka, veľký nadpis, pár kariet s projektmi. Vyzeral presne ako každé druhé portfólio, ktoré dnes vypadne z AI. Nebolo na ňom nič moje.
+S mojím predošlým webom som nebol spokojný. Nie po vizuálnej stránke, vyzeral v pohode. Chcel som ale niečo osobnejšie a originálne, nie ďalší web, ktorý už na prvý pohľad kričí, že ho spravila AI.
 
-Tak som sa vrátil k niečomu, čo som už raz robil: plocha Windows XP v prehliadači. Mal som k tomu starší projekt a XP mám rád. Tentoraz to ale mal byť celý web, nie hračka.
+Nápad s plochou Windows XP v prehliadači som mal už v roku 2022. Prvú verziu som robil čisto v JavaScripte, v januári 2024 som ju prerobil do Vue a teraz som jej konečne dal finálnu podobu. Tentoraz to už nie je hračka bokom, ale celý môj web.
 
 ## Čo tu nájdeš
 
@@ -19,6 +19,6 @@ Väčšinu kódu napísal Claude Code. Moja práca bola rozhodovať, čo chcem, 
 
 ## Čo si z toho beriem
 
-AI mi ušetrila hodiny písania kódu, ale nerozhodla za mňa, ako má web vyzerať. Ten prvý generický návrh bol presne to, čo dostaneš, keď rozhodovanie nechá na nej. Čím rýchlejšie sa dá kód napísať, tým viac záleží na tom, čo vlastne chceš postaviť.
+AI mi ušetrila hodiny písania kódu, ale nerozhodla za mňa, ako má web vyzerať. Generický web, ktorý kričí „AI“, je presne to, čo dostaneš, keď rozhodovanie necháš na nej. Čím rýchlejšie sa dá kód napísať, tým viac záleží na tom, čo vlastne chceš postaviť.
 
 A je to zábava. Dlho som nemal z vlastného webu takú radosť.
