@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{ close: []; screensaver: [] }>()
+const { l } = useL10n()
 const { t } = useI18n()
 const { wallpaper, set, reset } = useWallpaper()
 const fileInput = ref<HTMLInputElement>()
@@ -35,6 +36,7 @@ function pick(e: Event) {
         <button type="button" @click="fileInput?.click()">{{ t('display_browse') }}</button>
         <input ref="fileInput" type="file" accept="image/*" tabindex="-1" aria-hidden="true" @change="pick">
         <button @click="reset">{{ t('display_default') }}</button>
+        <button class="saver-btn" @click="emit('screensaver')">{{ l({ en: 'Screen saver', sk: 'Šetrič obrazovky' }) }}</button>
         <button @click="emit('close')">{{ t('ok') }}</button>
       </div>
     </div>

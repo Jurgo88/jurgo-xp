@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { AppId } from '~/data/app-ids'
 import { roleById } from '~/data/roles'
+import { appById } from '~/data/apps'
 import { blogPosts } from '~/data/personal'
 import { profile } from '~/data/profile'
 import { floorball } from '~/data/floorball'
 
 const props = defineProps<{ id: AppId }>()
+const gameStatus = (id: AppId) => useState<string>(`status-${id}`, () => '')
 const { t } = useI18n()
 const { l } = useL10n()
 const text = computed(() => {
@@ -17,9 +19,13 @@ const text = computed(() => {
     case 'notepad': return t('notepad_line')
     case 'floorball': return `${floorball.team.name} · ${l({ en: 'Legendary Floorball League', sk: 'Legendárna florbalová liga' })}`
     case 'sport': return t('objects', { n: 3 })
-    case 'recycle-bin': return t('objects', { n: 2 })
+    case 'recycle-bin': return t('objects', { n: 3 })
     case 'spotify': return l({ en: 'Data from Spotify · click a song to play it', sk: 'Dáta zo Spotify · klikni na skladbu a prehrá sa' })
     case 'contact': return profile.email
+    case 'games': return t('objects', { n: 2 })
+    // the games write their own line (time, moves, hints)
+    case 'minesweeper':
+    case 'solitaire': return gameStatus(props.id).value || l(appById(props.id)!.label)
     default: return String(blogPosts.length)
   }
 })
