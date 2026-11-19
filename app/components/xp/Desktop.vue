@@ -14,6 +14,32 @@ const { openApp } = useApps()
 const display = ref(false)
 const ctx = ref<{ x: number; y: number } | null>(null)
 const icons = ref<{ clear(): void }>()
+const bsod = useState('bsod', () => false)
+const saver = ref(false)
+
+// Screensaver after a few idle minutes, like XP. Desktop only: phones lock themselves.
+const IDLE_MS = 3 * 60_000
+let idleTimer: ReturnType<typeof setTimeout> | undefined
+function armIdle() {
+  clearTimeout(idleTimer)
+  idleTimer = setTimeout(() => {
+    if (!booting.value && !bsod.value && document.visibilityState === 'visible') saver.value = true
+  }, IDLE_MS)
+}
+const idleEvents = ['pointermove', 'pointerdown', 'keydown', 'wheel'] as const
+function previewSaver() {
+  display.value = false
+  saver.value = true
+}
+function closeSaver() {
+  saver.value = false
+  armIdle()
+}
+function afterBsod() {
+  bsod.value = false
+  store.close('recycle-bin')
+  replay()
+}
 
 const windows = computed(() => store.windows.filter(w => appById(w.id)?.kind !== 'webamp'))
 const musicOpen = computed(() => store.isOpen('music'))
@@ -60,6 +86,10 @@ onMounted(() => {
   onResize()
   window.addEventListener('resize', onResize)
   document.addEventListener('keydown', onKey)
+  if (!matchMedia('(max-width: 700px), (pointer: coarse)').matches) {
+    for (const ev of idleEvents) window.addEventListener(ev, armIdle, { passive: true })
+    armIdle()
+  }
   // balloon tip ~1.5 s after the desktop is actually visible (not on phones)
   if (!matchMedia('(max-width: 700px)').matches) {
     const schedule = () => { balloonTimer = setTimeout(() => { balloon.value = true }, 1500); scheduleToast() }
@@ -74,6 +104,8 @@ onBeforeUnmount(() => {
   document.removeEventListener('keydown', onKey)
   clearTimeout(balloonTimer)
   clearTimeout(toastTimer)
+  clearTimeout(idleTimer)
+  for (const ev of idleEvents) window.removeEventListener(ev, armIdle)
 })
 </script>
 
@@ -99,7 +131,7 @@ onBeforeUnmount(() => {
       <button @click="closeMenus(); replay()">{{ t('restart') }}</button>
     </div>
 
-    <XpDisplayDialog v-if="display" @close="display = false" />
+    <XpDisplayDialog v-if="display" @close="display = false" @screensaver="previewSaver" />
     <XpStartMenu v-if="startOpen" @close="startOpen = false" @wallpaper="openDisplay" @restart="closeMenus(); replay()" />
 
     <div v-if="balloon" class="balloon" role="status" @click.stop>
@@ -116,6 +148,8 @@ onBeforeUnmount(() => {
     </div>
 
     <XpMsnToast v-if="msnToast" @open="openAssistant" @close="msnToast = false" />
+    <LazyXpScreensaver v-if="saver" @close="closeSaver" />
+    <LazyXpBlueScreen v-if="bsod" @done="afterBsod" />
 
     <XpTaskbar :start-open="startOpen" @toggle-start="startOpen = !startOpen; ctx = null" @toggle-balloon="balloon = !balloon" />
   </div>

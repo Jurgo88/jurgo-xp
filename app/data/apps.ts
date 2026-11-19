@@ -153,6 +153,38 @@ export const apps: AppDef[] = [
     height: 360,
     menu: 'explorer',
   },
+  // ---- just for fun: games live in their own folder, away from the CV stuff ----
+  {
+    id: 'games',
+    icon: '/icons/games.svg',
+    title: { en: 'Games', sk: 'Hry' },
+    label: { en: 'Games', sk: 'Hry' },
+    description: { en: 'A few classic desktop games, rebuilt from scratch.', sk: 'Pár klasických hier z plochy, postavených od nuly.' },
+    width: 520,
+    height: 320,
+    menu: 'explorer',
+  },
+  {
+    // size is re-fitted to the board by MinesweeperApp
+    id: 'minesweeper',
+    icon: '/icons/minesweeper.svg',
+    title: { en: 'Minesweeper', sk: 'Hľadanie mín' },
+    label: { en: 'Minesweeper', sk: 'Hľadanie mín' },
+    description: { en: 'Minesweeper in the browser, written from scratch in Vue.', sk: 'Hľadanie mín v prehliadači, napísané od nuly vo Vue.' },
+    width: 260,
+    height: 400,
+    menu: 'none',
+  },
+  {
+    id: 'solitaire',
+    icon: '/icons/solitaire.svg',
+    title: { en: 'Solitaire', sk: 'Solitér' },
+    label: { en: 'Solitaire', sk: 'Solitér' },
+    description: { en: 'Klondike solitaire in the browser, written from scratch in Vue.', sk: 'Solitér Klondike v prehliadači, napísaný od nuly vo Vue.' },
+    width: 640,
+    height: 520,
+    menu: 'none',
+  },
 ]
 
 export const appById = (id: string) => apps.find(a => a.id === id)
@@ -177,5 +209,6 @@ export const desktopItems: DesktopItem[] = [
   { type: 'app', id: 'sport' },
   { type: 'app', id: 'contact' },
   { type: 'link', key: 'classic', icon: '/icons/ie.svg', label: { en: 'Classic view', sk: 'Klasický pohľad' } },
+  { type: 'app', id: 'games' },
   { type: 'app', id: 'recycle-bin' },
 ]

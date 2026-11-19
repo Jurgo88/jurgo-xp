@@ -16,4 +16,8 @@ defineProps<{ id: AppId }>()
   <AppsContactApp v-else-if="id === 'contact'" />
   <AppsAssistantApp v-else-if="id === 'assistant'" />
   <AppsBinApp v-else-if="id === 'recycle-bin'" />
+  <AppsGamesApp v-else-if="id === 'games'" />
+  <!-- games are split into their own chunks, loaded only when opened -->
+  <LazyAppsMinesweeperApp v-else-if="id === 'minesweeper'" />
+  <LazyAppsSolitaireApp v-else-if="id === 'solitaire'" />
 </template>
