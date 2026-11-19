@@ -8,6 +8,7 @@ export const appIds = [
   'blog',
   'notepad',
   'music',
+  'spotify',
   'floorball',
   'sport',
   'contact',

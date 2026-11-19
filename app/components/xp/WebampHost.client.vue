@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // Real Winamp 2.x (classic skin, EQ, playlist) via Webamp. Client only.
 // Audio: only MP3s we host ourselves (see data/personal.ts `tracks`).
-// Spotify can't be played inside Webamp; a "now playing" feed comes later.
+// Spotify can't be played inside Webamp, so on desktop the Spotify library window
+// (apps/SpotifyApp.vue) opens docked to the right of it.
 import { tracks } from '~/data/personal'
 import { useWindowsStore } from '~/stores/windows'
 
@@ -26,7 +27,21 @@ onMounted(async () => {
   await instance.renderWhenReady(anchor.value)
   webamp = instance
   document.addEventListener('pointerdown', onDocPointer, true)
+  openLibrary()
 })
+
+function openLibrary() {
+  if (matchMedia('(max-width: 700px)').matches || store.isOpen('spotify') || !anchor.value) return
+  const r = anchor.value.getBoundingClientRect()
+  store.open('spotify')
+  const lib = store.get('spotify')
+  if (lib) {
+    lib.x = Math.round(r.right + 8)
+    lib.y = Math.round(r.top)
+    store.clamp(lib)
+  }
+  store.focus('music') // keep /music as the address
+}
 
 watch(() => store.get('music')?.minimized, (min, prev) => {
   if (prev && !min) webamp?.reopen()

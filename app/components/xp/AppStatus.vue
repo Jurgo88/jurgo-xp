@@ -18,6 +18,7 @@ const text = computed(() => {
     case 'floorball': return `${floorball.team.name} · ${l({ en: 'Legendary Floorball League', sk: 'Legendárna florbalová liga' })}`
     case 'sport': return t('objects', { n: 3 })
     case 'recycle-bin': return t('objects', { n: 2 })
+    case 'spotify': return l({ en: 'Data from Spotify · click a song to open it there', sk: 'Dáta zo Spotify · klik na skladbu ju otvorí tam' })
     case 'contact': return profile.email
     default: return String(blogPosts.length)
   }

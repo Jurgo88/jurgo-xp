@@ -12,6 +12,7 @@ defineProps<{ id: AppId }>()
   <AppsNotepadApp v-else-if="id === 'notepad'" />
   <AppsFloorballApp v-else-if="id === 'floorball'" />
   <AppsSportApp v-else-if="id === 'sport'" />
+  <AppsSpotifyApp v-else-if="id === 'spotify'" />
   <AppsContactApp v-else-if="id === 'contact'" />
   <AppsBinApp v-else-if="id === 'recycle-bin'" />
 </template>
