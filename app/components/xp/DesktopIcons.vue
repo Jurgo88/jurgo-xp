@@ -21,8 +21,13 @@ const items = computed(() => desktopItems.map((it) => {
 type Item = (typeof items.value)[number]
 const coarse = () => matchMedia('(max-width: 700px), (pointer: coarse)').matches
 
+const { $track } = useNuxtApp()
 function go(it: Item) {
-  if (it.external) window.open(it.to, '_blank', 'noopener')
+  if (it.external) {
+    // desktop icons open on double-click, so the global link-click tracking skips them
+    if (it.key === 'cv') $track?.('cv_download', { file: it.to.split('/').pop()!, role: 'general', lang: locale.value, from: 'desktop-icon' })
+    window.open(it.to, '_blank', 'noopener')
+  }
   else navigateTo(it.to)
 }
 // XP behaviour: click selects, double-click opens. Touch / phone: tap opens.

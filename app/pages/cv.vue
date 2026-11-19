@@ -14,9 +14,16 @@ const route = useRoute()
 const initial = roles.find(r => r.id === route.query.role) ?? roles[0]!
 const role = ref<Role>(initial)
 
+const cvTitle = computed(() => `CV | Juraj Paluš – ${l(role.value.title)}`)
+const cvDesc = computed(() => `${t('cv_title', { years })}. ${l(role.value.lead)}`)
 useSeoMeta({
-  title: () => `CV | Juraj Paluš – ${l(role.value.title)}`,
-  description: () => `${t('cv_title', { years })}. ${l(role.value.lead)}`,
+  title: cvTitle,
+  description: cvDesc,
+  ogTitle: cvTitle,
+  ogDescription: cvDesc,
+  twitterTitle: cvTitle,
+  twitterDescription: cvDesc,
+  ogType: 'profile',
 })
 </script>
 
