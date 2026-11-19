@@ -197,7 +197,11 @@ a.file, button.file { cursor: pointer; }
 .ctx button:hover { background: var(--sel); color: #fff; }
 
 /* ---------- Phone: icon grid + full-screen windows ---------- */
+/* desktop-only hidden icons (e.g. Spotify, which lives inside Winamp on desktop) */
+.icons .phone-only { display: none; }
+
 @media (max-width: 700px) {
+  .icons .phone-only { display: list-item; }
   .icons {
     position: static; grid-auto-flow: row; grid-template-columns: repeat(4, 1fr); grid-template-rows: none; grid-auto-rows: 86px;
     padding: 14px max(10px, env(safe-area-inset-right, 0px)) 14px max(10px, env(safe-area-inset-left, 0px)); gap: 6px;
