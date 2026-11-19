@@ -98,12 +98,19 @@ export default async () => {
 
   type Now = { is_playing: boolean; progress_ms: number | null; currently_playing_type: string; item: SpotifyTrack | null }
   type Page<T> = { items: T[] }
-  const top = (range: string) => safe(api<Page<SpotifyTrack>>(`/me/top/tracks?limit=20&time_range=${range}`, token))
+  // Spotify gives at most 50 per call and stops at offset 49, so two pages = up to 99 songs
+  const top = async (range: string): Promise<Page<SpotifyTrack> | null> => {
+    const page = (offset: number) => safe(api<Page<SpotifyTrack>>(`/me/top/tracks?limit=50&offset=${offset}&time_range=${range}`, token))
+    const [a, b] = await Promise.all([page(0), page(49)])
+    if (!a) return null
+    const seen = new Set<string>()
+    return { items: [...a.items, ...(b?.items ?? [])].filter(t => !seen.has(t.id) && seen.add(t.id)) }
+  }
 
   const freshTop = topCache && Date.now() - topCache.at < TOP_TTL ? topCache.value : null
   const [now, recent, short, medium, long] = await Promise.all([
     safe(api<Now>('/me/player/currently-playing', token)),
-    safe(api<Page<{ track: SpotifyTrack; played_at: string }>>('/me/player/recently-played?limit=20', token)),
+    safe(api<Page<{ track: SpotifyTrack; played_at: string }>>('/me/player/recently-played?limit=50', token)), // Spotify keeps only the last 50
     freshTop ? null : top('short_term'),
     freshTop ? null : top('medium_term'),
     freshTop ? null : top('long_term'),
