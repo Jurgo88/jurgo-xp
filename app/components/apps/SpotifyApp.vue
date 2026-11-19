@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { fmtMs, type SpTrack } from '~/composables/useSpotify'
 
-// Winamp 2.x "Media Library" look, fed by Jurgo's Spotify. Songs open on Spotify:
-// visitors can't stream Spotify audio inside the page.
+// Winamp 2.x "Media Library" look, fed by Jurgo's Spotify. Spotify audio can't go through
+// Webamp, so a clicked song plays in Spotify's own embed player at the bottom of this window
+// (full song for visitors logged in to Spotify in this browser, a 30 s preview otherwise).
 const { l, locale } = useL10n()
 const { data, failed, fetchedAt } = useSpotify()
 
@@ -23,6 +24,13 @@ const ranges: { id: Range; label: { en: string; sk: string } }[] = [
 ]
 
 const now = computed(() => data.value?.now ?? null)
+
+/** song shown in the embedded Spotify player */
+const playing = ref<SpTrack | null>(null)
+const embedSrc = computed(() =>
+  playing.value ? `https://open.spotify.com/embed/track/${encodeURIComponent(playing.value.id)}?utm_source=generator&theme=0` : null,
+)
+const play = (s: SpTrack) => { playing.value = s }
 const last = computed(() => data.value?.recent?.[0] ?? null)
 const list = computed<SpTrack[]>(() =>
   tab.value === 'top' ? data.value?.top?.[range.value] ?? [] : data.value?.recent ?? [],
@@ -80,9 +88,9 @@ const state = computed<'loading' | 'off' | 'error' | 'ok'>(() => {
       <!-- Now playing -->
       <template v-else-if="tab === 'now'">
         <div v-if="now" class="np">
-          <a :href="now.track.url ?? undefined" target="_blank" rel="noopener" class="cover">
+          <button type="button" class="cover" :title="l({ en: 'Play here', sk: 'Prehrať tu' })" @click="play(now.track)">
             <img v-if="now.track.image" :src="now.track.image" alt="" width="96" height="96">
-          </a>
+          </button>
           <div class="meta">
             <div class="lcd">
               <span class="state">{{ now.playing ? '▶' : '❚❚' }}</span>
@@ -93,16 +101,15 @@ const state = computed<'loading' | 'off' | 'error' | 'ok'>(() => {
               <i :style="{ width: `${(progress / now.track.durationMs) * 100}%` }" />
             </div>
             <div class="time">{{ fmtMs(progress) }} / {{ fmtMs(now.track.durationMs) }}</div>
-            <a v-if="now.track.url" :href="now.track.url" target="_blank" rel="noopener" class="open">
-              {{ l({ en: 'Open in Spotify', sk: 'Otvoriť v Spotify' }) }} ↗
-            </a>
+            <button type="button" class="open" @click="play(now.track)">▶ {{ l({ en: 'Play here', sk: 'Prehrať tu' }) }}</button>
+            <a v-if="now.track.url" :href="now.track.url" target="_blank" rel="noopener" class="ext" :title="l({ en: 'Open in Spotify', sk: 'Otvoriť v Spotify' })">Spotify ↗</a>
           </div>
         </div>
         <div v-else class="np idle">
           <p class="msg">{{ l({ en: 'Nothing playing right now.', sk: 'Práve nič nehrá.' }) }}</p>
           <p v-if="last" class="msg small">
             {{ l({ en: 'Last played', sk: 'Naposledy' }) }} {{ ago(last.playedAt) }}:
-            <a :href="last.url ?? undefined" target="_blank" rel="noopener">{{ last.artists }} – {{ last.name }}</a>
+            <button type="button" class="linkish" @click="play(last)">{{ last.artists }} – {{ last.name }}</button>
           </p>
         </div>
       </template>
@@ -119,15 +126,27 @@ const state = computed<'loading' | 'off' | 'error' | 'ok'>(() => {
         </div>
         <ol class="pl">
           <li v-for="(s, i) in list" :key="`${s.id}-${i}`">
-            <a :href="s.url ?? undefined" target="_blank" rel="noopener" :title="`${s.artists} – ${s.name} (${s.album})`">
+            <button
+              type="button" class="row" :class="{ sel: playing?.id === s.id }"
+              :title="`${s.artists} – ${s.name} (${s.album})`" @click="play(s)"
+            >
               <span class="n">{{ i + 1 }}.</span>
               <span class="t">{{ s.artists }} – {{ s.name }}</span>
               <span class="d">{{ tab === 'recent' ? ago(s.playedAt) : fmtMs(s.durationMs) }}</span>
-            </a>
+            </button>
           </li>
           <li v-if="!list.length" class="msg">{{ l({ en: 'No songs yet.', sk: 'Zatiaľ žiadne skladby.' }) }}</li>
         </ol>
       </template>
+    </div>
+
+    <div v-if="embedSrc" class="embed">
+      <iframe
+        :key="embedSrc" :src="embedSrc" :title="`Spotify: ${playing!.artists} – ${playing!.name}`"
+        width="100%" height="80" frameborder="0" loading="lazy"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+      />
+      <button type="button" class="x" :aria-label="l({ en: 'Close player', sk: 'Zavrieť prehrávač' })" @click="playing = null">×</button>
     </div>
   </div>
 </template>
@@ -173,7 +192,7 @@ a { color: inherit; text-decoration: none; }
 a:hover { color: #fff; }
 .np { display: flex; gap: 10px; align-items: flex-start; }
 .np.idle { display: block; }
-.cover { flex: 0 0 96px; height: 96px; background: #111; border: 1px solid #333; }
+.cover { flex: 0 0 96px; height: 96px; min-width: 0; min-height: 0; padding: 0; background: #111; border: 1px solid #333; box-shadow: none; border-radius: 0; cursor: pointer; }
 .cover img { display: block; width: 96px; height: 96px; object-fit: cover; }
 .meta { flex: 1; min-width: 0; }
 .lcd {
@@ -195,10 +214,25 @@ a:hover { color: #fff; }
 .bar { height: 8px; background: #1a1a1a; border: 1px solid #3c3c3c; }
 .bar i { display: block; height: 100%; background: linear-gradient(#5fff5f, #00a000); }
 .time { margin: 4px 0 8px; font-family: 'Courier New', monospace; }
-.open { display: inline-block; padding: 2px 6px; border: 1px solid #00a000; }
+button.open, button.row, button.linkish {
+  min-width: 0; min-height: 0; font: inherit; color: inherit; background: none;
+  border: 0; box-shadow: none; border-radius: 0; text-align: left; cursor: pointer;
+}
+button.open { padding: 2px 8px; border: 1px solid #00a000; margin-right: 8px; }
+button.open:hover { background: #003a00; color: #fff; }
+button.linkish { padding: 0; text-decoration: underline; }
+.ext { color: #8fd18f; }
 .pl { list-style: none; margin: 0; padding: 0; }
-.pl a { display: flex; gap: 6px; padding: 1px 2px; }
-.pl a:hover, .pl a:focus-visible { background: #0000c6; color: #fff; outline: none; }
+.pl .row { display: flex; gap: 6px; width: 100%; padding: 1px 2px; }
+.pl .row:hover, .pl .row:focus-visible { background: #0000c6; color: #fff; outline: none; }
+.pl .row.sel { background: #00007a; color: #fff; }
+.embed { position: relative; flex: none; height: 80px; background: #000; border: 2px solid; border-color: #12121a #8888a0 #8888a0 #12121a; }
+.embed iframe { display: block; border: 0; border-radius: 0; }
+.embed .x {
+  position: absolute; top: -10px; right: -6px; min-width: 0; min-height: 0; width: 18px; height: 18px; padding: 0;
+  font: bold 12px/16px Arial, sans-serif; color: #d9d9e3; background: linear-gradient(#5d5d72, #3b3b4c);
+  border: 1px solid #12121a; border-radius: 0; box-shadow: none; cursor: pointer;
+}
 .n { flex: none; width: 22px; text-align: right; }
 .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .d { flex: none; color: #8fd18f; }

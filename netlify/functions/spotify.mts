@@ -24,6 +24,9 @@ export interface Track {
 }
 
 let cached: { token: string; exp: number } | null = null
+// top tracks change slowly: keep them for 10 min in a warm function instance
+const TOP_TTL = 10 * 60_000
+let topCache: { at: number; value: Record<'short' | 'medium' | 'long', Track[]> } | null = null
 
 async function accessToken(): Promise<string> {
   if (cached && cached.exp > Date.now() + 30_000) return cached.token
@@ -71,9 +74,10 @@ const json = (body: unknown, status = 200, cdnSeconds = 0) =>
     status,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      'Cache-Control': 'public, max-age=0, must-revalidate',
-      // the CDN answers repeat visitors, so Spotify sees at most ~2 requests a minute
-      ...(cdnSeconds ? { 'Netlify-CDN-Cache-Control': `public, durable, s-maxage=${cdnSeconds}, stale-while-revalidate=60` } : {}),
+      // browsers never reuse it; the CDN may for a few seconds, never stale
+      // (stale-while-revalidate kept showing the previous song for up to a minute and a half)
+      'Cache-Control': 'no-store',
+      ...(cdnSeconds ? { 'Netlify-CDN-Cache-Control': `public, s-maxage=${cdnSeconds}` } : {}),
     },
   })
 
@@ -84,7 +88,7 @@ async function safe<T>(p: Promise<T>): Promise<T | null> {
 
 export default async () => {
   const configured = ['SPOTIFY_CLIENT_ID', 'SPOTIFY_CLIENT_SECRET', 'SPOTIFY_REFRESH_TOKEN'].every(k => Netlify.env.get(k))
-  if (!configured) return json({ configured: false }, 200, 30)
+  if (!configured) return json({ configured: false }, 200, 5)
 
   let token: string
   try { token = await accessToken() } catch (e) {
@@ -96,13 +100,20 @@ export default async () => {
   type Page<T> = { items: T[] }
   const top = (range: string) => safe(api<Page<SpotifyTrack>>(`/me/top/tracks?limit=20&time_range=${range}`, token))
 
+  const freshTop = topCache && Date.now() - topCache.at < TOP_TTL ? topCache.value : null
   const [now, recent, short, medium, long] = await Promise.all([
     safe(api<Now>('/me/player/currently-playing', token)),
     safe(api<Page<{ track: SpotifyTrack; played_at: string }>>('/me/player/recently-played?limit=20', token)),
-    top('short_term'),
-    top('medium_term'),
-    top('long_term'),
+    freshTop ? null : top('short_term'),
+    freshTop ? null : top('medium_term'),
+    freshTop ? null : top('long_term'),
   ])
+  const topValue = freshTop ?? {
+    short: short?.items.map(t => pick(t)) ?? [],
+    medium: medium?.items.map(t => pick(t)) ?? [],
+    long: long?.items.map(t => pick(t)) ?? [],
+  }
+  if (!freshTop && short && medium && long) topCache = { at: Date.now(), value: topValue }
 
   return json({
     configured: true,
@@ -111,13 +122,9 @@ export default async () => {
       ? { playing: now.is_playing, progressMs: now.progress_ms ?? 0, track: pick(now.item) }
       : null,
     recent: recent?.items.map(i => pick(i.track, i.played_at)) ?? [],
-    top: {
-      short: short?.items.map(t => pick(t)) ?? [],
-      medium: medium?.items.map(t => pick(t)) ?? [],
-      long: long?.items.map(t => pick(t)) ?? [],
-    },
+    top: topValue,
     updatedAt: new Date().toISOString(),
-  }, 200, 30)
+  }, 200, 5)
 }
 
 export const config = { path: '/api/spotify' }
