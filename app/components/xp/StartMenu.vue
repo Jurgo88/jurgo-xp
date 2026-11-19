@@ -8,7 +8,7 @@ const emit = defineEmits<{ close: []; wallpaper: []; restart: [] }>()
 const { l, locale } = useL10n()
 const { t } = useI18n()
 const { pathFor } = useApps()
-const right: AppId[] = ['about', 'blog', 'music', 'sport', 'contact', 'games']
+const right: AppId[] = ['about', 'assistant', 'blog', 'music', 'sport', 'contact', 'games']
 </script>
 
 <template>

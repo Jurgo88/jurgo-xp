@@ -14,6 +14,7 @@ defineProps<{ id: AppId }>()
   <AppsSportApp v-else-if="id === 'sport'" />
   <AppsSpotifyApp v-else-if="id === 'spotify'" />
   <AppsContactApp v-else-if="id === 'contact'" />
+  <AppsAssistantApp v-else-if="id === 'assistant'" />
   <AppsBinApp v-else-if="id === 'recycle-bin'" />
   <AppsGamesApp v-else-if="id === 'games'" />
   <!-- games are split into their own chunks, loaded only when opened -->

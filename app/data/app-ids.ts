@@ -12,6 +12,7 @@ export const appIds = [
   'floorball',
   'sport',
   'contact',
+  'assistant',
   'recycle-bin',
   'games',
   'minesweeper',

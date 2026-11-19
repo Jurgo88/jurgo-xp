@@ -11,6 +11,8 @@ import { useWindowsStore } from '~/stores/windows'
  *  - window_open   {app, is_role, source}   / open_<app>
  *  - cv_download   {file, role, lang, from} / cv_download (+ cv_download_<role>)
  *  - contact_click {channel}                / contact_<channel>  (email, phone, linkedin, github)
+ *  - assistant_message {n, lang}            / assistant_message  (AI chat, n = question number in the chat)
+ *  - assistant_nudge                        / assistant_nudge
  *
  * Nothing is loaded on localhost or in automated browsers, so dev work and
  * tests don't end up in the stats.

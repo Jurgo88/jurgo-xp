@@ -20,6 +20,7 @@ const projects = computed(() => props.role.projects.map(projectById).filter(p =>
         <h4>{{ t('tasks') }}</h4>
         <ul>
           <li><a class="lnk" :href="cvPdf(locale, role.id)" target="_blank" rel="noopener"><img src="/icons/pdf.svg" alt="">{{ t('task_download_cv') }}</a></li>
+          <li><NuxtLink class="lnk" :to="pathFor('assistant')"><img src="/icons/messenger.svg" alt="">{{ l({ en: 'Ask my AI assistant', sk: 'Spýtať sa môjho AI asistenta' }) }}</NuxtLink></li>
           <li><NuxtLink class="lnk" :to="pathFor('contact')"><img src="/icons/mail.svg" alt="">{{ t('task_email') }}</NuxtLink></li>
           <li><NuxtLinkLocale class="lnk" to="/cv"><img src="/icons/ie.svg" alt="">{{ t('classic_view') }}</NuxtLinkLocale></li>
         </ul>
