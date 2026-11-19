@@ -13,6 +13,8 @@ export interface AppDef {
   label: L10n
   /** meta description for the window's own URL */
   description: L10n
+  /** <title> for the window's own URL when the label is too short (defaults to label) */
+  seoTitle?: L10n
   width: number
   height: number
   menu: MenuKind
@@ -25,6 +27,7 @@ const roleApps: AppDef[] = roles.map(r => ({
   icon: `/icons/${r.id === 'ai-engineer' ? 'ai' : r.id}.svg`,
   title: { en: `${r.file} – ${r.title.en}`, sk: `${r.file} – ${r.title.sk}` },
   label: { en: r.title.en.replace(/ Developer$/, ''), sk: r.title.sk.replace(/ Developer$/, '') },
+  seoTitle: r.title,
   description: {
     en: `Juraj Paluš as ${r.title.en}: ${r.lead.en}`,
     sk: `Juraj Paluš ako ${r.title.sk}: ${r.lead.sk}`,

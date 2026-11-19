@@ -1,0 +1,64 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../node_modules/xp.css/dist/XP.css">
+<style>
+  html, body { margin: 0; }
+  body { width: 1200px; height: 630px; overflow: hidden; position: relative; font-family: Tahoma, 'Segoe UI', sans-serif;
+    background: url(../public/bliss.jpg) center 60% / cover; }
+  .icons { position: absolute; left: 22px; top: 22px; display: flex; flex-direction: column; gap: 18px; }
+  .ic { width: 96px; display: flex; flex-direction: column; align-items: center; gap: 5px; color: #fff; font-size: 15px; text-shadow: 1px 1px 2px #000; text-align: center; }
+  .ic img { width: 52px; height: 52px; }
+  .window { position: absolute; left: 190px; top: 100px; width: 880px; }
+  .window .title-bar { height: 34px; padding: 0 6px 0 10px; }
+  .window .title-bar-text { font: bold 17px 'Trebuchet MS', 'DejaVu Sans', Tahoma, sans-serif; }
+  .window-body { margin: 0 3px; padding: 30px 34px 28px; background: #ece9d8; }
+  .head { display: flex; gap: 26px; align-items: center; }
+  .head img { width: 120px; height: 120px; border: 3px solid #fff; box-shadow: 0 0 0 1px #7f9db9, 2px 3px 6px rgba(0,0,0,.35); border-radius: 4px; }
+  h1 { margin: 0; font: bold 60px/1.05 Tahoma, 'Segoe UI', sans-serif; color: #0b2a8c; letter-spacing: -.5px; }
+  .sub { margin-top: 8px; font-size: 25px; color: #333; }
+  .roles { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+  .role { display: flex; align-items: center; gap: 9px; background: #fff; border: 1px solid #7f9db9; padding: 8px 14px 8px 10px; font-size: 21px; color: #111; }
+  .role img { width: 30px; height: 30px; }
+  .url { margin-top: 24px; font-size: 20px; color: #444; display: flex; align-items: center; gap: 8px; }
+  .url img { width: 22px; height: 22px; }
+  .taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; display: flex; align-items: center; justify-content: space-between;
+    background: linear-gradient(#3168d5 0%, #4993e6 6%, #2157d7 12%, #2157d7 88%, #1941a5 100%); }
+  .start { height: 44px; padding: 0 26px 0 12px; display: flex; align-items: center; gap: 8px; color: #fff; font: italic bold 24px Tahoma, sans-serif; text-shadow: 1px 1px 2px #000;
+    border-radius: 0 14px 14px 0; background: linear-gradient(#3c9a3c, #4bb84b 10%, #369b36 85%, #2a7a2a); }
+  .start svg { width: 26px; height: 26px; }
+  .tray { height: 44px; padding: 0 20px; display: flex; align-items: center; color: #fff; font-size: 18px; background: linear-gradient(#0c59b9, #139ee9 8%, #18b9ed 12%, #1694e2 88%, #0d6ac2); border-left: 1px solid #092e8a; }
+</style></head>
+<body>
+  <div class="icons">
+    <div class="ic"><img src="../public/icons/my-computer.png"><span>My Computer</span></div>
+    <div class="ic"><img src="../public/icons/pdf.svg"><span>CV.pdf</span></div>
+    <div class="ic"><img src="../public/icons/winamp.svg"><span>Winamp</span></div>
+    <div class="ic"><img src="../public/icons/sport.svg"><span>Sport</span></div>
+  </div>
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Juraj Paluš – JurgoXP</div>
+      <div class="title-bar-controls"><button aria-label="Minimize"></button><button aria-label="Maximize"></button><button aria-label="Close"></button></div>
+    </div>
+    <div class="window-body">
+      <div class="head">
+        <img src="../public/avatar.jpg" alt="">
+        <div>
+          <h1>Juraj Paluš</h1>
+          <div class="sub">Developer from Bratislava · 10 years of experience</div>
+        </div>
+      </div>
+      <div class="roles">
+        <span class="role"><img src="../public/icons/frontend.svg">Frontend</span>
+        <span class="role"><img src="../public/icons/fullstack.svg">Fullstack</span>
+        <span class="role"><img src="../public/icons/analyst.svg">Analyst</span>
+        <span class="role"><img src="../public/icons/ai.svg">AI Engineer</span>
+      </div>
+      <div class="url"><img src="../public/icons/ie.svg">jurgo.sk</div>
+    </div>
+  </div>
+  <div class="taskbar">
+    <div class="start"><svg viewBox="0 0 20 20"><path fill="#f25022" d="M1 3l8-1v7H1z"/><path fill="#7fba00" d="M10 2l9-1v8h-9z"/><path fill="#00a4ef" d="M1 10h8v7l-8-1z"/><path fill="#ffb900" d="M10 10h9v9l-9-1z"/></svg>start</div>
+    <div class="tray">Open to work</div>
+  </div>
+</body></html>

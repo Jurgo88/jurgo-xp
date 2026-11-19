@@ -21,6 +21,16 @@ export default defineNuxtConfig({
       alwaysRedirect: false,
     },
   },
+  runtimeConfig: {
+    public: {
+      siteUrl: 'https://jurgo.sk',
+      // Same Clarity project + PostHog project as the old jurgo.sk (portfolio-v2).
+      // Both are public client-side IDs; override with NUXT_PUBLIC_CLARITY_ID /
+      // NUXT_PUBLIC_POST_HOG_KEY, set to '' to switch a tracker off.
+      clarityId: 'oj7l0t75h5',
+      postHogKey: 'phc_Ahs3wRsdtoSJVmZPFqNv9SDxoZWCdPJ4UsN5po6QVmWi',
+    },
+  },
   vite: {
     // xp.css 0.2.6 ships one selector lightningcss rejects; esbuild minifies it fine.
     build: { cssMinify: 'esbuild' },
@@ -29,7 +39,7 @@ export default defineNuxtConfig({
     prerender: {
       // Every window has its own URL (/frontend, /sk/frontend, ...) so recruiters
       // can share direct links and search engines see real content.
-      routes: ['/', '/sk', '/cv', '/sk/cv', ...appIds.flatMap(id => [`/${id}`, `/sk/${id}`])],
+      routes: ['/', '/sk', '/cv', '/sk/cv', '/sitemap.xml', '/robots.txt', ...appIds.flatMap(id => [`/${id}`, `/sk/${id}`])],
       crawlLinks: true,
     },
   },
@@ -47,7 +57,13 @@ export default defineNuxtConfig({
       meta: [
         { name: 'author', content: 'Juraj Paluš' },
         { name: 'theme-color', content: '#245edb' },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:site_name', content: 'JurgoXP – Juraj Paluš' },
         { property: 'og:image', content: 'https://jurgo.sk/og-image.png' },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'Juraj Paluš – a Windows XP style desktop with the Bliss wallpaper' },
+        { name: 'twitter:image', content: 'https://jurgo.sk/og-image.png' },
       ],
     },
   },

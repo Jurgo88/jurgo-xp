@@ -26,6 +26,14 @@ Užitočné URL parametre: `?boot` vždy prehrá bootovanie, `?noboot` ho presko
 
 `public/cv/` obsahuje CV pre každú rolu (EN/SK) a všeobecné CV, vygenerované z `Jurgo88/job-hunting-pro` (`cv/build.py`, profily general, frontend, fullstack, analyst, ai) **bez telefónneho čísla**. Po zmene CV ich treba pregenerovať a nakopírovať sem (názvy `Juraj-Palus-CV-<rola>-<en|sk>.pdf`, `Juraj-Palus-CV-<en|sk>.pdf`).
 
+## SEO a analytika
+
+- Titulok, popis, Open Graph a Twitter karta pre každé okno (`app/pages/[[app]].vue`, popisy v `app/data/apps.ts`), hreflang + canonical z `@nuxtjs/i18n` (baseUrl `https://jurgo.sk`), JSON-LD Person/WebSite v `app/app.vue`.
+- `/sitemap.xml` a `/robots.txt` sa generujú pri builde (`server/routes/`).
+- Obrázok na zdieľanie `public/og-image.png` (1200×630) sa robí z `scripts/og-image.html`: `NODE_PATH=$(npm root -g) node scripts/make-og-image.mjs`.
+- Microsoft Clarity + PostHog (rovnaké projekty ako starý jurgo.sk) v `app/plugins/analytics.client.ts`. ID sú v `nuxt.config.ts`, dajú sa prepísať `NUXT_PUBLIC_CLARITY_ID` / `NUXT_PUBLIC_POST_HOG_KEY` (prázdna hodnota = vypnuté). Na localhoste a v automatizovaných prehliadačoch sa nič nenačíta.
+- Vlastné eventy: `window_open` (app, is_role, source), `cv_download` (file, role, lang, from), `contact_click` (email, phone, linkedin, github). V Clarity ako `open_<okno>`, `cv_download_<rola>`, `contact_<kanál>` a tag `role`.
+
 ## Čo treba doplniť (TODO)
 
 - Florbal: klub, odkaz na štatistiky ligy, reálne čísla v `app/data/personal.ts`.

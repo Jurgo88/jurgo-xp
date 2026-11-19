@@ -41,11 +41,15 @@ watch([() => store.active, () => store.doc], ([id]) => {
 })
 
 const def = computed(() => (param.value ? appById(param.value) : undefined))
+const pageTitle = computed(() => (def.value ? `${l(def.value.seoTitle ?? def.value.label)} | Juraj Paluš` : t('meta_title')))
+const pageDesc = computed(() => (def.value ? l(def.value.description) : t('meta_description')))
 useSeoMeta({
-  title: () => (def.value ? `${l(def.value.label)} | Juraj Paluš` : t('meta_title')),
-  description: () => (def.value ? l(def.value.description) : t('meta_description')),
-  ogTitle: () => (def.value ? `${l(def.value.label)} | Juraj Paluš` : t('meta_title')),
-  ogDescription: () => (def.value ? l(def.value.description) : t('meta_description')),
+  title: pageTitle,
+  description: pageDesc,
+  ogTitle: pageTitle,
+  ogDescription: pageDesc,
+  twitterTitle: pageTitle,
+  twitterDescription: pageDesc,
 })
 </script>
 
