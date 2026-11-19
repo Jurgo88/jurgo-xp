@@ -46,7 +46,7 @@ Fonty (IBM Plex, Space Grotesk) sú v `public/fonts/cv/`.
 ## Čo treba doplniť (TODO)
 
 - Florbal: klub, odkaz na štatistiky ligy, reálne čísla v `app/data/personal.ts`.
-- Blog: texty príspevkov v `personal.ts`.
+- Blog: metadáta článkov (názov, dátum, summary pre AI asistenta) v `app/data/blog.ts`, texty v Markdowne v `app/data/blog/<slug>.<sk|en>.md`, obrázky do `public/blog/`. Článok sa otvára v okne WordPad (`/wordpad?file=<slug>`), na mobile v čistom režime čítania.
 - Hudba: vlastné MP3 do `public/music/` a zoznam `tracks`.
 - Ďalšie športy a fotky.
 - Originálne XP ikony: v `public/icons/` sú originálne len `my-computer.png`, `folder.png`, `network.png`, `tasks.png` (z repa xp); ostatné sú dočasné SVG v XP štýle. Stačí nahradiť súbor s rovnakým názvom (alebo zmeniť cestu v `app/data/apps.ts`).

@@ -12,7 +12,7 @@ const { docLink } = useApps()
     <h2>Blog</h2>
     <div class="files">
       <NuxtLink v-for="p in blogPosts" :key="p.slug" class="file" :to="docLink(p.slug)" :title="l(p.title)">
-        <img src="/icons/notepad.svg" alt="">
+        <img src="/icons/wordpad.svg" alt="">
         <div><b>{{ docFile(p.slug) }}</b><small>{{ p.date || t('coming_soon') }} · {{ l(p.title) }}</small></div>
       </NuxtLink>
     </div>
