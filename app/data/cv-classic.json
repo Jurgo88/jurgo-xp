@@ -1,0 +1,1542 @@
+{
+ "frontend": {
+  "en": {
+   "headline": "Frontend Engineer · Vue 3 / TypeScript",
+   "role": "Frontend Engineer",
+   "stack": "Vue 3 / TypeScript",
+   "summary": "Vue 3 and TypeScript engineer with 8+ years of experience and an uncommon mix of development and business analysis. I can understand the problem, design a clean component architecture and deliver it to production, including the API and data layer. Building my own SaaS products taught me to think about users, performance and maintainability, not just tickets. I work efficiently with modern AI-assisted tooling and like improving the way teams ship software.",
+   "location": "Bratislava · remote / EU relocation",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Developed new features and modules for an internal business application",
+      "Wrote and optimized SQL queries, data corrections and reports"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "As part of a 10-person dev team, co-developed an event and workflow tracking system used by <strong>100–250 field workers</strong> across regional centres in Slovakia",
+      "Designed REST APIs in Laravel and integrated them with a Vue.js frontend",
+      "Implemented mobile-friendly user interfaces for field use with focus on usability and performance",
+      "Improved data flow and communication between frontend and backend systems"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analyzed business requirements for an internal process-automation system and translated them into technical specifications",
+      "Modelled processes and system design in BPMN and UML using Enterprise Architect"
+     ]
+    },
+    {
+     "title": "Freelance Developer",
+     "company": "Self-employed",
+     "period": "2018–now",
+     "bullets": [
+      "Delivered web applications and websites for clients alongside employment; since 2025 focused on SaaS products and AI integrations",
+      "Own the full cycle – requirements, implementation, deployment and post-launch analytics"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Built responsive web applications using HTML, CSS and JavaScript",
+      "Translated UI/UX designs into functional interfaces in close collaboration with designers",
+      "Improved user experience through layout optimization and cross-browser compatibility"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Worked on commercial projects for an insurance company and an international CMS platform",
+      "Supported infrastructure and ensured stability of deployed solutions"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017"
+    },
+    {
+     "title": "IT Technician",
+     "company": "City Library Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "Loqsy",
+     "kind": "Client project",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Subscription PWA pairing two user roles – <strong>2,000+ registered users.</strong>",
+     "bullets": [
+      "End-to-end delivery – architecture, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify)"
+     ]
+    },
+    {
+     "name": "Pristupio",
+     "kind": "Own SaaS",
+     "link": "pristupio.com",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify Functions",
+     "text": "WCAG accessibility audit tool with subscription billing.",
+     "bullets": [
+      "Component-based architecture, API integrations and billing webhooks",
+      "Automated accessibility checks against WCAG rules with actionable reports"
+     ]
+    },
+    {
+     "name": "JAPS – Just Another Portfolio Site",
+     "kind": "Own product",
+     "link": "japs.app",
+     "stack": "TypeScript · Astro · Vue 3 · Playwright · Cloudflare Workers + Hono + D1 · OpenAI / Gemini / Groq / Ollama",
+     "text": "Generates a static portfolio from deployed Netlify sites paired with their GitHub repositories.",
+     "bullets": [
+      "22 switchable themes, multilingual output, real screenshots, cookieless privacy-friendly stats"
+     ]
+    },
+    {
+     "name": "Another Hockey Manager",
+     "kind": "Own project",
+     "link": null,
+     "stack": "TypeScript · Nuxt · Supabase · pnpm monorepo",
+     "text": "Text-first online hockey management simulation – lineups, tactics and roster development across seasons.",
+     "bullets": [
+      "Deterministic match engine as a pure function with seeded randomness – any match can be replayed exactly"
+     ]
+    }
+   ],
+   "skills": [
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    },
+    {
+     "label": "Styling",
+     "values": "Tailwind, SCSS, Bootstrap, Vuetify, GSAP"
+    },
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Cloud & DevOps",
+     "values": "Docker, Git, GitHub Actions, GitLab, Netlify, Cloudflare Workers / Pages"
+    },
+    {
+     "label": "AI",
+     "values": "Claude Code, agentic development, RAG, LLM APIs (OpenAI, Gemini, Groq, Ollama), MCP, evals, Microsoft Copilot"
+    },
+    {
+     "label": "Web analytics & quality",
+     "values": "GA4, Google Search Console, Microsoft Clarity, PageSpeed Insights / Core Web Vitals, technical SEO, WCAG accessibility audits, short-form video (FB/IG Reels)"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Master's degree (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · expected graduation 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bachelor's degree – Computer Science",
+     "school": "VŠB – Technical University of Ostrava, Faculty of Electrical Engineering and Computer Science",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovak",
+     "level": "native"
+    },
+    {
+     "name": "Czech",
+     "level": "bilingual"
+    },
+    {
+     "name": "English",
+     "level": "B2"
+    },
+    {
+     "name": "German",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profile",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "services": "Services",
+    "present": "present",
+    "now": "now",
+    "earlier": "Earlier experience",
+    "earlier_short": "earlier"
+   }
+  },
+  "sk": {
+   "headline": "Frontend Engineer · Vue 3 / TypeScript",
+   "role": "Frontend Engineer",
+   "stack": "Vue 3 / TypeScript",
+   "summary": "Vue 3 a TypeScript vývojár s 8+ rokmi skúseností a nezvyčajnou kombináciou vývoja a biznis analýzy. Viem pochopiť problém, navrhnúť čistú komponentovú architektúru a dodať riešenie až do produkcie, vrátane API a dátovej vrstvy. Vlastné SaaS produkty ma naučili myslieť na používateľov, výkon a udržateľnosť, nielen na tikety. Efektívne pracujem s modernými AI nástrojmi a rád zlepšujem spôsob, akým tímy dodávajú softvér.",
+   "location": "Bratislava · remote / relokácia v EÚ",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Vývoj nových funkcií a modulov pre internú firemnú aplikáciu",
+      "Písanie a optimalizácia SQL dopytov, opravy dát a reporty"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "V 10-člennom vývojovom tíme som sa podieľal na systéme na evidenciu udalostí a workflow, ktorý používalo <strong>100–250 pracovníkov v teréne</strong> naprieč strediskami na celom Slovensku",
+      "Návrh REST API v Laraveli a ich integrácia s Vue.js frontendom",
+      "Implementácia mobilne prívetivého UI pre prácu v teréne s dôrazom na použiteľnosť a výkon",
+      "Zlepšenie dátového toku a komunikácie medzi frontendom a backendom"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analýza biznis požiadaviek pre interný systém na automatizáciu procesov a ich preklad do technickej špecifikácie",
+      "Modelovanie procesov a návrhu systému v BPMN a UML v Enterprise Architecte"
+     ]
+    },
+    {
+     "title": "Freelance vývojár",
+     "company": "Na voľnej nohe",
+     "period": "2018–dnes",
+     "bullets": [
+      "Webové aplikácie a weby pre klientov popri zamestnaní; od roku 2025 zameranie na SaaS produkty a AI integrácie",
+      "Celý cyklus vo vlastných rukách – požiadavky, implementácia, nasadenie a analytika po spustení"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Tvorba responzívnych webových aplikácií v HTML, CSS a JavaScripte",
+      "Prevod UI/UX návrhov do funkčných rozhraní v úzkej spolupráci s dizajnérmi",
+      "Zlepšenie UX optimalizáciou layoutu a kompatibility naprieč prehliadačmi"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Komerčné projekty pre poisťovňu a medzinárodnú CMS platformu",
+      "Podpora infraštruktúry a stability nasadených riešení"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017"
+    },
+    {
+     "title": "IT technik",
+     "company": "Mestská knižnica Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "Loqsy",
+     "kind": "Klientsky projekt",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Predplatiteľská PWA párujúca dve role používateľov – <strong>2 000+ registrovaných používateľov.</strong>",
+     "bullets": [
+      "Dodávka end-to-end – architektúra, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify)"
+     ]
+    },
+    {
+     "name": "Pristupio",
+     "kind": "Vlastný SaaS",
+     "link": "pristupio.com",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify Functions",
+     "text": "Nástroj na audit prístupnosti podľa WCAG s predplatným.",
+     "bullets": [
+      "Komponentová architektúra, API integrácie a billing webhooky",
+      "Automatizované kontroly prístupnosti podľa WCAG pravidiel s praktickými reportmi"
+     ]
+    },
+    {
+     "name": "JAPS – Just Another Portfolio Site",
+     "kind": "Vlastný produkt",
+     "link": "japs.app",
+     "stack": "TypeScript · Astro · Vue 3 · Playwright · Cloudflare Workers + Hono + D1 · OpenAI / Gemini / Groq / Ollama",
+     "text": "Generuje statické portfólio z nasadených Netlify webov spárovaných s ich GitHub repozitármi.",
+     "bullets": [
+      "22 prepínateľných tém, viacjazyčný výstup, reálne screenshoty, štatistiky bez cookies"
+     ]
+    },
+    {
+     "name": "Another Hockey Manager",
+     "kind": "Vlastný projekt",
+     "link": null,
+     "stack": "TypeScript · Nuxt · Supabase · pnpm monorepo",
+     "text": "Textová online hokejová manažérska simulácia – zostavy, taktika a rozvoj kádra naprieč sezónami.",
+     "bullets": [
+      "Deterministický zápasový engine ako čistá funkcia so seedovanou náhodnosťou – každý zápas sa dá presne prehrať znova"
+     ]
+    }
+   ],
+   "skills": [
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    },
+    {
+     "label": "Styling",
+     "values": "Tailwind, SCSS, Bootstrap, Vuetify, GSAP"
+    },
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Cloud & DevOps",
+     "values": "Docker, Git, GitHub Actions, GitLab, Netlify, Cloudflare Workers / Pages"
+    },
+    {
+     "label": "AI",
+     "values": "Claude Code, agentic development, RAG, LLM APIs (OpenAI, Gemini, Groq, Ollama), MCP, evals, Microsoft Copilot"
+    },
+    {
+     "label": "Web analytics & quality",
+     "values": "GA4, Google Search Console, Microsoft Clarity, PageSpeed Insights / Core Web Vitals, technické SEO, audity prístupnosti WCAG, krátke videá (FB/IG Reels)"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Magisterské štúdium (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · predpokladané ukončenie 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bakalárske štúdium – Informatika",
+     "school": "VŠB – Technická univerzita Ostrava, Fakulta elektrotechniky a informatiky",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovenčina",
+     "level": "materinský"
+    },
+    {
+     "name": "Čeština",
+     "level": "bilingválne"
+    },
+    {
+     "name": "Angličtina",
+     "level": "B2"
+    },
+    {
+     "name": "Nemčina",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profil",
+    "experience": "Pracovné skúsenosti",
+    "projects": "Projekty",
+    "skills": "Zručnosti",
+    "education": "Vzdelanie",
+    "languages": "Jazyky",
+    "services": "Služby",
+    "present": "súčasnosť",
+    "now": "dnes",
+    "earlier": "Predchádzajúce skúsenosti",
+    "earlier_short": "predtým"
+   }
+  }
+ },
+ "fullstack": {
+  "en": {
+   "headline": "Fullstack Developer · Vue 3 / Node.js / SQL",
+   "role": "Fullstack Developer",
+   "stack": "Vue 3 / Node.js / SQL",
+   "summary": "Fullstack developer with 8+ years of experience across Vue 3, TypeScript, Node.js, Laravel and SQL. I&#39;m comfortable owning a feature from database schema and API design to the UI and deployment. My background in business analysis helps me ask the right questions early, and building my own products made me careful about security, data integrity and long-term maintainability.",
+   "location": "Bratislava · remote / EU relocation",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Developed new features and modules for an internal business application",
+      "Wrote and optimized SQL queries, data corrections and reports",
+      "Managed data flows between the application, database and external business systems (ERP, payroll)"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "As part of a 10-person dev team, co-developed an event and workflow tracking system used by <strong>100–250 field workers</strong> across regional centres in Slovakia",
+      "Designed REST APIs in Laravel and integrated them with a Vue.js frontend",
+      "Implemented mobile-friendly user interfaces for field use with focus on usability and performance",
+      "Improved data flow and communication between frontend and backend systems"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analyzed business requirements for an internal process-automation system and translated them into technical specifications",
+      "Coordinated changes and feature delivery with developers and stakeholders in Jira and Confluence"
+     ]
+    },
+    {
+     "title": "Freelance Developer",
+     "company": "Self-employed",
+     "period": "2018–now",
+     "bullets": [
+      "Delivered web applications and websites for clients alongside employment; since 2025 focused on SaaS products and AI integrations",
+      "Own the full cycle – requirements, implementation, deployment and post-launch analytics"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Built responsive web applications using HTML, CSS and JavaScript",
+      "Translated UI/UX designs into functional interfaces in close collaboration with designers"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Worked on commercial projects for an insurance company and an international CMS platform",
+      "Supported infrastructure and ensured stability of deployed solutions"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017"
+    },
+    {
+     "title": "IT Technician",
+     "company": "City Library Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "Loqsy",
+     "kind": "Client project",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Subscription PWA pairing two user roles – <strong>2,000+ registered users.</strong>",
+     "bullets": [
+      "End-to-end delivery – architecture, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify)",
+      "Idempotent payment webhook processing for reliable subscriptions",
+      "Server-side tracking architecture – GA4 Measurement Protocol + Meta Conversions API"
+     ]
+    },
+    {
+     "name": "JAPS – Just Another Portfolio Site",
+     "kind": "Own product",
+     "link": "japs.app",
+     "stack": "TypeScript · Astro · Vue 3 · Playwright · Cloudflare Workers + Hono + D1 · OpenAI / Gemini / Groq / Ollama",
+     "text": "Generates a static portfolio from deployed Netlify sites paired with their GitHub repositories.",
+     "bullets": [
+      "Local CLI and hosted version with GitHub sign-in, browser editor and one-click publishing"
+     ]
+    },
+    {
+     "name": "Pristupio",
+     "kind": "Own SaaS",
+     "link": "pristupio.com",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify Functions",
+     "text": "WCAG accessibility audit tool with subscription billing.",
+     "bullets": [
+      "Component-based architecture, API integrations and billing webhooks"
+     ]
+    },
+    {
+     "name": "Another Hockey Manager",
+     "kind": "Own project",
+     "link": null,
+     "stack": "TypeScript · Nuxt · Supabase · pnpm monorepo",
+     "text": "Text-first online hockey management simulation – lineups, tactics and roster development across seasons.",
+     "bullets": [
+      "Deterministic match engine as a pure function with seeded randomness – any match can be replayed exactly",
+      "Event-stream architecture – box scores, standings and player statistics are all derived from one event log",
+      "Engine validated statistically against real league data before building the interface"
+     ]
+    }
+   ],
+   "skills": [
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    },
+    {
+     "label": "Cloud & DevOps",
+     "values": "Docker, Git, GitHub Actions, GitLab, Netlify, Cloudflare Workers / Pages"
+    },
+    {
+     "label": "Styling",
+     "values": "Tailwind, SCSS, Bootstrap, Vuetify, GSAP"
+    },
+    {
+     "label": "AI",
+     "values": "Claude Code, agentic development, RAG, LLM APIs (OpenAI, Gemini, Groq, Ollama), MCP, evals, Microsoft Copilot"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Master's degree (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · expected graduation 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bachelor's degree – Computer Science",
+     "school": "VŠB – Technical University of Ostrava, Faculty of Electrical Engineering and Computer Science",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovak",
+     "level": "native"
+    },
+    {
+     "name": "Czech",
+     "level": "bilingual"
+    },
+    {
+     "name": "English",
+     "level": "B2"
+    },
+    {
+     "name": "German",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profile",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "services": "Services",
+    "present": "present",
+    "now": "now",
+    "earlier": "Earlier experience",
+    "earlier_short": "earlier"
+   }
+  },
+  "sk": {
+   "headline": "Fullstack Developer · Vue 3 / Node.js / SQL",
+   "role": "Fullstack Developer",
+   "stack": "Vue 3 / Node.js / SQL",
+   "summary": "Fullstack vývojár s 8+ rokmi skúseností s Vue 3, TypeScriptom, Node.js, Laravelom a SQL. Viem prevziať funkcionalitu od návrhu databázy a API cez UI až po nasadenie. Skúsenosť z biznis analýzy mi pomáha klásť správne otázky včas a vlastné produkty ma naučili dbať na bezpečnosť, integritu dát a dlhodobú udržateľnosť.",
+   "location": "Bratislava · remote / relokácia v EÚ",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Vývoj nových funkcií a modulov pre internú firemnú aplikáciu",
+      "Písanie a optimalizácia SQL dopytov, opravy dát a reporty",
+      "Správa dátových tokov medzi aplikáciou, databázou a externými firemnými systémami (ERP, mzdy)"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "V 10-člennom vývojovom tíme som sa podieľal na systéme na evidenciu udalostí a workflow, ktorý používalo <strong>100–250 pracovníkov v teréne</strong> naprieč strediskami na celom Slovensku",
+      "Návrh REST API v Laraveli a ich integrácia s Vue.js frontendom",
+      "Implementácia mobilne prívetivého UI pre prácu v teréne s dôrazom na použiteľnosť a výkon",
+      "Zlepšenie dátového toku a komunikácie medzi frontendom a backendom"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analýza biznis požiadaviek pre interný systém na automatizáciu procesov a ich preklad do technickej špecifikácie",
+      "Koordinácia zmien a dodávky funkcií s vývojármi a stakeholdermi v Jire a Confluence"
+     ]
+    },
+    {
+     "title": "Freelance vývojár",
+     "company": "Na voľnej nohe",
+     "period": "2018–dnes",
+     "bullets": [
+      "Webové aplikácie a weby pre klientov popri zamestnaní; od roku 2025 zameranie na SaaS produkty a AI integrácie",
+      "Celý cyklus vo vlastných rukách – požiadavky, implementácia, nasadenie a analytika po spustení"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Tvorba responzívnych webových aplikácií v HTML, CSS a JavaScripte",
+      "Prevod UI/UX návrhov do funkčných rozhraní v úzkej spolupráci s dizajnérmi"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Komerčné projekty pre poisťovňu a medzinárodnú CMS platformu",
+      "Podpora infraštruktúry a stability nasadených riešení"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017"
+    },
+    {
+     "title": "IT technik",
+     "company": "Mestská knižnica Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "Loqsy",
+     "kind": "Klientsky projekt",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Predplatiteľská PWA párujúca dve role používateľov – <strong>2 000+ registrovaných používateľov.</strong>",
+     "bullets": [
+      "Dodávka end-to-end – architektúra, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify)",
+      "Idempotentné spracovanie platobných webhookov pre spoľahlivé predplatné",
+      "Server-side tracking – GA4 Measurement Protocol + Meta Conversions API"
+     ]
+    },
+    {
+     "name": "JAPS – Just Another Portfolio Site",
+     "kind": "Vlastný produkt",
+     "link": "japs.app",
+     "stack": "TypeScript · Astro · Vue 3 · Playwright · Cloudflare Workers + Hono + D1 · OpenAI / Gemini / Groq / Ollama",
+     "text": "Generuje statické portfólio z nasadených Netlify webov spárovaných s ich GitHub repozitármi.",
+     "bullets": [
+      "Lokálne CLI aj hostovaná verzia s GitHub prihlásením, editorom v prehliadači a publikovaním na klik"
+     ]
+    },
+    {
+     "name": "Pristupio",
+     "kind": "Vlastný SaaS",
+     "link": "pristupio.com",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify Functions",
+     "text": "Nástroj na audit prístupnosti podľa WCAG s predplatným.",
+     "bullets": [
+      "Komponentová architektúra, API integrácie a billing webhooky"
+     ]
+    },
+    {
+     "name": "Another Hockey Manager",
+     "kind": "Vlastný projekt",
+     "link": null,
+     "stack": "TypeScript · Nuxt · Supabase · pnpm monorepo",
+     "text": "Textová online hokejová manažérska simulácia – zostavy, taktika a rozvoj kádra naprieč sezónami.",
+     "bullets": [
+      "Deterministický zápasový engine ako čistá funkcia so seedovanou náhodnosťou – každý zápas sa dá presne prehrať znova",
+      "Event-stream architektúra – výsledky, tabuľky a štatistiky hráčov sa odvodzujú z jedného logu udalostí",
+      "Engine štatisticky validovaný voči reálnym ligovým dátam ešte pred tvorbou rozhrania"
+     ]
+    }
+   ],
+   "skills": [
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    },
+    {
+     "label": "Cloud & DevOps",
+     "values": "Docker, Git, GitHub Actions, GitLab, Netlify, Cloudflare Workers / Pages"
+    },
+    {
+     "label": "Styling",
+     "values": "Tailwind, SCSS, Bootstrap, Vuetify, GSAP"
+    },
+    {
+     "label": "AI",
+     "values": "Claude Code, agentic development, RAG, LLM APIs (OpenAI, Gemini, Groq, Ollama), MCP, evals, Microsoft Copilot"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Magisterské štúdium (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · predpokladané ukončenie 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bakalárske štúdium – Informatika",
+     "school": "VŠB – Technická univerzita Ostrava, Fakulta elektrotechniky a informatiky",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovenčina",
+     "level": "materinský"
+    },
+    {
+     "name": "Čeština",
+     "level": "bilingválne"
+    },
+    {
+     "name": "Angličtina",
+     "level": "B2"
+    },
+    {
+     "name": "Nemčina",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profil",
+    "experience": "Pracovné skúsenosti",
+    "projects": "Projekty",
+    "skills": "Zručnosti",
+    "education": "Vzdelanie",
+    "languages": "Jazyky",
+    "services": "Služby",
+    "present": "súčasnosť",
+    "now": "dnes",
+    "earlier": "Predchádzajúce skúsenosti",
+    "earlier_short": "predtým"
+   }
+  }
+ },
+ "analyst": {
+  "en": {
+   "headline": "IT Business Analyst",
+   "role": "IT Business Analyst",
+   "stack": "",
+   "summary": "IT analyst with a strong development background and 8+ years in IT. I analyze business requirements, model processes in BPMN and UML and write specifications that developers can actually implement. Because I&#39;ve built software myself, I can spot technical risks early and communicate directly with both stakeholders and dev teams.",
+   "location": "Bratislava · remote / EU relocation",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Wrote and optimized SQL queries, data corrections and reports",
+      "Managed data flows between the application, database and external business systems (ERP, payroll)",
+      "Managed user access, roles and system configuration; provided application support to end users"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "As part of a 10-person dev team, co-developed an event and workflow tracking system used by <strong>100–250 field workers</strong> across regional centres in Slovakia",
+      "Designed REST APIs in Laravel and integrated them with a Vue.js frontend"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analyzed business requirements for an internal process-automation system and translated them into technical specifications",
+      "Modelled processes and system design in BPMN and UML using Enterprise Architect",
+      "Coordinated changes and feature delivery with developers and stakeholders in Jira and Confluence",
+      "Identified system issues and proposed improvements to increase reliability"
+     ]
+    },
+    {
+     "title": "Freelance Developer",
+     "company": "Self-employed",
+     "period": "2018–now",
+     "bullets": [
+      "Delivered web applications and websites for clients alongside employment; since 2025 focused on SaaS products and AI integrations",
+      "Own the full cycle – requirements, implementation, deployment and post-launch analytics"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Built responsive web applications using HTML, CSS and JavaScript",
+      "Translated UI/UX designs into functional interfaces in close collaboration with designers"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Worked on commercial projects for an insurance company and an international CMS platform",
+      "Supported infrastructure and ensured stability of deployed solutions"
+     ]
+    },
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017",
+     "bullets": [
+      "Developed internal data-management applications in C# / ASP.NET MVC (Visual Studio) with focus on the UI",
+      "Designed and implemented user interfaces with emphasis on usability"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": "IT Technician",
+     "company": "City Library Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "Loqsy",
+     "kind": "Client project",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Subscription PWA pairing two user roles – <strong>2,000+ registered users.</strong>",
+     "bullets": []
+    },
+    {
+     "name": "ePassport System",
+     "kind": "Client project",
+     "link": null,
+     "stack": "Vue · Vuetify · Firebase",
+     "text": "Mobile-first web app replacing manual data workflows – structured forms, role-based authentication, admin validation interface.",
+     "bullets": []
+    }
+   ],
+   "skills": [
+    {
+     "label": "Analysis & delivery",
+     "values": "Requirements analysis, BPMN, UML, Enterprise Architect, MS Visio, Draw.io, Jira, Confluence"
+    },
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Systems & support",
+     "values": "User & access management, system configuration, SQL data maintenance, end-user support, networking basics"
+    },
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Master's degree (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · expected graduation 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bachelor's degree – Computer Science",
+     "school": "VŠB – Technical University of Ostrava, Faculty of Electrical Engineering and Computer Science",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovak",
+     "level": "native"
+    },
+    {
+     "name": "Czech",
+     "level": "bilingual"
+    },
+    {
+     "name": "English",
+     "level": "B2"
+    },
+    {
+     "name": "German",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profile",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "services": "Services",
+    "present": "present",
+    "now": "now",
+    "earlier": "Earlier experience",
+    "earlier_short": "earlier"
+   }
+  },
+  "sk": {
+   "headline": "IT analytik",
+   "role": "IT analytik",
+   "stack": "",
+   "summary": "IT analytik so silným vývojárskym zázemím a 8+ rokmi v IT. Analyzujem biznis požiadavky, modelujem procesy v BPMN a UML a píšem špecifikácie, ktoré vývojári vedia reálne implementovať. Keďže som softvér sám vyvíjal, včas odhalím technické riziká a viem priamo komunikovať so stakeholdermi aj s vývojovým tímom.",
+   "location": "Bratislava · remote / relokácia v EÚ",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Písanie a optimalizácia SQL dopytov, opravy dát a reporty",
+      "Správa dátových tokov medzi aplikáciou, databázou a externými firemnými systémami (ERP, mzdy)",
+      "Správa používateľských prístupov, rolí a konfigurácie systému; podpora koncových používateľov"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "V 10-člennom vývojovom tíme som sa podieľal na systéme na evidenciu udalostí a workflow, ktorý používalo <strong>100–250 pracovníkov v teréne</strong> naprieč strediskami na celom Slovensku",
+      "Návrh REST API v Laraveli a ich integrácia s Vue.js frontendom"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analýza biznis požiadaviek pre interný systém na automatizáciu procesov a ich preklad do technickej špecifikácie",
+      "Modelovanie procesov a návrhu systému v BPMN a UML v Enterprise Architecte",
+      "Koordinácia zmien a dodávky funkcií s vývojármi a stakeholdermi v Jire a Confluence",
+      "Identifikácia problémov v systéme a návrhy zlepšení pre vyššiu spoľahlivosť"
+     ]
+    },
+    {
+     "title": "Freelance vývojár",
+     "company": "Na voľnej nohe",
+     "period": "2018–dnes",
+     "bullets": [
+      "Webové aplikácie a weby pre klientov popri zamestnaní; od roku 2025 zameranie na SaaS produkty a AI integrácie",
+      "Celý cyklus vo vlastných rukách – požiadavky, implementácia, nasadenie a analytika po spustení"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Tvorba responzívnych webových aplikácií v HTML, CSS a JavaScripte",
+      "Prevod UI/UX návrhov do funkčných rozhraní v úzkej spolupráci s dizajnérmi"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Komerčné projekty pre poisťovňu a medzinárodnú CMS platformu",
+      "Podpora infraštruktúry a stability nasadených riešení"
+     ]
+    },
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017",
+     "bullets": [
+      "Vývoj interných aplikácií na správu dát v C# / ASP.NET MVC (Visual Studio) so zameraním na UI",
+      "Návrh a implementácia používateľských rozhraní s dôrazom na použiteľnosť"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": "IT technik",
+     "company": "Mestská knižnica Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "Loqsy",
+     "kind": "Klientsky projekt",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Predplatiteľská PWA párujúca dve role používateľov – <strong>2 000+ registrovaných používateľov.</strong>",
+     "bullets": []
+    },
+    {
+     "name": "ePassport System",
+     "kind": "Klientsky projekt",
+     "link": null,
+     "stack": "Vue · Vuetify · Firebase",
+     "text": "Mobile-first webová aplikácia nahrádzajúca manuálne spracovanie dát – štruktúrované formuláre, autentifikácia s rolami, admin rozhranie na validáciu.",
+     "bullets": []
+    }
+   ],
+   "skills": [
+    {
+     "label": "Analýza & dodávka",
+     "values": "Requirements analysis, BPMN, UML, Enterprise Architect, MS Visio, Draw.io, Jira, Confluence"
+    },
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Systémy & podpora",
+     "values": "Správa používateľov a prístupov, konfigurácia systémov, údržba dát v SQL, podpora používateľov, základy sietí"
+    },
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Magisterské štúdium (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · predpokladané ukončenie 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bakalárske štúdium – Informatika",
+     "school": "VŠB – Technická univerzita Ostrava, Fakulta elektrotechniky a informatiky",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovenčina",
+     "level": "materinský"
+    },
+    {
+     "name": "Čeština",
+     "level": "bilingválne"
+    },
+    {
+     "name": "Angličtina",
+     "level": "B2"
+    },
+    {
+     "name": "Nemčina",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profil",
+    "experience": "Pracovné skúsenosti",
+    "projects": "Projekty",
+    "skills": "Zručnosti",
+    "education": "Vzdelanie",
+    "languages": "Jazyky",
+    "services": "Služby",
+    "present": "súčasnosť",
+    "now": "dnes",
+    "earlier": "Predchádzajúce skúsenosti",
+    "earlier_short": "predtým"
+   }
+  }
+ },
+ "ai-engineer": {
+  "en": {
+   "headline": "AI Solutions Engineer · LLM integrations & agentic development",
+   "role": "AI Solutions Engineer",
+   "stack": "LLM integrations & agentic development",
+   "summary": "Software engineer with 8+ years of experience, focused on bringing AI into real products and development workflows. I build RAG pipelines, grounded LLM features and agentic tooling, and I use AI-assisted development daily in my own work. What I add is solid engineering underneath: clean TypeScript, proper data handling and evaluation, so AI features are reliable rather than just impressive in a demo.",
+   "location": "Bratislava · remote / EU relocation",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Developed new features and modules for an internal business application",
+      "Wrote and optimized SQL queries, data corrections and reports",
+      "Managed data flows between the application, database and external business systems (ERP, payroll)"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "As part of a 10-person dev team, co-developed an event and workflow tracking system used by <strong>100–250 field workers</strong> across regional centres in Slovakia",
+      "Designed REST APIs in Laravel and integrated them with a Vue.js frontend",
+      "Implemented mobile-friendly user interfaces for field use with focus on usability and performance"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analyzed business requirements for an internal process-automation system and translated them into technical specifications",
+      "Coordinated changes and feature delivery with developers and stakeholders in Jira and Confluence"
+     ]
+    },
+    {
+     "title": "Freelance Developer",
+     "company": "Self-employed",
+     "period": "2018–now",
+     "bullets": [
+      "Delivered web applications and websites for clients alongside employment; since 2025 focused on SaaS products and AI integrations",
+      "Own the full cycle – requirements, implementation, deployment and post-launch analytics",
+      "Use Claude Code daily for spec-driven, agentic development; AI-assisted code review in CI"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Built responsive web applications using HTML, CSS and JavaScript",
+      "Translated UI/UX designs into functional interfaces in close collaboration with designers"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Worked on commercial projects for an insurance company and an international CMS platform",
+      "Supported infrastructure and ensured stability of deployed solutions"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017"
+    },
+    {
+     "title": "IT Technician",
+     "company": "City Library Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "JAPS – Just Another Portfolio Site",
+     "kind": "Own product",
+     "link": "japs.app",
+     "stack": "TypeScript · Astro · Vue 3 · Playwright · Cloudflare Workers + Hono + D1 · OpenAI / Gemini / Groq / Ollama",
+     "text": "Generates a static portfolio from deployed Netlify sites paired with their GitHub repositories.",
+     "bullets": [
+      "Grounded AI copywriting – texts generated from extracted facts; any number not in the facts is rejected",
+      "Local CLI and hosted version with GitHub sign-in, browser editor and one-click publishing"
+     ]
+    },
+    {
+     "name": "AI code review in CI",
+     "kind": "Tooling",
+     "link": null,
+     "stack": "Claude Code · GitHub Actions",
+     "text": "Interactive and automatic pull-request review workflows powered by Claude.",
+     "bullets": []
+    },
+    {
+     "name": "Loqsy",
+     "kind": "Client project",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Subscription PWA pairing two user roles – <strong>2,000+ registered users.</strong>",
+     "bullets": [
+      "End-to-end delivery – architecture, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify)",
+      "Idempotent payment webhook processing for reliable subscriptions",
+      "Server-side tracking architecture – GA4 Measurement Protocol + Meta Conversions API"
+     ]
+    },
+    {
+     "name": "Pristupio",
+     "kind": "Own SaaS",
+     "link": "pristupio.com",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify Functions",
+     "text": "WCAG accessibility audit tool with subscription billing.",
+     "bullets": [
+      "Component-based architecture, API integrations and billing webhooks",
+      "AI (OpenAI API with structured JSON output) turns technical audit findings into clear explanations and remediation steps, in Slovak and English"
+     ]
+    },
+    {
+     "name": "Slovak RAG assistant",
+     "kind": "Portfolio / R&D",
+     "link": null,
+     "stack": "TypeScript · Supabase · pgvector · MCP · GitHub Actions",
+     "text": "Slovak-language retrieval-augmented assistant built over my own projects.",
+     "bullets": [
+      "Swappable embedding and LLM provider abstraction; 40-question evaluation set",
+      "Agentic CI workflows and MCP integrations"
+     ]
+    }
+   ],
+   "skills": [
+    {
+     "label": "AI",
+     "values": "Claude Code, agentic development, RAG, LLM APIs (OpenAI, Gemini, Groq, Ollama), MCP, evals, Microsoft Copilot"
+    },
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    },
+    {
+     "label": "Cloud & DevOps",
+     "values": "Docker, Git, GitHub Actions, GitLab, Netlify, Cloudflare Workers / Pages"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Master's degree (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · expected graduation 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bachelor's degree – Computer Science",
+     "school": "VŠB – Technical University of Ostrava, Faculty of Electrical Engineering and Computer Science",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovak",
+     "level": "native"
+    },
+    {
+     "name": "Czech",
+     "level": "bilingual"
+    },
+    {
+     "name": "English",
+     "level": "B2"
+    },
+    {
+     "name": "German",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profile",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "education": "Education",
+    "languages": "Languages",
+    "services": "Services",
+    "present": "present",
+    "now": "now",
+    "earlier": "Earlier experience",
+    "earlier_short": "earlier"
+   }
+  },
+  "sk": {
+   "headline": "AI Solutions Engineer · LLM integrácie a agentický vývoj",
+   "role": "AI Solutions Engineer",
+   "stack": "LLM integrácie a agentický vývoj",
+   "summary": "Softvérový inžinier s 8+ rokmi skúseností, zameraný na zavádzanie AI do reálnych produktov a vývojových procesov. Staviam RAG pipeline, LLM funkcie postavené na overených dátach a agentické nástroje a AI-asistovaný vývoj používam denne. Prinášam pevný inžiniersky základ: čistý TypeScript, správnu prácu s dátami a evaluáciu, aby AI funkcie boli spoľahlivé, nielen efektné na deme.",
+   "location": "Bratislava · remote / relokácia v EÚ",
+   "sections": [
+    "summary",
+    "experience",
+    "projects",
+    "skills",
+    "education",
+    "languages"
+   ],
+   "experience": [
+    {
+     "title": "IT Application Developer",
+     "company": "Kanadevia Inova",
+     "period": "2025–2026",
+     "bullets": [
+      "Vývoj nových funkcií a modulov pre internú firemnú aplikáciu",
+      "Písanie a optimalizácia SQL dopytov, opravy dát a reporty",
+      "Správa dátových tokov medzi aplikáciou, databázou a externými firemnými systémami (ERP, mzdy)"
+     ]
+    },
+    {
+     "title": "Fullstack Developer",
+     "company": "NDS – National Motorway Company",
+     "period": "2023–2024",
+     "bullets": [
+      "V 10-člennom vývojovom tíme som sa podieľal na systéme na evidenciu udalostí a workflow, ktorý používalo <strong>100–250 pracovníkov v teréne</strong> naprieč strediskami na celom Slovensku",
+      "Návrh REST API v Laraveli a ich integrácia s Vue.js frontendom",
+      "Implementácia mobilne prívetivého UI pre prácu v teréne s dôrazom na použiteľnosť a výkon"
+     ]
+    },
+    {
+     "title": "IT Analyst",
+     "company": "VÚB Banka – Intesa Sanpaolo",
+     "period": "2022–2023",
+     "bullets": [
+      "Analýza biznis požiadaviek pre interný systém na automatizáciu procesov a ich preklad do technickej špecifikácie",
+      "Koordinácia zmien a dodávky funkcií s vývojármi a stakeholdermi v Jire a Confluence"
+     ]
+    },
+    {
+     "title": "Freelance vývojár",
+     "company": "Na voľnej nohe",
+     "period": "2018–dnes",
+     "bullets": [
+      "Webové aplikácie a weby pre klientov popri zamestnaní; od roku 2025 zameranie na SaaS produkty a AI integrácie",
+      "Celý cyklus vo vlastných rukách – požiadavky, implementácia, nasadenie a analytika po spustení",
+      "Denne používam Claude Code na spec-driven a agentický vývoj; AI code review v CI"
+     ]
+    },
+    {
+     "title": "Frontend Developer",
+     "company": "Foundation",
+     "period": "2018–2021",
+     "bullets": [
+      "Tvorba responzívnych webových aplikácií v HTML, CSS a JavaScripte",
+      "Prevod UI/UX návrhov do funkčných rozhraní v úzkej spolupráci s dizajnérmi"
+     ]
+    },
+    {
+     "title": "Software Engineer",
+     "company": "Accenture",
+     "period": "2017–2018",
+     "bullets": [
+      "Komerčné projekty pre poisťovňu a medzinárodnú CMS platformu",
+      "Podpora infraštruktúry a stability nasadených riešení"
+     ]
+    }
+   ],
+   "earlier": [
+    {
+     "title": ".NET Developer (Junior)",
+     "company": "Ensentia",
+     "period": "2016–2017"
+    },
+    {
+     "title": "IT technik",
+     "company": "Mestská knižnica Piešťany",
+     "period": "2015"
+    }
+   ],
+   "projects": [
+    {
+     "name": "JAPS – Just Another Portfolio Site",
+     "kind": "Vlastný produkt",
+     "link": "japs.app",
+     "stack": "TypeScript · Astro · Vue 3 · Playwright · Cloudflare Workers + Hono + D1 · OpenAI / Gemini / Groq / Ollama",
+     "text": "Generuje statické portfólio z nasadených Netlify webov spárovaných s ich GitHub repozitármi.",
+     "bullets": [
+      "Grounded AI texty – generované z extrahovaných faktov; čísla mimo faktov sú zamietnuté",
+      "Lokálne CLI aj hostovaná verzia s GitHub prihlásením, editorom v prehliadači a publikovaním na klik"
+     ]
+    },
+    {
+     "name": "AI code review v CI",
+     "kind": "Nástroje",
+     "link": null,
+     "stack": "Claude Code · GitHub Actions",
+     "text": "Interaktívne aj automatické review pull requestov pomocou Claude.",
+     "bullets": []
+    },
+    {
+     "name": "Loqsy",
+     "kind": "Klientsky projekt",
+     "link": "loqsy.app",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify",
+     "text": "Predplatiteľská PWA párujúca dve role používateľov – <strong>2 000+ registrovaných používateľov.</strong>",
+     "bullets": [
+      "Dodávka end-to-end – architektúra, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify)",
+      "Idempotentné spracovanie platobných webhookov pre spoľahlivé predplatné",
+      "Server-side tracking – GA4 Measurement Protocol + Meta Conversions API"
+     ]
+    },
+    {
+     "name": "Pristupio",
+     "kind": "Vlastný SaaS",
+     "link": "pristupio.com",
+     "stack": "Vue 3 · TypeScript · Supabase · Netlify Functions",
+     "text": "Nástroj na audit prístupnosti podľa WCAG s predplatným.",
+     "bullets": [
+      "Komponentová architektúra, API integrácie a billing webhooky",
+      "AI (OpenAI API so štruktúrovaným JSON výstupom) prekladá technické nálezy auditu do zrozumiteľného vysvetlenia a krokov na opravu, po slovensky aj po anglicky"
+     ]
+    },
+    {
+     "name": "Slovenský RAG asistent",
+     "kind": "Portfólio / R&D",
+     "link": null,
+     "stack": "TypeScript · Supabase · pgvector · MCP · GitHub Actions",
+     "text": "Slovenský asistent s retrieval-augmented generation nad mojimi projektmi.",
+     "bullets": [
+      "Vymeniteľná abstrakcia embedding a LLM providerov; evaluačná sada 40 otázok",
+      "Agentické CI workflow a MCP integrácie"
+     ]
+    }
+   ],
+   "skills": [
+    {
+     "label": "AI",
+     "values": "Claude Code, agentic development, RAG, LLM APIs (OpenAI, Gemini, Groq, Ollama), MCP, evals, Microsoft Copilot"
+    },
+    {
+     "label": "Backend & data",
+     "values": "Node.js, Hono, Laravel / PHP, REST API, SQL, Supabase (Postgres, RLS, pgvector), Firebase (Firestore, NoSQL), Cloudflare D1, Python (personal projects)"
+    },
+    {
+     "label": "Frontend",
+     "values": "Vue 3, TypeScript, JavaScript, Pinia, Vue Router, Vite, Nuxt, Astro, React, HTML, CSS"
+    },
+    {
+     "label": "Cloud & DevOps",
+     "values": "Docker, Git, GitHub Actions, GitLab, Netlify, Cloudflare Workers / Pages"
+    }
+   ],
+   "education": [
+    {
+     "degree": "Magisterské štúdium (MSc) – Cloud-Based Software Architecture",
+     "school": "VAMK – Vaasa University of Applied Sciences · online · predpokladané ukončenie 2027",
+     "period": "2026–2027"
+    },
+    {
+     "degree": "Bakalárske štúdium – Informatika",
+     "school": "VŠB – Technická univerzita Ostrava, Fakulta elektrotechniky a informatiky",
+     "period": "2011–2015"
+    }
+   ],
+   "languages": [
+    {
+     "name": "Slovenčina",
+     "level": "materinský"
+    },
+    {
+     "name": "Čeština",
+     "level": "bilingválne"
+    },
+    {
+     "name": "Angličtina",
+     "level": "B2"
+    },
+    {
+     "name": "Nemčina",
+     "level": "A1"
+    }
+   ],
+   "L": {
+    "summary": "Profil",
+    "experience": "Pracovné skúsenosti",
+    "projects": "Projekty",
+    "skills": "Zručnosti",
+    "education": "Vzdelanie",
+    "languages": "Jazyky",
+    "services": "Služby",
+    "present": "súčasnosť",
+    "now": "dnes",
+    "earlier": "Predchádzajúce skúsenosti",
+    "earlier_short": "predtým"
+   }
+  }
+ }
+}
