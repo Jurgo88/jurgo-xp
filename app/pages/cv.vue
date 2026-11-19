@@ -89,13 +89,14 @@ useHead({ link: [{ rel: 'stylesheet', href: '/fonts/cv/fonts.css' }] })
 
     <article class="paper">
       <header>
-        <h1>
-          <span class="first">{{ first }}</span>
-          <span class="second">
-            <span class="headtag"><span class="role">{{ cv.role }}</span>{{ cv.stack }}</span>
-            <span>{{ last }}</span>
-          </span>
-        </h1>
+        <div class="namehead">
+          <!-- staggered name: the surname starts under the last two letters of the first name (AJ over PA) -->
+          <h1>
+            <span class="l1">{{ first }}</span>
+            <span class="l2"><span class="spacer" aria-hidden="true">{{ first!.slice(0, -2) }}</span>{{ last }}</span>
+          </h1>
+          <p class="headtag"><span class="role">{{ cv.role }}</span>{{ cv.stack }}</p>
+        </div>
         <div class="contact">
           <a :href="`mailto:${profile.email}`">{{ profile.email }}</a>
           <XpPhone />
@@ -209,14 +210,16 @@ useHead({ link: [{ rel: 'stylesheet', href: '/fonts/cv/fonts.css' }] })
 }
 h1 {
   margin: 0; font-family: var(--grot); font-weight: 700; text-transform: uppercase; color: var(--ink);
-  font-size: clamp(64px, 18.5vw, 172px); line-height: .8; letter-spacing: -.045em;
+  font-size: 176px; line-height: .9; letter-spacing: -.045em; white-space: nowrap;
 }
-h1 .first { display: block; }
-/* pull the surname up so the two lines interlock (J's tail and Š's caron cross), like the PDF */
-h1 .second { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-top: -.14em; position: relative; }
-/* not .tag: that class is the skill chip in desktop.css */
+h1 .l1, h1 .l2 { display: block; }
+h1 .l2 { margin-top: .06em; }
+h1 .spacer { visibility: hidden; }
+.namehead { position: relative; }
+/* role + stack in the free space right of the first name (moves below the name on narrow screens) */
 .headtag {
-  font: 500 14px/1.5 var(--mono); letter-spacing: 0; text-transform: none; color: var(--muted); padding-bottom: .12em;
+  position: absolute; right: 0; top: 0; margin: 0; max-width: 34%; text-align: right;
+  font: 500 14px/1.5 var(--mono); color: var(--muted);
 }
 .headtag .role { display: block; font: 700 22px/1.3 var(--grot); color: var(--accent); }
 .contact {
@@ -254,12 +257,15 @@ li::marker { color: #9a9ca3; }
 .inline-list span + span::before { content: '/'; margin: 0 10px; color: #9a9ca3; }
 :deep(strong) { font-weight: 600; }
 
+@media (max-width: 960px) {
+  h1 { font-size: calc((100vw - 140px) * .215); }
+  .headtag { position: static; max-width: none; text-align: left; margin-top: 14px; }
+}
 @media (max-width: 720px) {
+  h1 { font-size: calc((100vw - 36px) * .215); }
   .roles { justify-content: flex-start; order: 3; flex-basis: 100%; }
   .tools { margin-left: auto; }
   .paper { margin: 0; padding: 28px 18px 40px; box-shadow: none; }
-  h1 { font-size: clamp(64px, 22vw, 150px); }
-  h1 .second { flex-direction: column-reverse; align-items: flex-start; gap: 14px; }
   .headtag { font-size: 13px; }
   .headtag .role { font-size: 19px; }
   .contact { flex-direction: column; }
