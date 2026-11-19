@@ -209,10 +209,11 @@ useHead({ link: [{ rel: 'stylesheet', href: '/fonts/cv/fonts.css' }] })
 }
 h1 {
   margin: 0; font-family: var(--grot); font-weight: 700; text-transform: uppercase; color: var(--ink);
-  font-size: clamp(56px, 15vw, 132px); line-height: .82; letter-spacing: -.04em;
+  font-size: clamp(64px, 18.5vw, 172px); line-height: .8; letter-spacing: -.045em;
 }
 h1 .first { display: block; }
-h1 .second { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
+/* pull the surname up so the two lines interlock (J's tail and Š's caron cross), like the PDF */
+h1 .second { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; margin-top: -.14em; position: relative; }
 /* not .tag: that class is the skill chip in desktop.css */
 .headtag {
   font: 500 14px/1.5 var(--mono); letter-spacing: 0; text-transform: none; color: var(--muted); padding-bottom: .12em;
@@ -257,7 +258,8 @@ li::marker { color: #9a9ca3; }
   .roles { justify-content: flex-start; order: 3; flex-basis: 100%; }
   .tools { margin-left: auto; }
   .paper { margin: 0; padding: 28px 18px 40px; box-shadow: none; }
-  h1 .second { flex-direction: column-reverse; align-items: flex-start; gap: 10px; }
+  h1 { font-size: clamp(64px, 22vw, 150px); }
+  h1 .second { flex-direction: column-reverse; align-items: flex-start; gap: 14px; }
   .headtag { font-size: 13px; }
   .headtag .role { font-size: 19px; }
   .contact { flex-direction: column; }
