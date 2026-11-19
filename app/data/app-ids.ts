@@ -13,6 +13,9 @@ export const appIds = [
   'sport',
   'contact',
   'recycle-bin',
+  'games',
+  'minesweeper',
+  'solitaire',
 ] as const
 
 export type AppId = (typeof appIds)[number]

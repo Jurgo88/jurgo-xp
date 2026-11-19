@@ -235,3 +235,11 @@ a.file, button.file { cursor: pointer; }
 
 /* contact: click-to-reveal phone */
 .phone-reveal { min-width: 0; padding: 0 8px; }
+
+/* in-window menu bar with real buttons (games) */
+.gmenu button { all: unset; padding: 1px 6px; cursor: default; font: 11px var(--ui); }
+.gmenu button:hover:not(:disabled) { background: var(--sel); color: #fff; }
+.gmenu button.on { font-weight: bold; }
+.gmenu button.on::before { content: '✓ '; }
+.gmenu button:disabled { color: #a0a0a0; }
+@media (max-width: 700px) { .gmenu { flex-wrap: wrap; } .gmenu button { padding: 4px 8px; } }
