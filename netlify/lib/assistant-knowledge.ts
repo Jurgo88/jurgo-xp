@@ -72,7 +72,7 @@ function siteData(): string {
   const posts = blogPosts.filter(p => !p.draft)
   if (posts.length) {
     lines.push('\n## Blog posts')
-    for (const p of posts) lines.push(`- ${p.date} "${p.title.en}": ${p.body.en}`)
+    for (const p of posts) lines.push(`- ${p.date} "${p.title.en}": ${p.summary.en}`)
   }
 
   const fb = floorball
