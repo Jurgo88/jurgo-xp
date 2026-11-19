@@ -37,3 +37,14 @@ Užitočné URL parametre: `?boot` vždy prehrá bootovanie, `?noboot` ho presko
 ## Nasadenie
 
 Netlify: build `npm run generate`, publish `dist` (Nitro preset netlify-static) (viď `netlify.toml`). Súčasný jurgo.sk (portfolio-v2) beží ďalej; doménu prepneme, keď bude tento web hotový.
+
+## Spotify ("Práve počúvam")
+
+The Winamp library window (`app/components/apps/SpotifyApp.vue`) reads `/api/spotify`, a Netlify
+function (`netlify/functions/spotify.mts`) that uses Jurgo's refresh token. Visitors can't stream
+Spotify audio, so songs link out to Spotify. Responses are cached on Netlify's CDN for 30 s.
+
+Netlify env vars (mark as secret, never commit): `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`,
+`SPOTIFY_REFRESH_TOKEN`. To get the refresh token once, open `/api/spotify-auth` on the deployed
+site (it turns itself off once the token is set). The Spotify app needs the redirect URI
+`https://<site>/api/spotify-auth`, and its owner needs Spotify Premium (Development Mode rule).

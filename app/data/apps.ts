@@ -82,6 +82,20 @@ export const apps: AppDef[] = [
     kind: 'webamp',
   },
   {
+    // Winamp-style "Media Library" fed by Spotify (netlify/functions/spotify.mts)
+    id: 'spotify',
+    icon: '/icons/now-playing.svg',
+    title: { en: 'Winamp Library – Spotify', sk: 'Winamp knižnica – Spotify' },
+    label: { en: 'Now playing', sk: 'Práve počúvam' },
+    description: {
+      en: 'What Jurgo is listening to on Spotify right now, his top tracks and recently played songs.',
+      sk: 'Čo Jurgo práve počúva na Spotify, jeho najhranejšie a naposledy hrané skladby.',
+    },
+    width: 420,
+    height: 352,
+    menu: 'none',
+  },
+  {
     id: 'floorball',
     icon: '/icons/excel.svg',
     title: { en: 'floorball_stats.xls', sk: 'florbal_statistiky.xls' },
@@ -139,6 +153,7 @@ export const desktopItems: DesktopItem[] = [
   { type: 'link', key: 'cv', icon: '/icons/pdf.svg', label: { en: 'CV.pdf', sk: 'CV.pdf' } },
   { type: 'app', id: 'blog' },
   { type: 'app', id: 'music' },
+  { type: 'app', id: 'spotify' },
   { type: 'app', id: 'sport' },
   { type: 'app', id: 'contact' },
   { type: 'link', key: 'classic', icon: '/icons/ie.svg', label: { en: 'Classic view', sk: 'Klasický pohľad' } },
