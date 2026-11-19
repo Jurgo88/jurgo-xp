@@ -1,5 +1,6 @@
 const KEY = 'jurgoxp:wallpaper'
-export const DEFAULT_WALLPAPER = '/bliss.jpg'
+// WebP is ~57% smaller than the original bliss.jpg (kept for the OG image script)
+export const DEFAULT_WALLPAPER = '/bliss.webp'
 
 /**
  * Bliss is the default. A visitor may pick their own picture; it is kept as a
@@ -11,7 +12,8 @@ export function useWallpaper() {
   function load() {
     try {
       const saved = localStorage.getItem(KEY)
-      if (saved) wallpaper.value = saved
+      // older visits may have stored the default JPEG; treat it as the default
+      if (saved && saved !== '/bliss.jpg') wallpaper.value = saved
     } catch { /* private mode etc. */ }
   }
 

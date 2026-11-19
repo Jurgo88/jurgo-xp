@@ -22,6 +22,35 @@ const style = computed(() => ({
   zIndex: win.value.z,
 }))
 
+// Keyboard users: when a window becomes the active one (opened, picked on the taskbar,
+// or the one below a closed window), move focus into it so Tab continues there.
+const rootEl = ref<HTMLElement>()
+let opener: HTMLElement | null = null
+function focusSelf() {
+  const prev = document.activeElement as HTMLElement | null
+  if (!opener && prev && prev !== document.body && !prev.closest('.xpwin')) opener = prev
+  if (rootEl.value && !rootEl.value.contains(document.activeElement)) rootEl.value.focus({ preventScroll: true })
+}
+onMounted(() => {
+  watch(() => store.active === props.id, (on) => { if (on) nextTick(focusSelf) }, { immediate: true })
+})
+// closing the last window: give focus back to what opened it (desktop icon, Start menu...) instead of losing it
+onBeforeUnmount(() => {
+  if (rootEl.value?.contains(document.activeElement)) {
+    const back = opener
+    nextTick(() => {
+      if (store.active) return
+      ;(back?.isConnected ? back : document.querySelector<HTMLElement>('.icon.sel, .icon'))?.focus()
+    })
+  }
+})
+/** Esc closes the window, like a dialog. Not while typing (e.g. in the AI chat), so nothing is lost. */
+function onEsc(e: KeyboardEvent) {
+  if ((e.target as HTMLElement).closest('input, textarea, select, [contenteditable]')) return
+  e.stopPropagation()
+  store.close(props.id)
+}
+
 const isPhone = () => import.meta.client && matchMedia('(max-width: 700px)').matches
 
 /** Pointer-based drag (mouse + touch), replaces the old document.onmousemove code. */
@@ -59,7 +88,11 @@ function startDrag(e: PointerEvent, kind: 'move' | 'resize') {
     :hidden="win.minimized"
     :aria-label="titleFor(id)"
     role="dialog"
+    tabindex="-1"
+    ref="rootEl"
     @pointerdown="store.focus(id)"
+    @focusin="store.active !== id && store.focus(id)"
+    @keydown.esc="onEsc"
   >
     <header class="title-bar" @pointerdown="startDrag($event, 'move')" @dblclick="store.toggleMaximize(id)">
       <div class="title-bar-text">

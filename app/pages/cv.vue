@@ -268,7 +268,9 @@ li::marker { color: #9a9ca3; }
   .paper { margin: 0; padding: 28px 18px 40px; box-shadow: none; }
   .headtag { font-size: 13px; }
   .headtag .role { font-size: 19px; }
-  .contact { flex-direction: column; }
+  .contact { flex-direction: column; gap: 0; }
+  /* comfortable tap targets (min 24 px tall) for e-mail, phone, LinkedIn, GitHub */
+  .contact > *, .contact :deep(.phone-reveal) { display: flex; align-items: center; min-height: 28px; }
   section.inline, .row, .skills { grid-template-columns: 1fr; gap: 4px; }
   .row { margin-bottom: 16px; }
   .skills dd { margin-bottom: 8px; }
