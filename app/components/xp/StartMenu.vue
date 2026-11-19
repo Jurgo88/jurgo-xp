@@ -9,10 +9,36 @@ const { l, locale } = useL10n()
 const { t } = useI18n()
 const { pathFor } = useApps()
 const right: AppId[] = ['about', 'assistant', 'blog', 'music', 'sport', 'contact', 'games']
+
+// Keyboard: focus the first item when the menu opens, arrows move between items,
+// and focus goes back to the Start button when the menu closes.
+const menu = ref<HTMLElement>()
+const items = () => [...(menu.value?.querySelectorAll<HTMLElement>('.sm-i, .sm-foot a, .sm-foot button') ?? [])]
+function onArrow(e: KeyboardEvent) {
+  const list = items()
+  if (!list.length) return
+  e.preventDefault()
+  const i = list.indexOf(document.activeElement as HTMLElement)
+  const next = e.key === 'ArrowDown' ? i + 1 : e.key === 'ArrowUp' ? i - 1 : e.key === 'Home' ? 0 : list.length - 1
+  list[(next + list.length) % list.length]!.focus()
+}
+onMounted(() => items()[0]?.focus({ preventScroll: true }))
+onBeforeUnmount(() => {
+  if (menu.value?.contains(document.activeElement)) document.querySelector<HTMLElement>('.start-btn')?.focus()
+})
 </script>
 
 <template>
-  <div class="startmenu" role="menu" @click.stop>
+  <div
+    ref="menu"
+    class="startmenu"
+    role="menu"
+    @click.stop
+    @keydown.down="onArrow"
+    @keydown.up="onArrow"
+    @keydown.home="onArrow"
+    @keydown.end="onArrow"
+  >
     <div class="sm-head"><img class="avatar" src="/avatar.jpg" alt="" width="44" height="44">{{ profile.name }}</div>
     <div class="sm-cols">
       <div class="sm-l">

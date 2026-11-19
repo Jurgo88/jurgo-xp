@@ -2,6 +2,7 @@
 import { isAppId } from '~/data/app-ids'
 import { appById } from '~/data/apps'
 import { useWindowsStore } from '~/stores/windows'
+import { DEFAULT_WALLPAPER } from '~/composables/useWallpaper'
 
 definePageMeta({
   // keep the desktop mounted while the URL changes between windows
@@ -43,6 +44,10 @@ watch([() => store.active, () => store.doc], ([id]) => {
 const def = computed(() => (param.value ? appById(param.value) : undefined))
 const pageTitle = computed(() => (def.value ? `${l(def.value.seoTitle ?? def.value.label)} | Juraj Paluš` : t('meta_title')))
 const pageDesc = computed(() => (def.value ? l(def.value.description) : t('meta_description')))
+// The wallpaper is the biggest thing on the desktop (the LCP element), so start downloading it
+// right away. Only here: the classic /cv page doesn't show it.
+useHead({ link: [{ rel: 'preload', as: 'image', href: DEFAULT_WALLPAPER, type: 'image/webp', fetchpriority: 'high' }] })
+
 useSeoMeta({
   title: pageTitle,
   description: pageDesc,

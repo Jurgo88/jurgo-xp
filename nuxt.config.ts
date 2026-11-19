@@ -31,6 +31,16 @@ export default defineNuxtConfig({
       postHogKey: 'phc_Ahs3wRsdtoSJVmZPFqNv9SDxoZWCdPJ4UsN5po6QVmWi',
     },
   },
+  hooks: {
+    // Nuxt prefetches every lazy chunk on page load. Webamp (~250 kB) and PostHog (~100 kB)
+    // are only needed later (Winamp is opened on demand, analytics loads when idle), so
+    // don't make phones download them up front.
+    'build:manifest'(manifest) {
+      for (const [key, entry] of Object.entries(manifest)) {
+        if (/node_modules\/(webamp|posthog-js)\//.test(key)) entry.prefetch = false
+      }
+    },
+  },
   vite: {
     // xp.css 0.2.6 ships one selector lightningcss rejects; esbuild minifies it fine.
     build: { cssMinify: 'esbuild' },
@@ -52,7 +62,6 @@ export default defineNuxtConfig({
         { rel: 'icon', href: '/favicon.ico', sizes: '48x48' },
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
-        { rel: 'preload', as: 'image', href: '/bliss.jpg' },
       ],
       meta: [
         { name: 'author', content: 'Juraj Paluš' },
