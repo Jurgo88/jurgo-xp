@@ -141,7 +141,7 @@ export const appById = (id: string) => apps.find(a => a.id === id)
 
 /** Desktop icons in order. Non-window shortcuts use `href`. */
 export type DesktopItem =
-  | { type: 'app'; id: AppId }
+  | { type: 'app'; id: AppId; phoneOnly?: boolean }
   | { type: 'link'; key: 'cv' | 'classic'; icon: string; label: L10n }
 
 export const desktopItems: DesktopItem[] = [
@@ -153,7 +153,8 @@ export const desktopItems: DesktopItem[] = [
   { type: 'link', key: 'cv', icon: '/icons/pdf.svg', label: { en: 'CV.pdf', sk: 'CV.pdf' } },
   { type: 'app', id: 'blog' },
   { type: 'app', id: 'music' },
-  { type: 'app', id: 'spotify' },
+  // on desktop Spotify lives inside Winamp (WebampHost); phones get it as a window
+  { type: 'app', id: 'spotify', phoneOnly: true },
   { type: 'app', id: 'sport' },
   { type: 'app', id: 'contact' },
   { type: 'link', key: 'classic', icon: '/icons/ie.svg', label: { en: 'Classic view', sk: 'Klasický pohľad' } },

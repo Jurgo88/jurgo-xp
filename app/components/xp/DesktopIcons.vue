@@ -11,7 +11,7 @@ const selected = ref<string | null>(null)
 const items = computed(() => desktopItems.map((it) => {
   if (it.type === 'app') {
     const a = appById(it.id)!
-    return { key: it.id, icon: a.icon, label: l(a.label), to: pathFor(it.id), external: false }
+    return { key: it.id, icon: a.icon, label: l(a.label), to: pathFor(it.id), external: false, phoneOnly: !!it.phoneOnly }
   }
   return it.key === 'cv'
     ? { key: 'cv', icon: it.icon, label: l(it.label), to: cvPdf(locale.value), external: true }
@@ -35,7 +35,7 @@ defineExpose({ clear: () => { selected.value = null } })
 
 <template>
   <ul class="icons" :aria-label="t('desktop_label')">
-    <li v-for="it in items" :key="it.key">
+    <li v-for="it in items" :key="it.key" :class="{ 'phone-only': 'phoneOnly' in it && it.phoneOnly }">
       <a
         class="icon"
         :class="{ sel: selected === it.key }"
