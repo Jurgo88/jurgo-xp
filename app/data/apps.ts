@@ -92,7 +92,7 @@ export const apps: AppDef[] = [
       sk: 'Čo Jurgo práve počúva na Spotify, jeho najhranejšie a naposledy hrané skladby.',
     },
     width: 420,
-    height: 352,
+    height: 440,
     menu: 'none',
   },
   {

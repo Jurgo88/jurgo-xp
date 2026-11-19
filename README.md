@@ -42,7 +42,7 @@ Netlify: build `npm run generate`, publish `dist` (Nitro preset netlify-static) 
 
 The Winamp library window (`app/components/apps/SpotifyApp.vue`) reads `/api/spotify`, a Netlify
 function (`netlify/functions/spotify.mts`) that uses Jurgo's refresh token. Visitors can't stream
-Spotify audio, so songs link out to Spotify. The window polls every 10 s (and right after a song ends); the CDN may reuse a response for 5 s, top tracks are kept 10 min in a warm function.
+Spotify audio through Webamp, so a clicked song plays in the Spotify embed player inside the window (full song when the visitor is logged in to Spotify in that browser, 30 s preview otherwise). The window polls every 10 s (and right after a song ends); the CDN may reuse a response for 5 s, top tracks are kept 10 min in a warm function.
 
 Netlify env vars (mark as secret, never commit): `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`,
 `SPOTIFY_REFRESH_TOKEN`. To get the refresh token once, open `/api/spotify-auth` on the deployed
