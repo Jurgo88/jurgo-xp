@@ -20,6 +20,7 @@ const text = computed(() => {
     case 'recycle-bin': return t('objects', { n: 2 })
     case 'spotify': return l({ en: 'Data from Spotify · click a song to play it', sk: 'Dáta zo Spotify · klikni na skladbu a prehrá sa' })
     case 'contact': return profile.email
+    case 'assistant': return l({ en: 'AI answers from my CV and this site · it can make mistakes', sk: 'AI odpovedá z môjho CV a tohto webu · môže sa mýliť' })
     default: return String(blogPosts.length)
   }
 })

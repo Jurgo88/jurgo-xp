@@ -129,6 +129,21 @@ export const apps: AppDef[] = [
     menu: 'none',
   },
   {
+    // MSN Messenger-style AI assistant (netlify/functions/assistant.mts)
+    id: 'assistant',
+    icon: '/icons/messenger.svg',
+    title: { en: 'Jurgo AI – Conversation', sk: 'Jurgo AI – Konverzácia' },
+    label: { en: 'Ask Jurgo AI', sk: 'Spýtaj sa AI' },
+    seoTitle: { en: 'Ask Jurgo AI – chat about my experience', sk: 'Spýtaj sa Jurgo AI – chat o mojej praxi' },
+    description: {
+      en: 'An AI assistant that answers questions about Juraj Paluš: experience, projects, skills and the roles he is looking for.',
+      sk: 'AI asistent, ktorý odpovedá na otázky o Jurajovi Palušovi: prax, projekty, zručnosti a pozície, ktoré hľadá.',
+    },
+    width: 560,
+    height: 560,
+    menu: 'none',
+  },
+  {
     id: 'recycle-bin',
     icon: '/icons/recycle-bin.svg',
     title: { en: 'Recycle Bin', sk: 'Kôš' },
@@ -154,6 +169,7 @@ export const desktopItems: DesktopItem[] = [
   { type: 'app', id: 'analyst' },
   { type: 'app', id: 'ai-engineer' },
   { type: 'link', key: 'cv', icon: '/icons/pdf.svg', label: { en: 'CV.pdf', sk: 'CV.pdf' } },
+  { type: 'app', id: 'assistant' },
   { type: 'app', id: 'blog' },
   { type: 'app', id: 'music' },
   // on desktop Spotify lives inside Winamp (WebampHost); phones get it as a window

@@ -56,3 +56,23 @@ Netlify env vars (mark as secret, never commit): `SPOTIFY_CLIENT_ID`, `SPOTIFY_C
 `SPOTIFY_REFRESH_TOKEN`. To get the refresh token once, open `/api/spotify-auth` on the deployed
 site (it turns itself off once the token is set). The Spotify app needs the redirect URI
 `https://<site>/api/spotify-auth`, and its owner needs Spotify Premium (Development Mode rule).
+
+## AI assistant ("Jurgo Messenger")
+
+An MSN Messenger-style chat window (`app/components/apps/AssistantApp.vue`, app id `assistant`, URL `/assistant`)
+that answers recruiters' questions about Jurgo. It posts to `/api/assistant`, a Netlify function
+(`netlify/functions/assistant.mts`) that calls the Claude API and streams the answer back as plain text.
+
+- **Grounding**: the model only gets `netlify/lib/assistant-knowledge.ts`, i.e. the public CV text plus the
+  site data (`app/data/*`: roles, experience, projects, blog, floorball). No phone number. When you change the
+  CV, update the `CV` text there too.
+- **Guards**: allowed origins (jurgo.sk, jurgo-xp.netlify.app + deploy previews, localhost), input limits
+  (500 chars per question, last 12 messages), per-visitor limits (hashed IP, 20/hour, 60/day) and a site-wide
+  daily cost cap, kept in Netlify Blobs; system prompt rules against off-topic use and prompt injection;
+  `max_tokens` 700, prompt caching for the big system prompt.
+- **Netlify env vars** (mark as secret, never commit): `ANTHROPIC_API_KEY` (required),
+  `ASSISTANT_MODEL` (default `claude-haiku-5-5`), `ASSISTANT_DAILY_BUDGET_USD` (default `1`),
+  `ASSISTANT_PER_IP_HOUR` (default `20`), `ASSISTANT_PER_IP_DAY` (default `60`).
+  Without the key the window shows "Offline" and points to e-mail.
+- A Messenger-style "Jurgo AI has just signed in" popup appears once per session ~20 s after the desktop shows.
+- Analytics events: `assistant_message`, `assistant_nudge`.
