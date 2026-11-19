@@ -143,7 +143,7 @@ function follow() {
   if (!root || !wins.length || store.get('music')?.minimized) { dock.value = null; return }
   // dock under the lowest visible Webamp window (they can be dragged apart)
   const rects = wins.map(w => w.getBoundingClientRect())
-  const low = rects.reduce((a, b) => (b.bottom > a.bottom ? b : a))
+  const low = rects.reduce((a, b) => (b.bottom > a.bottom + 1 || (Math.abs(b.bottom - a.bottom) <= 1 && b.width > a.width) ? b : a))
   const next = { left: Math.round(low.left), top: Math.round(low.bottom), width: Math.round(low.width) }
   const cur = dock.value
   if (!cur || cur.left !== next.left || cur.top !== next.top || cur.width !== next.width) dock.value = next
@@ -155,13 +155,57 @@ const state = computed(() => {
   return data.value.error ? 'error' : 'ok'
 })
 
+// ---- size: Winamp's own 2x "double size" mode whenever the screen has room -------------------
+
+type Layout = { w: number; h: number; double: boolean; windowLayout?: Record<string, unknown> }
+function pickLayout(): Layout {
+  const W = window.innerWidth, H = window.innerHeight - 30 // taskbar
+  const DOCK = 190 // Spotify panel with a player
+  if (H >= 464 + 232 + DOCK) {
+    // stacked: main + EQ at 2x, playlist as wide as them
+    return {
+      w: 550, h: 696, double: true,
+      windowLayout: {
+        main: { position: { top: 0, left: 0 } },
+        equalizer: { position: { top: 232, left: 0 } },
+        playlist: { position: { top: 464, left: 0 }, size: { extraWidth: 11, extraHeight: 4 } },
+      },
+    }
+  }
+  if (W >= 1000 && H >= 464 + DOCK) {
+    // side by side: main + EQ at 2x on the left, a tall playlist on the right
+    return {
+      w: 875, h: 464, double: true,
+      windowLayout: {
+        main: { position: { top: 0, left: 0 } },
+        equalizer: { position: { top: 232, left: 0 } },
+        playlist: { position: { top: 0, left: 550 }, size: { extraWidth: 2, extraHeight: 12 } },
+      },
+    }
+  }
+  return { w: 275, h: 348, double: false }
+}
+const layout = ref<Layout>({ w: 275, h: 348, double: false })
+const anchorStyle = computed(() => ({
+  position: 'absolute' as const,
+  left: `max(8px, calc(50% - ${layout.value.w / 2}px))`,
+  top: layout.value.double ? '12px' : '12%',
+  width: `${layout.value.w}px`,
+  height: `${layout.value.h}px`,
+  pointerEvents: 'none' as const,
+}))
+
 // ---- lifecycle ------------------------------------------------------------------------------
 
 onMounted(async () => {
   const { default: Webamp } = await import('webamp')
   if (disposed || !anchor.value) return
   silentUrl = makeSilence()
+  layout.value = pickLayout()
+  await nextTick()
   const instance = new Webamp({
+    enableDoubleSizeMode: layout.value.double,
+    ...(layout.value.windowLayout ? { windowLayout: layout.value.windowLayout } : {}),
     initialTracks: tracks.map(t => ({ url: t.url, duration: t.duration, metaData: { artist: t.artist, title: t.title } })),
     zIndex: 5000,
   }) as unknown as WebampLike
@@ -191,10 +235,11 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="anchor" class="webamp-anchor" style="position:absolute;left:40%;top:12%;width:275px;height:348px;pointer-events:none" />
+  <div ref="anchor" class="webamp-anchor" :style="anchorStyle" />
   <Teleport to="body">
     <section
       v-if="dock" class="spdock" :aria-label="l({ en: 'Spotify in Winamp', sk: 'Spotify vo Winampe' })"
+      :class="{ big: dock.width > 400 }"
       :style="{ left: `${dock.left}px`, top: `${dock.top}px`, width: `${dock.width}px` }"
     >
       <header class="bar"><span>SPOTIFY</span><i /></header>
@@ -215,7 +260,7 @@ onBeforeUnmount(() => {
         <div v-if="embedSrc" class="embed">
           <iframe
             :key="embedSrc" :src="embedSrc" :title="`Spotify: ${playing!.artists} – ${playing!.name}`"
-            width="100%" height="80" frameborder="0" loading="lazy"
+            width="100%" :height="dock.width > 400 ? 152 : 80" frameborder="0" loading="lazy"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           />
           <button type="button" class="x" :aria-label="l({ en: 'Close player', sk: 'Zavrieť prehrávač' })" @click="playing = null">×</button>
@@ -253,6 +298,13 @@ onBeforeUnmount(() => {
 .views button.on { color: #00e400; background: #111118; box-shadow: inset 1px 1px #000; }
 .hint { margin: 4px 1px 0; color: #00e400; font-size: 9px; }
 .embed { position: relative; margin-top: 4px; height: 80px; background: #000; }
+/* double-size Winamp: bigger panel and the taller Spotify player */
+.spdock.big .bar { height: 20px; font-size: 11px; line-height: 20px; }
+.spdock.big .body { padding: 5px 6px 6px; }
+.spdock.big .views button { font-size: 12px; line-height: 18px; padding: 2px 4px; }
+.spdock.big .hint { font-size: 12px; margin-top: 6px; }
+.spdock.big .embed { height: 152px; }
+.spdock.big .embed .x { width: 18px; height: 18px; font-size: 13px; line-height: 16px; }
 .embed iframe { display: block; border: 0; }
 .embed .x {
   position: absolute; top: 2px; right: 2px; min-width: 0; min-height: 0; width: 14px; height: 14px; padding: 0;
