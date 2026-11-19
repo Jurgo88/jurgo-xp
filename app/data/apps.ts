@@ -2,7 +2,7 @@ import type { L10n } from './l10n'
 import type { AppId } from './app-ids'
 import { roles } from './roles'
 
-export type MenuKind = 'explorer' | 'notepad' | 'excel' | 'none'
+export type MenuKind = 'explorer' | 'wordpad' | 'excel' | 'none'
 
 export interface AppDef {
   id: AppId
@@ -64,14 +64,14 @@ export const apps: AppDef[] = [
   },
   {
     // one blog post opened from the Blog folder (?file=<slug>); title is per file, see useApps().titleFor
-    id: 'notepad',
-    icon: '/icons/notepad.svg',
-    title: { en: 'Untitled – Notepad', sk: 'Bez názvu – Poznámkový blok' },
-    label: { en: 'Notepad', sk: 'Poznámkový blok' },
+    id: 'wordpad',
+    icon: '/icons/wordpad.svg',
+    title: { en: 'Document – WordPad', sk: 'Dokument – WordPad' },
+    label: { en: 'WordPad', sk: 'WordPad' },
     description: { en: 'A blog post by Jurgo.', sk: 'Článok z blogu od Jurga.' },
-    width: 680,
-    height: 520,
-    menu: 'notepad',
+    width: 820,
+    height: 640,
+    menu: 'wordpad',
   },
   {
     id: 'music',

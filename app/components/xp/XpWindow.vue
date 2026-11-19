@@ -54,7 +54,7 @@ function startDrag(e: PointerEvent, kind: 'move' | 'resize') {
 <template>
   <section
     class="window xpwin"
-    :class="{ inactive: store.active !== id, max: win.maximized }"
+    :class="[`app-${id}`, { inactive: store.active !== id, max: win.maximized }]"
     :style="style"
     :hidden="win.minimized"
     :aria-label="titleFor(id)"

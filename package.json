@@ -17,6 +17,7 @@
     "@netlify/blobs": "^11.1.9",
     "@nuxtjs/i18n": "^10.6.0",
     "@pinia/nuxt": "^1.0.3",
+    "marked": "^14.1.4",
     "nuxt": "^4.6.4",
     "pinia": "^4.1.0",
     "posthog-js": "^1.451.2",

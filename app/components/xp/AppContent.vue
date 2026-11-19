@@ -9,7 +9,7 @@ defineProps<{ id: AppId }>()
   <AppsRoleApp v-if="roleById(id)" :role="roleById(id)!" />
   <AppsAboutApp v-else-if="id === 'about'" />
   <AppsBlogApp v-else-if="id === 'blog'" />
-  <AppsNotepadApp v-else-if="id === 'notepad'" />
+  <AppsWordpadApp v-else-if="id === 'wordpad'" />
   <AppsFloorballApp v-else-if="id === 'floorball'" />
   <AppsSportApp v-else-if="id === 'sport'" />
   <AppsSpotifyApp v-else-if="id === 'spotify'" />

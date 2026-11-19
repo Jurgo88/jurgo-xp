@@ -5,3 +5,14 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# blog posts used to open in Notepad; keep old links working (query string is passed through)
+[[redirects]]
+  from = "/notepad"
+  to = "/wordpad"
+  status = 301
+
+[[redirects]]
+  from = "/sk/notepad"
+  to = "/sk/wordpad"
+  status = 301

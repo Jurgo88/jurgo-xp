@@ -98,10 +98,37 @@ a.file, button.file { cursor: pointer; }
 .file small { display: block; color: var(--muted); }
 .todo { background: #ffffe1; border: 1px solid #000; padding: 6px 8px; max-width: 60ch; }
 
-.np { font: 13px/1.5 var(--mono); padding: 8px 10px; white-space: pre-wrap; margin: 0; }
-.np article + article { margin-top: 1.2em; }
-.np h2 { font: inherit; font-weight: bold; margin: 0; }
-.np p { margin: 0; }
+/* ---------- WordPad: blog post reader ---------- */
+.app-wordpad .window-body { overflow: hidden; background: var(--face); }
+.wp { height: 100%; display: flex; flex-direction: column; }
+.wp-bar { flex: none; display: flex; align-items: center; gap: 3px; padding: 3px 6px; border-bottom: 1px solid #d8d2bd; font: 11px var(--ui); }
+.wp-field { background: #fff; border: 1px solid #7f9db9; padding: 1px 4px; height: 18px; box-sizing: border-box; }
+.wp-font { width: 150px; } .wp-size { width: 40px; }
+.wp-sep { width: 1px; height: 18px; background: #c5c2b2; margin: 0 4px; }
+.wp-btn { width: 20px; height: 20px; display: grid; place-items: center; font: 12px Verdana, sans-serif; color: #000; }
+.wp-align { background: linear-gradient(#000, #000) 4px 5px / 12px 1px no-repeat, linear-gradient(#000, #000) 4px 9px / 8px 1px no-repeat, linear-gradient(#000, #000) 4px 13px / 12px 1px no-repeat; }
+.wp-align.c { background: linear-gradient(#000, #000) 4px 5px / 12px 1px no-repeat, linear-gradient(#000, #000) 6px 9px / 8px 1px no-repeat, linear-gradient(#000, #000) 4px 13px / 12px 1px no-repeat; }
+.wp-align.r { background: linear-gradient(#000, #000) 4px 5px / 12px 1px no-repeat, linear-gradient(#000, #000) 8px 9px / 8px 1px no-repeat, linear-gradient(#000, #000) 4px 13px / 12px 1px no-repeat; }
+.wp-btn.on { box-shadow: inset 0 0 0 1px #c5c2b2; background-color: #f3f2ec; }
+.wp-ruler { flex: none; height: 16px; margin: 0 0 1px; border-bottom: 1px solid #aca899; background: #fff repeating-linear-gradient(90deg, transparent 0 9px, #8a8a8a 9px 10px) 0 10px / 100% 4px no-repeat; }
+.wp-scroll { flex: 1; min-height: 0; overflow: auto; background: #fff; }
+.wp-top { display: none; }
+.wp-page { max-width: 70ch; margin: 0 auto; padding: 28px 32px 40px; font: 15px/1.7 Verdana, Geneva, 'DejaVu Sans', sans-serif; color: #1b1b1b; }
+.wp-page h1 { font-size: 1.6em; line-height: 1.25; margin: 0 0 .3em; color: #000; }
+.wp-meta { margin: 0 0 1.6em; color: #666; font-size: .85em; }
+.wp-body h2 { font-size: 1.15em; line-height: 1.35; margin: 1.8em 0 .5em; color: #0b3d91; }
+.wp-body h3 { font-size: 1em; margin: 1.4em 0 .4em; }
+.wp-body p { margin: 0 0 1em; }
+.wp-body ul, .wp-body ol { margin: 0 0 1em; padding-left: 1.4em; }
+.wp-body li { margin: 0 0 .45em; }
+.wp-body a { color: #0645ad; }
+.wp-body strong { color: #000; }
+.wp-body code { font: .88em/1.4 var(--mono); background: #f2f1ea; border: 1px solid #e0ddd0; padding: 0 .3em; border-radius: 2px; }
+.wp-body pre { background: #f6f5ef; border: 1px solid #d8d2bd; padding: 10px 12px; overflow: auto; margin: 0 0 1.2em; }
+.wp-body pre code { background: none; border: 0; padding: 0; font-size: .85em; }
+.wp-body img { max-width: 100%; height: auto; display: block; margin: .4em auto 1.2em; border: 1px solid #d8d2bd; }
+.wp-body blockquote { margin: 0 0 1em; padding: .2em 0 .2em 1em; border-left: 3px solid #7f9db9; color: #444; }
+.wp-page footer { margin-top: 2em; padding-top: 1em; border-top: 1px solid #e6e3d6; font-size: .9em; }
 
 .xl { border-collapse: collapse; font-variant-numeric: tabular-nums; width: 100%; min-width: 520px; }
 .xl th, .xl td { border: 1px solid #d0d7e5; padding: 2px 6px; text-align: right; white-space: nowrap; }
@@ -223,6 +250,14 @@ a.file, button.file { cursor: pointer; }
   .start-btn { padding-right: 16px; }
   .task { flex-basis: 110px; }
   .tray .hide-s { display: none; }
+  /* WordPad on a phone = clean reading mode without the XP frame */
+  .xpwin.app-wordpad { border: 0; box-shadow: none; padding: 0; background: #fff; }
+  .xpwin.app-wordpad > .title-bar, .xpwin.app-wordpad > .menubar, .xpwin.app-wordpad > .status-bar, .wp-bar, .wp-ruler { display: none; }
+  .xpwin.app-wordpad .window-body { margin: 0; background: #fff; }
+  .wp-top { display: block; position: sticky; top: 0; z-index: 1; background: rgba(255,255,255,.96); border-bottom: 1px solid #e6e3d6; padding: 10px 18px; font: 14px Verdana, sans-serif; }
+  .wp-top a { color: #0645ad; text-decoration: none; }
+  .wp-page { padding: 18px 18px 32px; font-size: 16px; }
+  .wp-page h1 { font-size: 1.45em; }
 }
 .icon:focus { outline: none; }
 

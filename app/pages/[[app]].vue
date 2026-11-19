@@ -22,11 +22,11 @@ const param = computed(() => (isAppId(route.params.app) ? route.params.app : nul
 if (param.value) store.open(param.value)
 watch(param, (id) => { if (id && store.active !== id) store.open(id) })
 
-// Notepad file comes from ?file=<slug>. Read it after mount: the prerendered HTML has no query,
+// WordPad document comes from ?file=<slug>. Read it after mount: the prerendered HTML has no query,
 // so doing it during setup would cause a hydration mismatch.
 const fileQuery = computed(() => (typeof route.query.file === 'string' ? route.query.file : null))
 onMounted(() => {
-  watch([param, fileQuery], ([id, file]) => { if (id === 'notepad' && file) store.doc = file }, { immediate: true })
+  watch([param, fileQuery], ([id, file]) => { if (id === 'wordpad' && file) store.doc = file }, { immediate: true })
 })
 
 // window -> URL (focused window is the address; nothing focused = "/")
@@ -34,7 +34,7 @@ watch([() => store.active, () => store.doc], ([id]) => {
   const target = pathFor(id)
   const strip = (p: string) => p.replace(/\/+$/, '') || '/'
   const { file: _file, ...rest } = route.query
-  const query = id === 'notepad' && store.doc ? { ...rest, file: store.doc } : rest
+  const query = id === 'wordpad' && store.doc ? { ...rest, file: store.doc } : rest
   if (strip(target) !== strip(route.path) || (route.query.file ?? null) !== (query.file ?? null)) {
     router.replace({ path: target, query, hash: route.hash })
   }
