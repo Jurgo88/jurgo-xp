@@ -20,9 +20,18 @@ Užitočné URL parametre: `?boot` vždy prehrá bootovanie, `?noboot` ho presko
 - **Bootovanie** (`components/xp/BootScreen.vue`): BIOS obrazovka → XP loader → „vitajte“ → plocha. Len pri prvej návšteve (localStorage), dá sa preskočiť. Inline skript v `app.vue` skryje plochu ešte pred prvým vykreslením, aby nepreblikla.
 - **Pozadie**: predvolene Bliss (`public/bliss.jpg`). Návštevník si môže dať vlastný obrázok (pravý klik na plochu alebo Štart → Pozadie plochy); ostane len v jeho prehliadači.
 - **Winamp**: skutočný Webamp 2.3.1. Hrá len MP3, ktoré hostujeme sami (`public/music/` + `tracks` v `personal.ts`). Spotify sa do Webampu prehrať nedá; „práve počúvam“ cez Netlify funkciu je plán na neskôr.
-- **Mobil**: mriežka ikon, okná na celú obrazovku, ťuknutie otvára. **Klasický pohľad** `/cv` je obyčajné CV s prepínaním rolí (`/cv?role=fullstack`).
+- **Mobil**: mriežka ikon, okná na celú obrazovku, ťuknutie otvára. **Klasický pohľad** `/cv` je CV v rovnakom dizajne a s rovnakými textami ako PDF, s prepínaním rolí (`/cv?role=fullstack`).
 
-## CV v PDF
+## CV v PDF a klasický pohľad
+
+Texty pre `/cv` sú v `app/data/cv-classic.json`, vyexportované z `Jurgo88/job-hunting-pro` rovnakou logikou ako PDF (bez telefónu):
+
+```
+python3 scripts/export-cv.py ../job-hunting-pro
+```
+
+Fonty (IBM Plex, Space Grotesk) sú v `public/fonts/cv/`.
+
 
 `public/cv/` obsahuje CV pre každú rolu (EN/SK) a všeobecné CV, vygenerované z `Jurgo88/job-hunting-pro` (`cv/build.py`, profily general, frontend, fullstack, analyst, ai) **bez telefónneho čísla**. Po zmene CV ich treba pregenerovať a nakopírovať sem (názvy `Juraj-Palus-CV-<rola>-<en|sk>.pdf`, `Juraj-Palus-CV-<en|sk>.pdf`).
 
