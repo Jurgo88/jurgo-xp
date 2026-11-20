@@ -361,7 +361,15 @@ async function loadGallery() {
   try {
     if (admin.value) {
       const res = await fetch('/api/guestbook?admin=1', { headers: { Authorization: `Bearer ${admin.value}` } })
-      if (res.status === 401) { adminError.value = l({ en: 'Wrong token.', sk: 'Nesprávny token.' }); logoutAdmin(); return loadGallery() }
+      if (res.status === 401 || res.status === 503) {
+        // ask again right away instead of silently falling back to the public gallery
+        adminError.value = res.status === 401
+          ? l({ en: 'Wrong token. It must match GUESTBOOK_ADMIN_TOKEN on the Netlify site exactly.', sk: 'Nesprávny token. Musí sa presne zhodovať s GUESTBOOK_ADMIN_TOKEN v Netlify.' })
+          : l({ en: 'GUESTBOOK_ADMIN_TOKEN is not set on this Netlify site (or the site was not redeployed).', sk: 'GUESTBOOK_ADMIN_TOKEN nie je na tejto stránke v Netlify nastavený (alebo chýba nové nasadenie).' })
+        logoutAdmin()
+        adminAsk.value = true
+        return loadGallery()
+      }
       if (!res.ok) throw new Error(String(res.status))
       const list = (await res.json()).entries as Entry[]
       // pending images need the token, so load them as blobs
@@ -654,6 +662,7 @@ onBeforeUnmount(() => {
         <div class="window-body">
           <label for="gb-token">Token (GUESTBOOK_ADMIN_TOKEN)</label>
           <input id="gb-token" v-model="adminInput" type="password" required autocomplete="current-password">
+          <p v-if="adminError" class="pnt-err" role="alert">{{ adminError }}</p>
           <div class="pnt-dlg-btns">
             <button type="submit">OK</button>
             <button type="button" @click="adminAsk = false">Zrušiť</button>
