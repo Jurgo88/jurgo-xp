@@ -15,6 +15,9 @@ import { useWindowsStore } from '~/stores/windows'
  *  - contact_submit_error                   / contact_form_error
  *  - assistant_message {n, lang}            / assistant_message  (AI chat, n = question number in the chat)
  *  - assistant_nudge                        / assistant_nudge
+ *  - guestbook_submit {has_note, lang}       / guestbook_sent     (Paint guestbook drawing sent; no name/text/image)
+ *  - guestbook_submit_error {reason}         / guestbook_error
+ *  - guestbook_gallery {lang}                / guestbook_gallery  (guestbook gallery tab opened)
  *
  * Nothing is loaded on localhost or in automated browsers, so dev work and
  * tests don't end up in the stats.

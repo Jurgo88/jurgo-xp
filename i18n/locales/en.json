@@ -56,6 +56,7 @@
   "menu_wordpad": ["File", "Edit", "View", "Insert", "Format", "Help"],
   "menu_excel": ["File", "Edit", "View", "Insert", "Data", "Help"],
   "menu_outlook": ["File", "Edit", "View", "Insert", "Format", "Tools", "Message", "Help"],
+  "menu_paint": ["File", "Edit", "View", "Image", "Colors", "Help"],
   "display_title": "Display Properties",
   "display_text": "Pick a desktop background. Your own picture stays only in your browser.",
   "display_browse": "Browse…",
