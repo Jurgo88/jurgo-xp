@@ -1,26 +1,38 @@
 <script setup lang="ts">
+import type { RouteLocationRaw } from 'vue-router'
 import { projectFolders, projectsIn } from '~/data/projects'
 import { cvPdf } from '~/data/profile'
+import { useWindowsStore } from '~/stores/windows'
 
+const store = useWindowsStore()
+const router = useRouter()
 const { l, locale } = useL10n()
 const { t } = useI18n()
-const { pathFor, projectLink } = useApps()
-const folders = projectFolders.map(f => ({ ...f, items: projectsIn(f.id) }))
+const { pathFor, projectLink, folderLink } = useApps()
 
-const main = ref<HTMLElement>()
-function jump(id: string) {
-  main.value?.querySelector(`#pf-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-}
+const folders = projectFolders.map(f => ({ ...f, items: projectsIn(f.id) }))
+/** open sub-folder (?f=), or null = the root of My Projects */
+const folder = computed(() => folders.find(f => f.id === store.projectFolder) ?? null)
+const others = computed(() => folders.filter(f => f.id !== folder.value?.id))
+
+// Plain <a> instead of NuxtLink for links that differ only in the query: NuxtLink marks them
+// "active" differently on the server (prerendered without a query) and in the browser.
+const href = (to: RouteLocationRaw) => router.resolve(to).href
+const go = (to: RouteLocationRaw) => navigateTo(to)
+const root = computed(() => pathFor('projects'))
 </script>
 
 <template>
   <div class="ex projects">
     <aside class="pane">
       <div class="box">
-        <h4>{{ l({ en: 'Folders', sk: 'Priečinky' }) }}</h4>
+        <h4>{{ l({ en: 'Other places', sk: 'Iné miesta' }) }}</h4>
         <ul>
-          <li v-for="f in folders" :key="f.id">
-            <button class="lnk" type="button" @click="jump(f.id)"><img :src="f.icon" alt="">{{ l(f.name) }} ({{ f.items.length }})</button>
+          <li v-if="folder">
+            <a class="lnk" :href="href(root)" @click.prevent="go(root)"><img src="/icons/folder.png" alt="">{{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</a>
+          </li>
+          <li v-for="f in others" :key="f.id">
+            <a class="lnk" :href="href(folderLink(f.id))" @click.prevent="go(folderLink(f.id))"><img src="/icons/folder.png" alt="">{{ l(f.name) }}</a>
           </li>
         </ul>
       </div>
@@ -33,30 +45,41 @@ function jump(id: string) {
         </ul>
       </div>
     </aside>
-    <div ref="main" class="main">
-      <h2>{{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</h2>
-      <p class="lead">
-        {{ l({
-          en: 'What I have built: my own AI tools and products, applications for clients and myself, and client websites. Open a project for screenshots, my role, the tech and links to the demo and code.',
-          sk: 'Čo som postavil: vlastné AI nástroje a produkty, aplikácie pre klientov aj pre seba a weby pre klientov. Otvor projekt a uvidíš screenshoty, moju rolu, technológie a odkazy na demo a kód.',
-        }) }}
-      </p>
-      <section v-for="f in folders" :id="`pf-${f.id}`" :key="f.id">
-        <h3 class="pf-h"><img :src="f.icon" alt="">{{ l(f.name) }}</h3>
-        <div class="ptiles">
-          <NuxtLink v-for="p in f.items" :key="p.id" class="ptile" :class="{ big: p.featured }" :to="projectLink(p.id)">
-            <span class="pthumb" :class="{ tall: p.tall, empty: !p.image }">
-              <img v-if="p.image" :src="p.image" :alt="l({ en: `Screenshot: ${l(p.name)}`, sk: `Screenshot: ${l(p.name)}` })" loading="lazy" decoding="async">
-              <img v-else :src="f.icon" alt="" class="picon">
-            </span>
-            <span class="ptext">
-              <b>{{ l(p.name) }}</b>
-              <small v-if="p.status" class="pstatus">{{ l(p.status) }}</small>
-              <span class="pdesc">{{ l(p.description) }}</span>
-            </span>
+
+    <div class="main">
+      <!-- root: the three sub-folders -->
+      <template v-if="!folder">
+        <h2>{{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</h2>
+        <p class="lead">
+          {{ l({
+            en: 'What I have built, sorted into folders. Open a folder, then a project for screenshots, my role, the tech and links to the demo and code.',
+            sk: 'Čo som postavil, roztriedené do priečinkov. Otvor priečinok a potom projekt: uvidíš screenshoty, moju rolu, technológie a odkazy na demo a kód.',
+          }) }}
+        </p>
+        <div class="bigicons">
+          <a v-for="f in folders" :key="f.id" class="bigicon" :href="href(folderLink(f.id))" @click.prevent="go(folderLink(f.id))">
+            <span class="bi-img"><img src="/icons/folder.png" alt=""><img :src="f.icon" alt="" class="bi-badge"></span>
+            <span class="bi-name">{{ l(f.name) }}</span>
+            <small>{{ t('objects', { n: f.items.length }) }}</small>
+          </a>
+        </div>
+      </template>
+
+      <!-- a sub-folder: one icon per project -->
+      <template v-else>
+        <nav class="crumbs">
+          <a :href="href(root)" @click.prevent="go(root)">{{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</a>
+          <span aria-hidden="true">›</span>
+          <b>{{ l(folder.name) }}</b>
+        </nav>
+        <div class="bigicons">
+          <NuxtLink v-for="p in folder.items" :key="p.id" class="bigicon" :to="projectLink(p.id)" :title="l(p.description)">
+            <span class="bi-img"><img :src="folder.icon" alt=""></span>
+            <span class="bi-name">{{ l(p.name) }}</span>
+            <small v-if="p.status">{{ l(p.status) }}</small>
           </NuxtLink>
         </div>
-      </section>
+      </template>
     </div>
   </div>
 </template>

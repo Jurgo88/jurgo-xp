@@ -29,20 +29,24 @@ watch(param, (id) => { if (id && store.active !== id) store.open(id) })
 // Same for the Project window and ?p=<project id>.
 const fileQuery = computed(() => (typeof route.query.file === 'string' ? route.query.file : null))
 const projectQuery = computed(() => (typeof route.query.p === 'string' ? route.query.p : null))
+const folderQuery = computed(() => (typeof route.query.f === 'string' ? route.query.f : null))
 onMounted(() => {
   watch([param, fileQuery], ([id, file]) => { if (id === 'wordpad' && file) store.doc = file }, { immediate: true })
   watch([param, projectQuery], ([id, p]) => { if (id === 'project' && p) store.project = p }, { immediate: true })
+  // unlike a project, the folder can also be "none" (the root of My Projects)
+  watch([param, folderQuery], ([id, f]) => { if (id === 'projects') store.projectFolder = f }, { immediate: true })
 })
 
 // window -> URL (focused window is the address; nothing focused = "/")
-watch([() => store.active, () => store.doc, () => store.project], ([id]) => {
+watch([() => store.active, () => store.doc, () => store.project, () => store.projectFolder], ([id]) => {
   const target = pathFor(id)
   const strip = (p: string) => p.replace(/\/+$/, '') || '/'
-  const { file: _file, p: _p, ...rest } = route.query
-  const query: typeof rest & { file?: string; p?: string } = { ...rest }
+  const { file: _file, p: _p, f: _f, ...rest } = route.query
+  const query: typeof rest & { file?: string; p?: string; f?: string } = { ...rest }
   if (id === 'wordpad' && store.doc) query.file = store.doc
   if (id === 'project' && store.project) query.p = store.project
-  if (strip(target) !== strip(route.path) || (route.query.file ?? null) !== (query.file ?? null) || (route.query.p ?? null) !== (query.p ?? null)) {
+  if (id === 'projects' && store.projectFolder) query.f = store.projectFolder
+  if (strip(target) !== strip(route.path) || (route.query.file ?? null) !== (query.file ?? null) || (route.query.p ?? null) !== (query.p ?? null) || (route.query.f ?? null) !== (query.f ?? null)) {
     router.replace({ path: target, query, hash: route.hash })
   }
 })

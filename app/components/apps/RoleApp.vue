@@ -42,7 +42,7 @@ const projects = computed(() => props.role.projects.map(projectById).filter(p =>
       <h2>{{ l(role.title) }}</h2>
       <p class="lead">{{ l(role.lead) }}</p>
       <section>
-        <h3>{{ t('projects') }} · <NuxtLink class="h3-link" :to="pathFor('projects')">{{ l({ en: 'all projects', sk: 'všetky projekty' }) }}</NuxtLink></h3>
+        <h3>{{ t('projects') }} · <NuxtLink class="h3-link" :to="pathFor('projects')">{{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</NuxtLink></h3>
         <div class="files">
           <template v-for="p in projects" :key="p.id">
             <NuxtLink v-if="p.folder" class="file" :to="projectLink(p.id)" :title="l(p.description)">

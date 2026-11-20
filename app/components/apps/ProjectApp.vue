@@ -6,10 +6,11 @@ const store = useWindowsStore()
 const router = useRouter()
 const { l } = useL10n()
 const { t } = useI18n()
-const { pathFor, projectLink } = useApps()
+const { pathFor, projectLink, folderLink } = useApps()
 
 const project = computed(() => projectById(store.project) ?? projects.find(p => p.featured)!)
 const folder = computed(() => projectFolders.find(f => f.id === project.value.folder))
+const back = computed(() => (project.value.folder ? folderLink(project.value.folder) : pathFor('projects')))
 const siblings = computed(() => (project.value.folder ? projectsIn(project.value.folder).filter(p => p.id !== project.value.id) : []))
 /** internal demo = another window of this site (e.g. the AI assistant) */
 const internal = computed(() => project.value.url?.startsWith('/') ?? false)
@@ -30,7 +31,7 @@ watch(() => project.value.id, () => scroller.value?.closest('.window-body')?.scr
           <li v-if="project.url && internal"><NuxtLink class="lnk" :to="demoTo!"><img src="/icons/ie.svg" alt="">{{ l({ en: 'Run the demo', sk: 'Spustiť demo' }) }}</NuxtLink></li>
           <li v-else-if="project.url"><a class="lnk" :href="project.url" target="_blank" rel="noopener"><img src="/icons/ie.svg" alt="">{{ l({ en: 'Run the demo', sk: 'Spustiť demo' }) }}</a></li>
           <li v-if="project.repo"><a class="lnk" :href="project.repo" target="_blank" rel="noopener"><img src="/icons/notepad.svg" alt="">{{ l({ en: 'View code on GitHub', sk: 'Zobraziť kód na GitHube' }) }}</a></li>
-          <li><NuxtLink class="lnk" :to="pathFor('projects')"><img src="/icons/folder.png" alt="">{{ l({ en: 'Back to My Projects', sk: 'Späť do Moje projekty' }) }}</NuxtLink></li>
+          <li><NuxtLink class="lnk" :to="back"><img src="/icons/folder.png" alt="">{{ l({ en: 'Back to', sk: 'Späť do' }) }} {{ folder ? l(folder.name) : l({ en: 'My Projects', sk: 'Moje projekty' }) }}</NuxtLink></li>
         </ul>
       </div>
       <div v-if="siblings.length && folder" class="box">
@@ -49,7 +50,7 @@ watch(() => project.value.id, () => scroller.value?.closest('.window-body')?.scr
     </aside>
 
     <article class="main">
-      <NuxtLink class="pback" :to="pathFor('projects')">‹ {{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</NuxtLink>
+      <NuxtLink class="pback" :to="back">‹ {{ folder ? l(folder.name) : l({ en: 'My Projects', sk: 'Moje projekty' }) }}</NuxtLink>
       <header>
         <h2>{{ l(project.name) }}</h2>
         <p v-if="project.status" class="pstatus">{{ l(project.status) }}</p>

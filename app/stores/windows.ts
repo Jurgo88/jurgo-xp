@@ -29,6 +29,8 @@ export const useWindowsStore = defineStore('windows', {
     doc: null as string | null,
     /** project (id) shown in the Project window */
     project: null as string | null,
+    /** sub-folder (id) open in the My Projects window, null = its root */
+    projectFolder: null as string | null,
   }),
 
   getters: {

@@ -5,7 +5,7 @@ import { appById } from '~/data/apps'
 import { blogPosts } from '~/data/personal'
 import { profile } from '~/data/profile'
 import { floorball } from '~/data/floorball'
-import { projects, projectById } from '~/data/projects'
+import { projects, projectById, projectFolders } from '~/data/projects'
 import { useWindowsStore } from '~/stores/windows'
 
 const props = defineProps<{ id: AppId }>()
@@ -18,7 +18,7 @@ const text = computed(() => {
   if (role) return t('positions', { n: role.jobs.length, p: role.projects.length })
   switch (props.id) {
     case 'about': return `${profile.name} · ${profile.city}`
-    case 'projects': return t('objects', { n: projects.filter(p => p.folder).length })
+    case 'projects': return t('objects', { n: store.projectFolder ? projects.filter(p => p.folder === store.projectFolder).length : projectFolders.length })
     case 'project': return projectById(store.project)?.stack.slice(0, 4).join(' · ') ?? l({ en: 'My Projects', sk: 'Moje projekty' })
     case 'blog': return t('objects', { n: blogPosts.length })
     case 'wordpad': return t('wordpad_status')
