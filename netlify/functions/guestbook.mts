@@ -19,9 +19,12 @@ import { getStore } from '@netlify/blobs'
 declare const Netlify: { env: { get(name: string): string | undefined } }
 type Context = { ip?: string; params?: Record<string, string> }
 
-const W = 400
-const H = 300
-const MAX_PNG_BYTES = 200_000
+// the canvas grows with the window, so the size is a range (keep in sync with PaintApp.vue)
+const MIN_W = 240
+const MIN_H = 180
+const MAX_W = 1200
+const MAX_H = 900
+const MAX_PNG_BYTES = 400_000
 const MAX_NAME = 40
 const MAX_NOTE = 140
 const PER_IP_HOUR = 3
@@ -91,7 +94,7 @@ function cleanText(v: unknown, max: number) {
     .replace(/\s+/g, ' ').trim().slice(0, max)
 }
 
-/** Decodes a data URL and checks it is a real PNG of the expected size. */
+/** Decodes a data URL and checks it is a real PNG within the allowed size. */
 function parsePng(dataUrl: unknown): Uint8Array | null {
   if (typeof dataUrl !== 'string') return null
   const m = dataUrl.match(/^data:image\/png;base64,([A-Za-z0-9+/]+={0,2})$/)
@@ -105,7 +108,9 @@ function parsePng(dataUrl: unknown): Uint8Array | null {
   const dv = new DataView(bytes.buffer)
   // first chunk must be IHDR with our canvas size
   if (String.fromCharCode(...bytes.slice(12, 16)) !== 'IHDR') return null
-  if (dv.getUint32(16) !== W || dv.getUint32(20) !== H) return null
+  const w = dv.getUint32(16)
+  const h = dv.getUint32(20)
+  if (w < MIN_W || w > MAX_W || h < MIN_H || h > MAX_H) return null
   return bytes
 }
 

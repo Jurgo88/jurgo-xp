@@ -6,9 +6,16 @@ import { useWindowsStore } from '~/stores/windows'
  * Backend: netlify/functions/guestbook.mts (Netlify Blobs). Drawings are public only
  * after Jurgo approves them; open /paint?admin to moderate (token = GUESTBOOK_ADMIN_TOKEN).
  */
-const W = 400
-const H = 300
-const MAX_DATA_URL = 266_000 // ~200 kB PNG, same limit as the server
+// The canvas grows with the window like in Paint (never shrinks, so nothing gets cut off).
+// Limits must match netlify/functions/guestbook.mts.
+const MIN_W = 240
+const MIN_H = 180
+const MAX_W = 1200
+const MAX_H = 900
+const MAX_DATA_URL = 540_000 // ~400 kB PNG
+let W = 400
+let H = 300
+const paper = reactive({ w: W, h: H })
 const MINE_KEY = 'jurgoxp:guestbook-mine'
 const ADMIN_KEY = 'jurgoxp:guestbook-admin'
 
@@ -57,13 +64,44 @@ const canUndo = ref(false)
 const canRedo = ref(false)
 const dirty = ref(false)
 
+const work = ref<HTMLElement | null>(null)
+let resizeObs: ResizeObserver | null = null
+
+/** Sets the canvas size, keeping what is drawn and painting the new area white. */
+function resizeCanvas(w: number, h: number) {
+  if (!canvas.value || !overlay.value || !ctx) return
+  const old = canvas.value.width && canvas.value.height ? ctx.getImageData(0, 0, canvas.value.width, canvas.value.height) : null
+  canvas.value.width = overlay.value.width = W = w
+  canvas.value.height = overlay.value.height = H = h
+  ctx.fillStyle = '#fff'
+  ctx.fillRect(0, 0, W, H)
+  if (old) ctx.putImageData(old, 0, 0)
+  paper.w = W
+  paper.h = H
+}
+
+/** Grows the canvas to fill the free space of the window. */
+function fitCanvas() {
+  const el = work.value
+  if (!el || !el.clientWidth) return // hidden (gallery tab)
+  const cs = getComputedStyle(el)
+  const free = (v: number, a: string, b: string) => Math.floor(v - Number.parseFloat(a) - Number.parseFloat(b)) - 4 // 4 = paper shadow
+  const w = Math.min(MAX_W, Math.max(MIN_W, free(el.clientWidth, cs.paddingLeft, cs.paddingRight), W))
+  const h = Math.min(MAX_H, Math.max(MIN_H, free(el.clientHeight, cs.paddingTop, cs.paddingBottom), H))
+  if (w !== W || h !== H || !canvas.value?.width) resizeCanvas(w, h)
+}
+
 function initCanvas() {
   if (!canvas.value || !overlay.value) return
   ctx = canvas.value.getContext('2d', { willReadFrequently: true })
   octx = overlay.value.getContext('2d')
   if (!ctx) return
-  ctx.fillStyle = '#fff'
-  ctx.fillRect(0, 0, W, H)
+  W = H = 0
+  canvas.value.width = canvas.value.height = 0
+  fitCanvas()
+  if (!W) resizeCanvas(400, 300)
+  resizeObs = new ResizeObserver(() => fitCanvas())
+  if (work.value) resizeObs.observe(work.value)
 }
 
 function snapshot() {
@@ -426,6 +464,7 @@ onMounted(() => {
 })
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKey)
+  resizeObs?.disconnect()
   clearInterval(sprayTimer)
   objectUrls.forEach(u => URL.revokeObjectURL(u))
   status.value = ''
@@ -485,13 +524,11 @@ onBeforeUnmount(() => {
           </div>
         </div>
 
-        <div class="pnt-work">
-          <div class="pnt-paper">
-            <canvas ref="canvas" :width="W" :height="H" class="pnt-canvas" />
+        <div ref="work" class="pnt-work">
+          <div class="pnt-paper" :style="{ width: `${paper.w}px`, height: `${paper.h}px` }">
+            <canvas ref="canvas" class="pnt-canvas" />
             <canvas
               ref="overlay"
-              :width="W"
-              :height="H"
               class="pnt-canvas pnt-over"
               :class="`t-${tool}`"
               :aria-label="l({ en: 'Drawing area', sk: 'Plocha na kreslenie' })"
@@ -632,7 +669,7 @@ onBeforeUnmount(() => {
           <div class="title-bar-controls"><button type="button" aria-label="Close" @click="big = null" /></div>
         </div>
         <div class="window-body">
-          <img :src="big.src" :alt="l({ en: `Drawing by ${big.name}`, sk: `Kresba od ${big.name}` })" :width="W" :height="H">
+          <img :src="big.src" :alt="l({ en: `Drawing by ${big.name}`, sk: `Kresba od ${big.name}` })">
           <figcaption>
             <span v-if="big.note">„{{ big.note }}“ · </span>{{ fmtDate(big.createdAt) }}
           </figcaption>
@@ -668,7 +705,7 @@ onBeforeUnmount(() => {
 .pnt-opts button.on .o-out, .pnt-opts button.on .o-fill { border-color: #fff; }
 
 .pnt-work { flex: 1; min-width: 0; overflow: auto; background: #808080; padding: 8px; }
-.pnt-paper { position: relative; width: 400px; max-width: 100%; aspect-ratio: 4 / 3; box-shadow: 2px 2px 0 #3a3a3a; background: #fff; }
+.pnt-paper { position: relative; box-shadow: 2px 2px 0 #3a3a3a; background: #fff; }
 .pnt-canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .pnt-over { touch-action: none; cursor: crosshair; }
 .pnt-over.t-fill { cursor: cell; }
@@ -688,7 +725,7 @@ onBeforeUnmount(() => {
 .pnt-gallery { flex: 1; min-height: 0; overflow: auto; background: #fff; padding: 10px; }
 .pnt-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
 .pnt-card { display: flex; flex-direction: column; gap: 2px; padding: 6px; border: 1px solid #d8d2bd; background: #fbfaf5; min-width: 0; }
-.pnt-card img { display: block; width: 100%; height: auto; border: 1px solid #c5c2b2; background: #fff; }
+.pnt-card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; border: 1px solid #c5c2b2; background: #fff; }
 .pnt-card b { font-size: 12px; margin-top: 3px; overflow-wrap: anywhere; }
 .pnt-thumb { all: unset; cursor: zoom-in; display: block; }
 .pnt-thumb:focus-visible { outline: 2px solid #316ac5; }
@@ -715,7 +752,7 @@ onBeforeUnmount(() => {
 .pnt-dlg-btns { display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px; }
 .pnt-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .pnt-big { margin: 0; max-width: 100%; }
-.pnt-big img { display: block; max-width: 100%; height: auto; background: #fff; border: 1px solid #c5c2b2; }
+.pnt-big img { display: block; max-width: 100%; max-height: 70vh; width: auto; height: auto; background: #fff; border: 1px solid #c5c2b2; }
 .pnt-big figcaption { margin-top: 6px; font-size: 12px; overflow-wrap: anywhere; }
 
 @media (max-width: 700px) {
@@ -726,7 +763,6 @@ onBeforeUnmount(() => {
   .pnt-opts { flex-direction: row; width: auto; margin: 0 0 0 6px; }
   .pnt-opts button { width: 26px; height: 26px; }
   .pnt-work { padding: 6px; }
-  .pnt-paper { width: 100%; }
   .pnt-palette { grid-template-columns: repeat(12, 1fr); flex: 1 1 100%; order: 3; }
   .pnt-palette button { width: auto; height: 22px; }
   .pnt-actions button { padding: 5px 9px; }
