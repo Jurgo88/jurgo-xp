@@ -1,0 +1,16 @@
+# Nitro appends its "/* /404.html 404" fallback below these rules at build time.
+
+# blog posts used to open in Notepad; keep old links working (query string is passed through)
+/notepad      /wordpad      301
+/sk/notepad   /sk/wordpad   301
+
+# Short tagged links (analytics). The app strips utm_* from the address bar after
+# PostHog has read them, so visitors end up on a clean jurgo.sk URL.
+#   jurgo.sk/in          LinkedIn profile / posts
+#   jurgo.sk/gh          GitHub profile
+#   jurgo.sk/pre/<firma> Slovak site, one link per job application (e.g. /pre/eset)
+#   jurgo.sk/for/<firm>  English site, one link per job application
+/in           /?utm_source=linkedin&utm_medium=profile                                  302!
+/gh           /?utm_source=github&utm_medium=profile                                    302!
+/pre/:firma   /sk/?utm_source=application&utm_medium=link&utm_campaign=:firma           302!
+/for/:firma   /?utm_source=application&utm_medium=link&utm_campaign=:firma              302!

@@ -22,6 +22,11 @@ import { useWindowsStore } from '~/stores/windows'
  * Owner opt-out: open any page with ?notrack=1 once per device/browser and
  * neither Clarity nor PostHog is ever loaded there again (flag in localStorage).
  * ?notrack=0 turns analytics back on. The parameter is removed from the URL.
+ *
+ * Tagged links: short links in netlify.toml (/in, /gh, /pre/<firma>, /for/<company>)
+ * and links in the CV PDFs land with utm_* parameters. PostHog reads them on the first
+ * pageview (and keeps them per session/person), then they are removed from the address
+ * bar so visitors only ever see a clean jurgo.sk URL.
  */
 type Props = Record<string, string | number | boolean | null>
 type ClarityFn = ((...args: unknown[]) => void) & { q?: unknown[][] }
@@ -61,6 +66,16 @@ export default defineNuxtPlugin((nuxtApp) => {
   const [optedOut, optOutChanged] = ownerOptOut()
   const enabled = !optedOut && !navigator.webdriver && !/^(localhost|127\.|0\.0\.0\.0|\[?::1)/.test(host)
 
+  // drop utm_* from the address bar once analytics has read them
+  const utm = Object.fromEntries([...new URLSearchParams(location.search)].filter(([k]) => k.startsWith('utm_')))
+  const stripUtm = () => {
+    if (!Object.keys(utm).length) return
+    const router = useRouter()
+    const query = Object.fromEntries(Object.entries(router.currentRoute.value.query).filter(([k]) => !k.startsWith('utm_')))
+    void router.replace({ query, hash: router.currentRoute.value.hash })
+  }
+  if (!enabled || !postHogKey) nuxtApp.hook('app:mounted', stripUtm)
+
   if (optOutChanged) {
     nuxtApp.hook('app:mounted', () => {
       const router = useRouter()
@@ -98,6 +113,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     s.src = `https://www.clarity.ms/tag/${clarityId}`
     document.head.appendChild(s)
     clarity('set', 'lang', document.documentElement.lang || 'en')
+    if (utm.utm_source) clarity('set', 'utm_source', utm.utm_source)
+    if (utm.utm_campaign) clarity('set', 'utm_campaign', utm.utm_campaign)
   }
 
   if (enabled && postHogKey) {
@@ -110,6 +127,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       })
       posthog = ph
       for (const [n, p] of queue.splice(0)) ph.capture(n, p)
+      // the first pageview is captured a moment after init (later if the tab is hidden)
+      const off = ph.on('eventCaptured', (e: { event?: string }) => {
+        if (e.event !== '$pageview') return
+        off()
+        stripUtm()
+      })
     })
     nuxtApp.hook('app:suspense:resolve', () => {
       if ('requestIdleCallback' in window) requestIdleCallback(() => void load(), { timeout: 3000 })
