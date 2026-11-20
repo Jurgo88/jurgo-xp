@@ -16,3 +16,33 @@
   from = "/sk/notepad"
   to = "/sk/wordpad"
   status = 301
+
+# Short tagged links (analytics). The app strips utm_* from the address bar after
+# PostHog has read them, so visitors end up on a clean jurgo.sk URL.
+#   jurgo.sk/in          LinkedIn profile / posts
+#   jurgo.sk/gh          GitHub profile
+#   jurgo.sk/pre/<firma> Slovak site, one link per job application (e.g. /pre/eset)
+#   jurgo.sk/for/<firm>  English site, one link per job application
+[[redirects]]
+  from = "/in"
+  to = "/?utm_source=linkedin&utm_medium=profile"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/gh"
+  to = "/?utm_source=github&utm_medium=profile"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/pre/:firma"
+  to = "/sk/?utm_source=application&utm_medium=link&utm_campaign=:firma"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/for/:firma"
+  to = "/?utm_source=application&utm_medium=link&utm_campaign=:firma"
+  status = 302
+  force = true

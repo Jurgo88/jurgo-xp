@@ -38,7 +38,7 @@ const totals = (when) => q(`
   SELECT uniq(person_id), uniq(properties.$session_id), countIf(event = '$pageview')
   FROM events WHERE ${base} AND ${when}`)
 
-const [[cur0], [prev0], sources, utm, devices, countries, funnel, windows, assistant, bounce, contacts, cvRoles] =
+const [[cur0], [prev0], sources, campaigns, devices, countries, funnel, windows, assistant, bounce, contacts, cvRoles] =
   await Promise.all([
     totals(cur),
     totals(prev),
@@ -47,8 +47,16 @@ const [[cur0], [prev0], sources, utm, devices, countries, funnel, windows, assis
          SELECT properties.$session_id AS sid, argMin(coalesce(nullIf(properties.$referring_domain, ''), '$direct'), timestamp) AS ref
          FROM events WHERE ${base} AND ${cur} AND sid IS NOT NULL GROUP BY sid)
        GROUP BY ref ORDER BY s DESC LIMIT 6`),
-    q(`SELECT properties.utm_source AS u, uniq(person_id) FROM events
-       WHERE ${base} AND ${cur} AND u IS NOT NULL AND u != '' GROUP BY u ORDER BY 2 DESC LIMIT 5`),
+    // tagged links (netlify.toml short links, CV PDFs): who came and what they did, per source+campaign
+    q(`SELECT src, camp, uniq(pid), count(), sum(role), sum(cv), sum(contact) FROM (
+         SELECT properties.$session_id AS sid, any(person_id) AS pid,
+           anyIf(properties.utm_source, properties.utm_source != '') AS src,
+           anyIf(properties.utm_campaign, properties.utm_campaign != '') AS camp,
+           max(event = 'window_open' AND properties.is_role = true) AS role,
+           max(event = 'cv_download') AS cv,
+           max(event IN ('contact_click', 'contact_submit')) AS contact
+         FROM events WHERE ${base} AND ${cur} AND sid IS NOT NULL GROUP BY sid)
+       WHERE src IS NOT NULL AND src != '' GROUP BY src, camp ORDER BY 3 DESC LIMIT 15`),
     q(`SELECT properties.$device_type AS d, uniq(person_id) FROM events
        WHERE ${base} AND ${cur} GROUP BY d ORDER BY 2 DESC`),
     q(`SELECT properties.$geoip_country_code AS c, uniq(person_id) FROM events
@@ -89,7 +97,8 @@ const out = {
   sessions: cur0[1],
   pageviews: cur0[2],
   sessionSources: Object.fromEntries(sources),
-  utm: Object.fromEntries(utm),
+  tagged: campaigns.map(([source, campaign, persons, sessions, role, cv, contact]) =>
+    ({ source, campaign: campaign || undefined, persons, sessions, openedRole: role, cvDownload: cv, contact })),
   devices: Object.fromEntries(devices),
   countries: Object.fromEntries(countries),
   funnel: { people, openedRole: roleP, cvDownload: cvP, contact: contactP, formSent: sentP },
