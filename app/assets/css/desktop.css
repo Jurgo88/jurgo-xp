@@ -287,3 +287,51 @@ a.file, button.file { cursor: pointer; }
 .gmenu button.on::before { content: '✓ '; }
 .gmenu button:disabled { color: #a0a0a0; }
 @media (max-width: 700px) { .gmenu { flex-wrap: wrap; } .gmenu button { padding: 4px 8px; } }
+
+/* ---------- My Projects folder + Project window ---------- */
+.h3-link { font-weight: normal; color: #0645ad; }
+.pf-h { display: flex; align-items: center; gap: 6px; }
+.pf-h img { width: 16px; height: 16px; }
+.projects section { scroll-margin-top: 8px; }
+.ptiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; }
+.ptile { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; gap: 6px; padding: 6px; border: 1px solid transparent; border-radius: 2px; min-width: 0; }
+.ptile:hover, .ptile:focus-visible { background: #e8effd; border-color: #9db3e6; }
+.ptile:focus-visible { outline: 1px dotted #000; }
+.ptile.big { grid-column: span 2; }
+.pthumb { display: grid; place-items: center; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border: 1px solid #919b9c; box-shadow: 1px 1px 0 #d4d0c8; }
+.pthumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.pthumb.tall { background: #13306f; }
+.pthumb.tall img { width: auto; object-fit: contain; }
+.pthumb.empty { background: linear-gradient(180deg, #fff, #e3ebfb); }
+.pthumb .picon { width: 48px; height: 48px; object-fit: contain; }
+.ptext { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.ptext b { font-size: 12px; }
+.pdesc { color: #333; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pstatus { align-self: flex-start; margin: 0; background: #ffffe1; border: 1px solid #c9b86b; padding: 0 5px; font-size: 10px; color: #5c4b00; }
+.proj header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.proj .main p { margin: 0; font-size: 12px; line-height: 1.5; }
+.pshot { margin: 0; border: 1px solid #919b9c; box-shadow: 2px 2px 0 #d4d0c8; background: #fff; max-width: 720px; }
+.pshot img { display: block; width: 100%; height: auto; }
+.pshot.tall { max-width: 260px; }
+.pbtns { display: flex; flex-wrap: wrap; gap: 8px; }
+.pbtn { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 14px; font: bold 12px var(--ui); color: #000;
+  border: 1px solid #003c74; border-radius: 3px; background: linear-gradient(180deg, #fff, #ecebe5 86%, #d8d0c4); box-shadow: inset -1px -1px #d6d0c5, inset 1px 1px #fff; }
+.pbtn:hover { box-shadow: inset -1px 1px #fff0cf, inset 1px 2px #fdd889, inset -2px 2px #fbc761, inset 2px -2px #e5a01a; }
+.pbtn:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+.pbtn small { font-weight: normal; color: var(--muted); }
+/* back link only on phones, where the task pane moves below the article */
+.pback { display: none; }
+.pnote { color: var(--muted) !important; font-style: italic; }
+.plist { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .ptiles { grid-template-columns: 1fr; }
+  .ptile.big { grid-column: auto; }
+  .ptile { flex-direction: row; align-items: flex-start; gap: 10px; padding: 8px 4px; border-bottom: 1px solid #e3e3e3; }
+  .ptile .pthumb { flex: none; width: 110px; }
+  .ptext b { font-size: 13px; }
+  .pdesc { font-size: 12px; }
+  .proj .pane { order: 2; }
+  .pback { display: block; color: #0645ad; text-decoration: none; font-size: 13px; }
+  .proj .main p, .plist { font-size: 13px; }
+}

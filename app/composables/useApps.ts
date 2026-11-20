@@ -1,6 +1,7 @@
 import type { AppId } from '~/data/app-ids'
 import { appById } from '~/data/apps'
 import { blogPosts } from '~/data/personal'
+import { projectById } from '~/data/projects'
 import { useWindowsStore } from '~/stores/windows'
 
 export const docFile = (slug: string) => `${slug}.rtf`
@@ -16,6 +17,8 @@ export function useApps() {
   const openApp = (id: AppId) => navigateTo(pathFor(id))
   /** blog post as a document in WordPad */
   const docLink = (slug: string) => ({ path: pathFor('wordpad'), query: { file: slug } })
+  /** one project in the Project window */
+  const projectLink = (id: string) => ({ path: pathFor('project'), query: { p: id } })
 
   /** window / taskbar title; WordPad shows the open file name */
   const titleFor = (id: AppId) => {
@@ -23,8 +26,12 @@ export function useApps() {
     if (id === 'wordpad' && postBySlug(store.doc)) {
       return `${docFile(store.doc!)} – WordPad`
     }
+    if (id === 'project') {
+      const p = projectById(store.project)
+      if (p) return `${l(p.name)} – ${l({ en: 'My Projects', sk: 'Moje projekty' })}`
+    }
     return l(def.title)
   }
 
-  return { pathFor, openApp, docLink, titleFor }
+  return { pathFor, openApp, docLink, projectLink, titleFor }
 }

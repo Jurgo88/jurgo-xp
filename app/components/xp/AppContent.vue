@@ -9,6 +9,8 @@ defineProps<{ id: AppId }>()
   <!-- every app is its own chunk, loaded only when its window opens (prerendered pages still get full HTML) -->
   <LazyAppsRoleApp v-if="roleById(id)" :role="roleById(id)!" />
   <LazyAppsAboutApp v-else-if="id === 'about'" />
+  <LazyAppsProjectsApp v-else-if="id === 'projects'" />
+  <LazyAppsProjectApp v-else-if="id === 'project'" />
   <LazyAppsBlogApp v-else-if="id === 'blog'" />
   <LazyAppsWordpadApp v-else-if="id === 'wordpad'" />
   <LazyAppsFloorballApp v-else-if="id === 'floorball'" />

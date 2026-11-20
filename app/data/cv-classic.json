@@ -1266,11 +1266,11 @@
      "name": "Slovak RAG assistant",
      "kind": "Portfolio / R&D",
      "link": null,
-     "stack": "TypeScript · Supabase · pgvector · MCP · GitHub Actions",
-     "text": "Slovak-language retrieval-augmented assistant built over my own projects.",
+     "stack": "TypeScript · Postgres + pgvector · OpenAI · Docker",
+     "text": "Slovak-language retrieval-augmented assistant over a company knowledge base, built and evaluated on fictional sample data (an invented company handbook).",
      "bullets": [
       "Swappable embedding and LLM provider abstraction; 40-question evaluation set",
-      "Agentic CI workflows and MCP integrations"
+      "Every claim cited; below a similarity threshold the LLM is not called and the assistant says it does not know"
      ]
     }
    ],
@@ -1468,11 +1468,11 @@
      "name": "Slovenský RAG asistent",
      "kind": "Portfólio / R&D",
      "link": null,
-     "stack": "TypeScript · Supabase · pgvector · MCP · GitHub Actions",
-     "text": "Slovenský asistent s retrieval-augmented generation nad mojimi projektmi.",
+     "stack": "TypeScript · Postgres + pgvector · OpenAI · Docker",
+     "text": "Slovenský asistent s retrieval-augmented generation nad firemnou znalostnou bázou, postavený a testovaný na vymyslených dátach (fiktívna firemná príručka).",
      "bullets": [
       "Vymeniteľná abstrakcia embedding a LLM providerov; evaluačná sada 40 otázok",
-      "Agentické CI workflow a MCP integrácie"
+      "Každé tvrdenie s citáciou; pod prahom podobnosti sa LLM nevolá a asistent povie, že odpoveď nevie"
      ]
     }
    ],

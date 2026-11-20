@@ -23,7 +23,7 @@ export const roles: Role[] = [
     },
     skills: ['Vue 3', 'Nuxt', 'TypeScript', 'React', 'SCSS', 'GSAP', 'Pinia'],
     jobs: ['foundation', 'nds', 'accenture', 'ensentia'],
-    projects: ['pristupio', 'japs', 'loqsy', 'e-passport', 'photographer-portfolio'],
+    projects: ['pristupio', 'japs', 'subscription-pwa', 'e-passport', 'photographer-portfolio', 'greenstar'],
   },
   {
     id: 'fullstack',
@@ -35,7 +35,7 @@ export const roles: Role[] = [
     },
     skills: ['PHP', 'Laravel', 'Vue', 'Supabase', 'SQL Server', 'REST API'],
     jobs: ['kanadevia', 'nds', 'accenture'],
-    projects: ['loqsy', 'pristupio', 'japs', 'nds-events'],
+    projects: ['subscription-pwa', 'pristupio', 'japs', 'hermantool', 'ekonomko', 'nds-events'],
   },
   {
     id: 'analyst',
@@ -47,7 +47,7 @@ export const roles: Role[] = [
     },
     skills: ['BPMN', 'UML', 'Visio', 'SQL', 'Incident management'],
     jobs: ['vub', 'kanadevia'],
-    projects: ['vub-processes', 'nds-events'],
+    projects: ['hermantool', 'vub-processes', 'nds-events', 'parking'],
   },
   {
     id: 'ai-engineer',
@@ -59,7 +59,7 @@ export const roles: Role[] = [
     },
     skills: ['LLM APIs', 'Prompting', 'Agents', 'RAG', 'TypeScript', 'Supabase'],
     jobs: ['kanadevia', 'nds'],
-    projects: ['japs', 'rag', 'ci-review', 'pristupio'],
+    projects: ['japs', 'assistant', 'pristupio', 'projentiq', 'job-hunting', 'rag', 'ci-review'],
   },
 ]
 
