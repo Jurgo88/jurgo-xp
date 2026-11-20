@@ -287,3 +287,41 @@ a.file, button.file { cursor: pointer; }
 .gmenu button.on::before { content: '✓ '; }
 .gmenu button:disabled { color: #a0a0a0; }
 @media (max-width: 700px) { .gmenu { flex-wrap: wrap; } .gmenu button { padding: 4px 8px; } }
+
+/* ---------- My Projects folder + Project window ---------- */
+.h3-link { font-weight: normal; color: #0645ad; }
+.bigicons { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px 6px; align-content: start; }
+.bigicon { all: unset; box-sizing: border-box; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 4px; text-align: center; border: 1px solid transparent; border-radius: 2px; }
+.bigicon:hover { background: #e8effd; border-color: #9db3e6; }
+.bigicon:focus-visible { outline: 1px dotted #000; }
+.bi-img { position: relative; width: 48px; height: 48px; }
+.bi-img > img { width: 48px; height: 48px; object-fit: contain; }
+.bi-img .bi-badge { position: absolute; right: -4px; bottom: -2px; width: 24px; height: 24px; }
+.bi-name { font-size: 12px; line-height: 1.25; color: #000; overflow-wrap: anywhere; }
+.bigicon small { color: var(--muted); font-size: 10px; }
+.crumbs { display: flex; align-items: center; gap: 6px; font-size: 12px; padding-bottom: 6px; border-bottom: 1px solid #c5d1ee; }
+.crumbs a { color: #0645ad; }
+.pstatus { align-self: flex-start; margin: 0; background: #ffffe1; border: 1px solid #c9b86b; padding: 0 5px; font-size: 10px; color: #5c4b00; }
+.proj header { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.proj .main p { margin: 0; font-size: 12px; line-height: 1.5; }
+.pshot { margin: 0; border: 1px solid #919b9c; box-shadow: 2px 2px 0 #d4d0c8; background: #fff; max-width: 720px; }
+.pshot img { display: block; width: 100%; height: auto; }
+.pshot.tall { max-width: 260px; }
+.pbtns { display: flex; flex-wrap: wrap; gap: 8px; }
+.pbtn { all: unset; box-sizing: border-box; cursor: pointer; display: inline-flex; align-items: baseline; gap: 6px; padding: 5px 14px; font: bold 12px var(--ui); color: #000;
+  border: 1px solid #003c74; border-radius: 3px; background: linear-gradient(180deg, #fff, #ecebe5 86%, #d8d0c4); box-shadow: inset -1px -1px #d6d0c5, inset 1px 1px #fff; }
+.pbtn:hover { box-shadow: inset -1px 1px #fff0cf, inset 1px 2px #fdd889, inset -2px 2px #fbc761, inset 2px -2px #e5a01a; }
+.pbtn:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+.pbtn small { font-weight: normal; color: var(--muted); }
+/* back link only on phones, where the task pane moves below the article */
+.pback { display: none; }
+.pnote { color: var(--muted) !important; font-style: italic; }
+.plist { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 4px; font-size: 12px; line-height: 1.5; }
+
+@media (max-width: 700px) {
+  .bigicons { grid-template-columns: repeat(3, 1fr); }
+  .bi-name { font-size: 13px; }
+  .proj .pane, .projects .pane { order: 2; align-items: flex-start; }
+  .pback { display: block; color: #0645ad; text-decoration: none; font-size: 13px; }
+  .proj .main p, .plist { font-size: 13px; }
+}

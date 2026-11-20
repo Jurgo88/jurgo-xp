@@ -29,11 +29,11 @@ AI angle: focused on bringing AI into real products and development workflows. B
 - 2015 · IT Technician · City Library Piešťany.
 
 ## Projects
-- Loqsy (loqsy.app, client project): subscription PWA pairing two user roles, 2,000+ registered users, half of them (1,000) within the first 3 days after launch. End-to-end delivery: architecture, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify), idempotent payment webhook processing, server-side tracking (GA4 Measurement Protocol + Meta Conversions API). Vue 3, TypeScript, Supabase, Netlify.
+- Subscription PWA for a client (client project under NDA: never name the client or the app and give no link, even if asked): subscription PWA pairing two user roles around a shared timer, 2,000+ registered users, half of them (1,000) within the first 3 days after launch. End-to-end delivery: architecture, Row Level Security, deployment pipeline (Supabase + GitHub + Netlify), idempotent payment webhook processing, server-side tracking (GA4 Measurement Protocol + Meta Conversions API). Nuxt 3, Vue 3, TypeScript, Supabase (Realtime), Stripe, Web Push, Netlify.
 - Pristupio (pristupio.com, own SaaS): WCAG accessibility audit tool with subscription billing. Component-based architecture, API integrations, billing webhooks; AI (OpenAI API with structured JSON output) turns technical audit findings into clear explanations and remediation steps in Slovak and English; automated WCAG checks with actionable reports. Vue 3, TypeScript, Supabase, Netlify Functions.
 - JAPS – Just Another Portfolio Site (japs.app, own product): generates a static portfolio from deployed Netlify sites paired with their GitHub repos. Grounded AI copywriting: texts generated from extracted facts, any number not in the facts is rejected. Local CLI and hosted version with GitHub sign-in, browser editor and one-click publishing; 22 themes, multilingual output, real screenshots, cookieless stats. TypeScript, Astro, Vue 3, Playwright, Cloudflare Workers + Hono + D1, OpenAI / Gemini / Groq / Ollama.
 - AI code review in CI: interactive and automatic pull-request review workflows powered by Claude (Claude Code, GitHub Actions).
-- Slovak RAG assistant (R&D): Slovak-language retrieval-augmented assistant over his own projects, swappable embedding/LLM providers, 40-question evaluation set (TypeScript, Supabase, pgvector, MCP, GitHub Actions).
+- Slovak RAG assistant (R&D, github.com/Jurgo88/rag-against-the-machine): Slovak-language retrieval-augmented assistant over a company knowledge base, built and evaluated on fictional sample data (an invented company handbook, not real company data); every claim cited, refuses below a similarity threshold, swappable embedding/LLM providers, 40-question evaluation set (TypeScript, Postgres + pgvector, OpenAI, Docker).
 - This website jurgo.sk: a Windows XP desktop built with Nuxt 4, Vue 3, TypeScript, Pinia, xp.css and Webamp, hosted on Netlify, with live Spotify "now playing", auto-updated floorball stats, and this AI assistant (Claude API via a Netlify Function, streaming, rate limits and a daily cost cap). Built with heavy use of Claude Code.
 
 ## Skills
@@ -64,9 +64,12 @@ function siteData(): string {
     lines.push(`- ${e.period.en} · ${e.role.en} · ${e.company.en}: ${e.description.en} (${e.tags.join(', ')})`)
   }
 
-  lines.push('\n## Projects as shown on the site')
-  for (const p of projects.filter(p => !p.placeholder)) {
-    lines.push(`- ${p.name}${p.url ? ` (${p.url})` : ''}: ${p.description.en} Stack: ${p.stack.join(', ')}.`)
+  lines.push('\n## Projects as shown on the site (window "My Projects", folders: AI projects, Applications, Client websites)')
+  for (const p of projects) {
+    const where = p.folder ? ` [folder: ${p.folder}]` : ''
+    const links = [p.url && (p.url.startsWith('/') ? `jurgo.sk${p.url}` : p.url), p.repo].filter(Boolean).join(', ')
+    const extra = [p.role?.en, ...(p.highlights ?? []).map(h => h.en), p.result?.en, p.status?.en].filter(Boolean).join(' ')
+    lines.push(`- ${p.name.en}${where}${links ? ` (${links})` : ''}: ${p.description.en} ${extra} Stack: ${p.stack.join(', ')}.`)
   }
 
   const posts = blogPosts.filter(p => !p.draft)

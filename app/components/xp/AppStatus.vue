@@ -5,16 +5,21 @@ import { appById } from '~/data/apps'
 import { blogPosts } from '~/data/personal'
 import { profile } from '~/data/profile'
 import { floorball } from '~/data/floorball'
+import { projects, projectById, projectFolders } from '~/data/projects'
+import { useWindowsStore } from '~/stores/windows'
 
 const props = defineProps<{ id: AppId }>()
 const gameStatus = (id: AppId) => useState<string>(`status-${id}`, () => '')
 const { t } = useI18n()
 const { l } = useL10n()
+const store = useWindowsStore()
 const text = computed(() => {
   const role = roleById(props.id)
   if (role) return t('positions', { n: role.jobs.length, p: role.projects.length })
   switch (props.id) {
     case 'about': return `${profile.name} · ${profile.city}`
+    case 'projects': return t('objects', { n: store.projectFolder ? projects.filter(p => p.folder === store.projectFolder).length : projectFolders.length })
+    case 'project': return projectById(store.project)?.stack.slice(0, 4).join(' · ') ?? l({ en: 'My Projects', sk: 'Moje projekty' })
     case 'blog': return t('objects', { n: blogPosts.length })
     case 'wordpad': return t('wordpad_status')
     case 'floorball': return `${floorball.team.name} · ${l({ en: 'Legendary Floorball League', sk: 'Legendárna florbalová liga' })}`

@@ -8,7 +8,7 @@ const emit = defineEmits<{ close: []; wallpaper: []; restart: [] }>()
 const { l, locale } = useL10n()
 const { t } = useI18n()
 const { pathFor } = useApps()
-const right: AppId[] = ['about', 'assistant', 'blog', 'music', 'sport', 'contact', 'games']
+const right: AppId[] = ['about', 'projects', 'assistant', 'blog', 'music', 'sport', 'contact', 'games']
 
 // Keyboard: focus the first item when the menu opens, arrows move between items,
 // and focus goes back to the Start button when the menu closes.

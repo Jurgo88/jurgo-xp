@@ -8,7 +8,7 @@ import { cvPdf } from '~/data/profile'
 const props = defineProps<{ role: Role }>()
 const { l, locale } = useL10n()
 const { t } = useI18n()
-const { pathFor } = useApps()
+const { pathFor, projectLink } = useApps()
 const others = computed(() => roles.filter(r => r.id !== props.role.id))
 const projects = computed(() => props.role.projects.map(projectById).filter(p => !!p))
 </script>
@@ -42,21 +42,26 @@ const projects = computed(() => props.role.projects.map(projectById).filter(p =>
       <h2>{{ l(role.title) }}</h2>
       <p class="lead">{{ l(role.lead) }}</p>
       <section>
-        <h3>{{ t('projects') }}</h3>
+        <h3>{{ t('projects') }} · <NuxtLink class="h3-link" :to="pathFor('projects')">{{ l({ en: 'My Projects', sk: 'Moje projekty' }) }}</NuxtLink></h3>
         <div class="files">
-          <component
-            :is="p.url ? 'a' : 'div'"
-            v-for="p in projects"
-            :key="p.id"
-            class="file"
-            :href="p.url"
-            :target="p.url ? '_blank' : undefined"
-            :rel="p.url ? 'noopener' : undefined"
-            :title="l(p.description)"
-          >
-            <img src="/icons/folder.png" alt="">
-            <div><b>{{ p.name }}</b><small>{{ p.stack.join(' · ') }}</small></div>
-          </component>
+          <template v-for="p in projects" :key="p.id">
+            <NuxtLink v-if="p.folder" class="file" :to="projectLink(p.id)" :title="l(p.description)">
+              <img src="/icons/folder.png" alt="">
+              <div><b>{{ l(p.name) }}</b><small>{{ p.stack.slice(0, 4).join(' · ') }}</small></div>
+            </NuxtLink>
+            <component
+              :is="p.url || p.repo ? 'a' : 'div'"
+              v-else
+              class="file"
+              :href="p.url || p.repo"
+              :target="p.url || p.repo ? '_blank' : undefined"
+              :rel="p.url || p.repo ? 'noopener' : undefined"
+              :title="l(p.description)"
+            >
+              <img src="/icons/folder.png" alt="">
+              <div><b>{{ l(p.name) }}</b><small>{{ p.stack.slice(0, 4).join(' · ') }}</small></div>
+            </component>
+          </template>
         </div>
       </section>
       <section>
