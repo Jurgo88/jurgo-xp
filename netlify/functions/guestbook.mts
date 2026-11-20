@@ -8,7 +8,7 @@
 //   POST /api/guestbook?admin=1         {action: approve|hide|delete, id}  (Authorization: Bearer <token>)
 //
 // Env (set in Netlify, never in the repo):
-//   GUESTBOOK_ADMIN_TOKEN   required for moderation; without it entries are stored but nobody can approve them
+//   GUESTBOOK_ADMIN_TOKEN   required for moderation (any length, surrounding spaces ignored); without it entries are stored but nobody can approve them
 //
 // Storage: Netlify Blobs store "guestbook" (free, part of the site):
 //   entry/<id>  JSON metadata      img/<id>  PNG bytes      index  JSON list of approved entries
@@ -120,10 +120,13 @@ async function hashIp(ip: string, day: string) {
   return [...new Uint8Array(d)].slice(0, 12).map(b => b.toString(16).padStart(2, '0')).join('')
 }
 
+// trimmed: a value pasted into the Netlify UI easily ends with a space or newline
+const adminToken = () => (Netlify.env.get('GUESTBOOK_ADMIN_TOKEN') ?? '').trim()
+
 function isAdmin(req: Request) {
-  const token = Netlify.env.get('GUESTBOOK_ADMIN_TOKEN') ?? ''
-  const got = (req.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '')
-  if (token.length < 12 || got.length !== token.length) return false
+  const token = adminToken()
+  const got = (req.headers.get('authorization') ?? '').replace(/^Bearer\s+/i, '').trim()
+  if (!token || got.length !== token.length) return false
   let diff = 0
   for (let i = 0; i < token.length; i++) diff |= token.charCodeAt(i) ^ got.charCodeAt(i)
   return diff === 0
@@ -235,7 +238,7 @@ export default async (req: Request, context: Context) => {
   if (imgId) return validId(imgId) && req.method === 'GET' ? image(req, imgId) : new Response('Not found', { status: 404 })
 
   if (url.searchParams.has('admin')) {
-    if (!Netlify.env.get('GUESTBOOK_ADMIN_TOKEN')) return json(503, { error: 'not_configured' })
+    if (!adminToken()) return json(503, { error: 'not_configured' })
     if (!isAdmin(req)) return json(401, { error: 'auth' })
     if (req.method === 'GET') return adminList()
     if (req.method === 'POST') return adminAction(req)
