@@ -33,7 +33,7 @@ python3 scripts/export-cv.py ../job-hunting-pro
 Fonty (IBM Plex, Space Grotesk) sú v `public/fonts/cv/`.
 
 
-`public/cv/` obsahuje CV pre každú rolu (EN/SK) a všeobecné CV, vygenerované z `Jurgo88/job-hunting-pro` (`cv/build.py`, profily general, frontend, fullstack, analyst, ai) **bez telefónneho čísla**. Po zmene CV ich treba pregenerovať a nakopírovať sem (názvy `Juraj-Palus-CV-<rola>-<en|sk>.pdf`, `Juraj-Palus-CV-<en|sk>.pdf`).
+`public/cv/` obsahuje CV pre každú rolu (EN/SK) a všeobecné CV, vygenerované z `Jurgo88/job-hunting-pro` (`cv/build.py`, profily general, frontend, fullstack, analyst, ai) **bez telefónneho čísla** (`build.py <profil> --lang <en|sk> --no-phone`; odkaz na jurgo.sk v nich nesie UTM slug `web-<rola>-<jazyk>`, preto ich vždy kopíruj z generátora a nepregeneruj inak). Po zmene CV ich treba pregenerovať a nakopírovať sem (názvy `Juraj-Palus-CV-<rola>-<en|sk>.pdf`, `Juraj-Palus-CV-<en|sk>.pdf`).
 
 ## SEO a analytika
 
