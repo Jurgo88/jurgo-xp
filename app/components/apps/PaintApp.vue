@@ -645,6 +645,7 @@ onBeforeUnmount(() => {
 <style scoped>
 .pnt { position: relative; height: 100%; display: flex; flex-direction: column; background: #ece9d8; font: 11px Tahoma, 'Segoe UI', sans-serif; color: #000; }
 .pnt button { min-width: 0; min-height: 0; }
+.pnt .title-bar-controls button { min-width: 21px; min-height: 21px; }
 .pnt-tabs { flex: none; display: flex; align-items: center; gap: 2px; padding: 3px 4px 0; border-bottom: 1px solid #919b9c; }
 .pnt-tabs [role='tab'] { padding: 3px 10px; border: 1px solid #919b9c; border-bottom: 0; border-radius: 3px 3px 0 0; background: linear-gradient(#fff, #e3e0d0); box-shadow: none; margin-bottom: -1px; }
 .pnt-tabs [role='tab'].on { background: #fff; border-top: 2px solid #f9b13a; padding-bottom: 4px; }
@@ -707,8 +708,10 @@ onBeforeUnmount(() => {
 
 .pnt-modal { position: absolute; inset: 0; z-index: 5; display: grid; place-items: center; padding: 10px; background: rgba(0, 0, 0, .25); }
 .pnt-dlg { width: 340px; max-width: 100%; }
+.pnt-dlg .window-body, .pnt-big .window-body { margin: 0 3px 3px; padding: 12px 14px; background: #ece9d8; }
 .pnt-dlg .window-body { display: flex; flex-direction: column; gap: 4px; }
-.pnt-dlg input { width: 100%; box-sizing: border-box; margin-bottom: 4px; }
+.pnt-dlg label { font-size: 12px; }
+.pnt-dlg input { width: 100%; box-sizing: border-box; margin-bottom: 6px; padding: 3px 5px; height: auto; font-size: 12px; }
 .pnt-dlg-btns { display: flex; justify-content: flex-end; gap: 6px; margin-top: 4px; }
 .pnt-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 .pnt-big { margin: 0; max-width: 100%; }
