@@ -18,6 +18,7 @@ defineProps<{ id: AppId }>()
   <LazyAppsSpotifyApp v-else-if="id === 'spotify'" />
   <LazyAppsContactApp v-else-if="id === 'contact'" />
   <LazyAppsAssistantApp v-else-if="id === 'assistant'" />
+  <LazyAppsPaintApp v-else-if="id === 'paint'" />
   <LazyAppsBinApp v-else-if="id === 'recycle-bin'" />
   <LazyAppsGamesApp v-else-if="id === 'games'" />
   <LazyAppsMinesweeperApp v-else-if="id === 'minesweeper'" />

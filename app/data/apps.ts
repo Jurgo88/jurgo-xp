@@ -2,7 +2,7 @@ import type { L10n } from './l10n'
 import type { AppId } from './app-ids'
 import { roles } from './roles'
 
-export type MenuKind = 'explorer' | 'wordpad' | 'excel' | 'outlook' | 'none'
+export type MenuKind = 'explorer' | 'wordpad' | 'excel' | 'outlook' | 'paint' | 'none'
 
 export interface AppDef {
   id: AppId
@@ -170,6 +170,21 @@ export const apps: AppDef[] = [
     menu: 'none',
   },
   {
+    // guestbook drawn in a Paint-like window (netlify/functions/guestbook.mts), entries need approval
+    id: 'paint',
+    icon: '/icons/paint.svg',
+    title: { en: 'Guestbook – Paint', sk: 'Kniha návštev – Skicár' },
+    label: { en: 'Guestbook', sk: 'Kniha návštev' },
+    seoTitle: { en: 'Guestbook – draw me a picture', sk: 'Kniha návštev – nakresli mi obrázok' },
+    description: {
+      en: 'Leave a drawing in the guestbook of Juraj Paluš, drawn in a Paint-style app right in the browser.',
+      sk: 'Nechaj kresbu v knihe návštev Juraja Paluša, nakreslenú v aplikácii v štýle Skicára priamo v prehliadači.',
+    },
+    width: 620,
+    height: 520,
+    menu: 'paint',
+  },
+  {
     id: 'recycle-bin',
     icon: '/icons/recycle-bin.svg',
     title: { en: 'Recycle Bin', sk: 'Kôš' },
@@ -235,6 +250,7 @@ export const desktopItems: DesktopItem[] = [
   { type: 'app', id: 'spotify', phoneOnly: true },
   { type: 'app', id: 'sport' },
   { type: 'app', id: 'contact' },
+  { type: 'app', id: 'paint' },
   { type: 'link', key: 'classic', icon: '/icons/ie.svg', label: { en: 'Classic view', sk: 'Klasický pohľad' } },
   { type: 'app', id: 'games' },
   { type: 'app', id: 'recycle-bin' },

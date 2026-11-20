@@ -28,6 +28,7 @@ const text = computed(() => {
     case 'spotify': return l({ en: 'Data from Spotify · click a song to play it', sk: 'Dáta zo Spotify · klikni na skladbu a prehrá sa' })
     case 'contact': return gameStatus('contact').value || profile.email
     case 'assistant': return l({ en: 'AI answers from my CV and this site · it can make mistakes', sk: 'AI odpovedá z môjho CV a tohto webu · môže sa mýliť' })
+    case 'paint': return gameStatus('paint').value || l({ en: 'Draw something and sign the guestbook', sk: 'Nakresli niečo a podpíš sa do knihy návštev' })
     case 'games': return t('objects', { n: 2 })
     // the games write their own line (time, moves, hints)
     case 'minesweeper':

@@ -56,6 +56,7 @@
   "menu_wordpad": ["Súbor", "Úpravy", "Zobraziť", "Vložiť", "Formát", "Pomocník"],
   "menu_excel": ["Súbor", "Úpravy", "Zobraziť", "Vložiť", "Údaje", "Pomocník"],
   "menu_outlook": ["Súbor", "Úpravy", "Zobraziť", "Vložiť", "Formát", "Nástroje", "Správa", "Pomocník"],
+  "menu_paint": ["Súbor", "Úpravy", "Zobraziť", "Obrázok", "Farby", "Pomocník"],
   "display_title": "Vlastnosti – Obrazovka",
   "display_text": "Vyberte pozadie plochy. Vlastný obrázok zostane len vo vašom prehliadači.",
   "display_browse": "Prehľadávať…",
