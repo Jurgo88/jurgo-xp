@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="robots" content="noindex"><title>Forms</title></head>
+<body>
+<!--
+  Netlify Forms registration only. Netlify finds this form in the deployed HTML
+  and creates/updates the "contact" form on the site. The real form lives in
+  app/components/apps/ContactApp.vue and posts here with fetch (the Vue form
+  itself is not used for detection). Keep the field names in sync.
+-->
+<form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="contact">
+  <input name="bot-field">
+  <input type="text" name="name">
+  <input type="email" name="email">
+  <input type="text" name="subject">
+  <textarea name="message"></textarea>
+</form>
+</body>
+</html>

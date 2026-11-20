@@ -11,6 +11,8 @@ import { useWindowsStore } from '~/stores/windows'
  *  - window_open   {app, is_role, source}   / open_<app>
  *  - cv_download   {file, role, lang, from} / cv_download (+ cv_download_<role>)
  *  - contact_click {channel}                / contact_<channel>  (email, phone, linkedin, github)
+ *  - contact_submit {has_subject, lang}     / contact_form_sent  (contact form sent via Netlify Forms; no personal data)
+ *  - contact_submit_error                   / contact_form_error
  *  - assistant_message {n, lang}            / assistant_message  (AI chat, n = question number in the chat)
  *  - assistant_nudge                        / assistant_nudge
  *

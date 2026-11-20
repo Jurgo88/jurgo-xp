@@ -2,7 +2,7 @@ import type { L10n } from './l10n'
 import type { AppId } from './app-ids'
 import { roles } from './roles'
 
-export type MenuKind = 'explorer' | 'wordpad' | 'excel' | 'none'
+export type MenuKind = 'explorer' | 'wordpad' | 'excel' | 'outlook' | 'none'
 
 export interface AppDef {
   id: AppId
@@ -149,9 +149,10 @@ export const apps: AppDef[] = [
     title: { en: 'New Message', sk: 'Nová správa' },
     label: { en: 'Contact', sk: 'Kontakt' },
     description: { en: 'Get in touch with Juraj Paluš.', sk: 'Kontaktujte Juraja Paluša.' },
-    width: 560,
-    height: 400,
-    menu: 'none',
+    // Outlook Express-style "New Message" form, sent through Netlify Forms (public/__forms.html)
+    width: 640,
+    height: 500,
+    menu: 'outlook',
   },
   {
     // MSN Messenger-style AI assistant (netlify/functions/assistant.mts)
