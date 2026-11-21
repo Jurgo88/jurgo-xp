@@ -6,6 +6,11 @@
    Declared after XP.css, so these rules win and the files are fetched only once. */
 @font-face { font-family: "Pixelated MS Sans Serif"; src: url(../../../node_modules/xp.css/dist/ms_sans_serif.woff2) format("woff2"), url(../../../node_modules/xp.css/dist/ms_sans_serif.woff) format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Pixelated MS Sans Serif"; src: url(../../../node_modules/xp.css/dist/ms_sans_serif_bold.woff2) format("woff2"), url(../../../node_modules/xp.css/dist/ms_sans_serif_bold.woff) format("woff"); font-weight: 700; font-style: normal; font-display: swap; }
+/* xp.css never sets a button text colour, so phones used their own: iOS Safari paints button text
+   system blue (and fades it when disabled), which was hard to read on the grey XP buttons.
+   :where() keeps these at zero specificity, so any button with its own colour still wins. */
+:where(button, input[type=submit], input[type=button], input[type=reset]) { color: #000; -webkit-text-fill-color: currentColor; }
+:where(button:disabled, input:disabled[type=submit], input:disabled[type=button]) { color: #8d8b80; opacity: 1; }
 :root {
   color-scheme: light;
   --luna: #0054e3;
