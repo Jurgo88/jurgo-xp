@@ -227,9 +227,9 @@ export const apps: AppDef[] = [
     menu: 'none',
   },
   {
-    // prank: a fake installer that "checks" an old XP PC and gives up at 99 % (GtaSetupApp)
+    // prank: a fake installer (desktop icon is the GTA VI logo, Jurgo's choice)
     id: 'gta-setup',
-    icon: '/icons/setup.svg',
+    icon: '/icons/gta6.png',
     title: { en: 'GTA VI Setup', sk: 'Inštalácia GTA VI' },
     label: { en: 'GTA_VI_setup.exe', sk: 'GTA_VI_setup.exe' },
     description: {

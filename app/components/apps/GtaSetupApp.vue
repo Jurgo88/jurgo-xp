@@ -5,7 +5,7 @@ import type { L10n } from '~/data/l10n'
  * Prank installer behind the GTA_VI_setup.exe desktop icon.
  * Welcome -> license -> system check (an old XP PC fails everything but patience)
  * -> install that stalls at 99 % and overheats -> "coffee break" -> CV or Minesweeper.
- * Nothing is downloaded; it is all timers. No game logos, art or fonts on purpose.
+ * Nothing is downloaded; it is all timers.
  */
 type Step = 'welcome' | 'license' | 'check' | 'install' | 'coffee'
 
@@ -30,7 +30,6 @@ const license: L10n[] = [
   { sk: 'Beriem na vedomie, že „ešte jedna misia“ znamená do 3:00 ráno.', en: 'I understand that "just one more mission" means until 3 AM.' },
   { sk: 'Nebudem tvrdiť, že sa „len pozriem, ako vyzerá mapa“.', en: 'I will not claim I am "just checking out the map".' },
   { sk: 'Za zhorený procesor, stratených priateľov a nevyspatosť inštalátor nezodpovedá.', en: 'The installer is not liable for a melted CPU, lost friends or lack of sleep.' },
-  { sk: 'Ak si recruiter, po neúspešnej inštalácii si pozrieš CV autora. Je to fér obchod.', en: 'If you are a recruiter, you will look at the author\'s CV after the install fails. Fair deal.' },
   { sk: 'Toto je vtip. Nič sa nesťahuje a žiadna hra tu nie je.', en: 'This is a joke. Nothing is downloaded and there is no game here.' },
 ]
 
