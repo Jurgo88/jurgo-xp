@@ -9,6 +9,16 @@ export const projectFolders: { id: ProjectFolder; name: L10n; icon: string }[] =
   { id: 'web', name: { en: 'Client websites', sk: 'Weby pre klientov' }, icon: '/icons/ie.svg' },
 ]
 
+/** one screenshot in /public/img/projects; `tall` = phone-shaped */
+export interface ProjectShot {
+  src: string
+  tall?: boolean
+  caption?: L10n
+  /** intrinsic size, reserves space before the image loads */
+  w?: number
+  h?: number
+}
+
 export interface Project {
   /** also the ?p= value in the project window URL */
   id: string
@@ -26,6 +36,8 @@ export interface Project {
   /** screenshot in /public/projects; `tall` = phone-shaped screenshot */
   image?: string
   tall?: boolean
+  /** more screenshots, shown after `image` as a gallery */
+  gallery?: ProjectShot[]
   /** project window details */
   role?: L10n
   highlights?: L10n[]
@@ -339,6 +351,12 @@ export const projects: Project[] = [
     stack: ['Claude Code', 'GitHub Actions'],
     description: L('Interactive and automatic pull-request review workflows powered by Claude.', 'Interaktívne aj automatické review pull requestov pomocou Claude.'),
   },
+]
+
+/** all screenshots of a project: `image` first, then `gallery` */
+export const projectShots = (p: Project): ProjectShot[] => [
+  ...(p.image ? [{ src: p.image, tall: p.tall }] : []),
+  ...(p.gallery ?? []),
 ]
 
 export const projectById = (id: string | null | undefined) => projects.find(p => p.id === id)

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { projects, projectById, projectFolders, projectsIn } from '~/data/projects'
+import { projects, projectById, projectShots, projectFolders, projectsIn } from '~/data/projects'
 import { useWindowsStore } from '~/stores/windows'
 
 const store = useWindowsStore()
@@ -15,6 +15,7 @@ const siblings = computed(() => (project.value.folder ? projectsIn(project.value
 /** internal demo = another window of this site (e.g. the AI assistant) */
 const internal = computed(() => project.value.url?.startsWith('/') ?? false)
 const demoTo = computed(() => (internal.value ? pathFor(project.value.url!.slice(1) as never) : undefined))
+const shots = computed(() => projectShots(project.value))
 const host = (u: string) => u.replace(/^https?:\/\//, '').replace(/\/$/, '')
 
 // a new project = start reading from the top
@@ -57,9 +58,7 @@ watch(() => project.value.id, () => scroller.value?.closest('.window-body')?.scr
       </header>
       <p class="lead">{{ l(project.description) }}</p>
 
-      <figure v-if="project.image" class="pshot" :class="{ tall: project.tall }">
-        <img :src="project.image" :alt="l({ en: `Screenshot: ${l(project.name)}`, sk: `Screenshot: ${l(project.name)}` })" decoding="async">
-      </figure>
+      <AppsProjectGallery v-if="shots.length" :shots="shots" :name="l(project.name)" />
 
       <div v-if="project.url || project.repo" class="pbtns">
         <NuxtLink v-if="project.url && internal" class="pbtn" :to="demoTo!">▶ {{ l({ en: 'Run the demo', sk: 'Spustiť demo' }) }}</NuxtLink>
