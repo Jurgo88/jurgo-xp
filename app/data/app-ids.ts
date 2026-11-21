@@ -20,6 +20,7 @@ export const appIds = [
   'games',
   'minesweeper',
   'solitaire',
+  'gta-setup',
 ] as const
 
 export type AppId = (typeof appIds)[number]

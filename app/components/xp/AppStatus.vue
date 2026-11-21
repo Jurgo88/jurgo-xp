@@ -33,6 +33,7 @@ const text = computed(() => {
     // the games write their own line (time, moves, hints)
     case 'minesweeper':
     case 'solitaire': return gameStatus(props.id).value || l(appById(props.id)!.label)
+    case 'gta-setup': return gameStatus('gta-setup').value || l({ en: 'Setup Wizard', sk: 'Sprievodca inštaláciou' })
     default: return String(blogPosts.length)
   }
 })

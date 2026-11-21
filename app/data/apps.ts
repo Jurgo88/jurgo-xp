@@ -226,6 +226,20 @@ export const apps: AppDef[] = [
     height: 520,
     menu: 'none',
   },
+  {
+    // prank: a fake installer that "checks" an old XP PC and gives up at 99 % (GtaSetupApp)
+    id: 'gta-setup',
+    icon: '/icons/setup.svg',
+    title: { en: 'GTA VI Setup', sk: 'Inštalácia GTA VI' },
+    label: { en: 'GTA_VI_setup.exe', sk: 'GTA_VI_setup.exe' },
+    description: {
+      en: 'A joke installer: will GTA VI run on a Windows XP PC? (Nothing is downloaded.)',
+      sk: 'Vtipný inštalátor: pôjde GTA VI na počítači s Windows XP? (Nič sa nesťahuje.)',
+    },
+    width: 520,
+    height: 400,
+    menu: 'none',
+  },
 ]
 
 export const appById = (id: string) => apps.find(a => a.id === id)
@@ -253,5 +267,6 @@ export const desktopItems: DesktopItem[] = [
   { type: 'app', id: 'paint' },
   { type: 'link', key: 'classic', icon: '/icons/ie.svg', label: { en: 'Classic view', sk: 'Klasický pohľad' } },
   { type: 'app', id: 'games' },
+  { type: 'app', id: 'gta-setup' },
   { type: 'app', id: 'recycle-bin' },
 ]
