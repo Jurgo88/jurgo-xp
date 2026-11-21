@@ -16,7 +16,7 @@
 .boot .word sup { color: #ff7a00; font-size: 30px; font-style: italic; margin-left: 2px; }
 .boot .brand em { align-self: flex-end; font-style: normal; font-size: 16px; color: #fff; margin-top: 2px; }
 .boot .bar { width: 128px; height: 14px; border: 2px solid #b2b2b2; border-radius: 4px; overflow: hidden; position: relative; padding: 1px; }
-.boot .bar i { position: absolute; top: 2px; width: 8px; height: 10px; border-radius: 1px; background: linear-gradient(#2838c7, #6c8af7 45%, #2838c7); animation: slide 1.8s linear infinite; }
+.boot .bar i { position: absolute; top: 2px; width: 8px; height: 10px; border-radius: 1px; background: linear-gradient(#2838c7, #6c8af7 45%, #2838c7); animation: slide 1.2s linear infinite; }
 .boot .bar i:nth-child(2) { animation-delay: .1s; }
 .boot .bar i:nth-child(3) { animation-delay: .2s; }
 @keyframes slide { from { left: -30px; } to { left: 140px; } }

@@ -157,7 +157,7 @@ const state = computed(() => {
 
 // ---- size: Winamp's own 2x "double size" mode whenever the screen has room -------------------
 
-type Layout = { w: number; h: number; double: boolean; windowLayout?: Record<string, unknown> }
+type Layout = { w: number; h: number; double: boolean; zoom?: number; windowLayout?: Record<string, unknown> }
 function pickLayout(): Layout {
   const W = window.innerWidth, H = window.innerHeight - 30 // taskbar
   const DOCK = 190 // Spotify panel with a player
@@ -183,17 +183,26 @@ function pickLayout(): Layout {
       },
     }
   }
+  // phones: 2x doesn't fit, so stretch the 1x Winamp to the screen width (its buttons are tiny otherwise)
+  if (W <= 700) return { w: 275, h: 348, double: false, zoom: Math.min(2, (W - 8) / 275) }
   return { w: 275, h: 348, double: false }
 }
 const layout = ref<Layout>({ w: 275, h: 348, double: false })
 const anchorStyle = computed(() => ({
   position: 'absolute' as const,
-  left: `max(8px, calc(50% - ${layout.value.w / 2}px))`,
-  top: layout.value.double ? '12px' : '12%',
+  // with zoom, Webamp's own coordinates get multiplied, so the anchor is placed in unzoomed pixels
+  left: layout.value.zoom ? `${4 / layout.value.zoom}px` : `max(8px, calc(50% - ${layout.value.w / 2}px))`,
+  top: layout.value.double ? '12px' : layout.value.zoom ? `${8 / layout.value.zoom}px` : '12%',
   width: `${layout.value.w}px`,
   height: `${layout.value.h}px`,
   pointerEvents: 'none' as const,
 }))
+
+const noDragEvents = ['mousedown', 'touchstart', 'pointerdown'] as const
+function blockDrag(e: Event) {
+  const t = e.target as Element | null
+  if (t?.classList?.contains('draggable') && t.closest('#webamp')) e.stopPropagation()
+}
 
 // ---- lifecycle ------------------------------------------------------------------------------
 
@@ -213,6 +222,13 @@ onMounted(async () => {
   instance.onMinimize(() => store.minimize('music'))
   instance.onTrackDidChange(onTrack)
   await instance.renderWhenReady(anchor.value)
+  const z = layout.value.zoom
+  const root = document.getElementById('webamp')
+  if (z && root) {
+    root.style.zoom = String(z)
+    // Webamp's drag math ignores CSS zoom, so on phones the windows stay docked where they are
+    for (const ev of noDragEvents) window.addEventListener(ev, blockDrag, true)
+  }
   webamp = instance
   syncPlaylist()
   syncMarquee()
@@ -226,6 +242,7 @@ watch(() => store.get('music')?.minimized, (min, prev) => {
 
 onBeforeUnmount(() => {
   disposed = true
+  for (const ev of noDragEvents) window.removeEventListener(ev, blockDrag, true)
   cancelAnimationFrame(raf)
   document.removeEventListener('pointerdown', onDocPointer, true)
   webamp?.dispose()
@@ -239,7 +256,7 @@ onBeforeUnmount(() => {
   <Teleport to="body">
     <section
       v-if="dock" class="spdock" :aria-label="l({ en: 'Spotify in Winamp', sk: 'Spotify vo Winampe' })"
-      :class="{ big: dock.width > 400 }"
+      :class="{ big: dock.width > 330 }"
       :style="{ left: `${dock.left}px`, top: `${dock.top}px`, width: `${dock.width}px` }"
     >
       <header class="bar"><span>SPOTIFY</span><i /></header>
@@ -260,7 +277,7 @@ onBeforeUnmount(() => {
         <div v-if="embedSrc" class="embed">
           <iframe
             :key="embedSrc" :src="embedSrc" :title="`Spotify: ${playing!.artists} – ${playing!.name}`"
-            width="100%" :height="dock.width > 400 ? 152 : 80" frameborder="0" loading="lazy"
+            width="100%" :height="dock.width > 330 ? 152 : 80" frameborder="0" loading="lazy"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           />
           <button type="button" class="x" :aria-label="l({ en: 'Close player', sk: 'Zavrieť prehrávač' })" @click="playing = null">×</button>

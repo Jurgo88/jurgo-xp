@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Boot intro: BIOS POST text -> XP-style loader -> "welcome" -> desktop.
-// ~6 s total, skippable with any key / click / tap. First visit only (useBoot).
+// ~4 s total, skippable with any key / click / tap. First visit only (useBoot).
 const emit = defineEmits<{ done: [] }>()
 const { t, tm, rt } = useI18n()
 const { year, years } = useCareer()
@@ -24,14 +24,14 @@ onMounted(() => {
   document.documentElement.classList.remove('boot-pending')
   if (reduced) { shown.value = lines.value.length; later(1500, finish); return }
   // print BIOS lines one by one
-  let ms = 250
+  let ms = 200
   lines.value.forEach((_, i) => {
-    ms += lines.value[i] ? 140 : 70
+    ms += lines.value[i] ? 100 : 50
     later(ms, () => { shown.value = i + 1 })
   })
-  later(ms + 700, () => { phase.value = 'loader' })
-  later(ms + 700 + 2600, () => { phase.value = 'welcome' })
-  later(ms + 700 + 2600 + 1300, finish)
+  later(ms + 400, () => { phase.value = 'loader' })
+  later(ms + 400 + 1400, () => { phase.value = 'welcome' })
+  later(ms + 400 + 1400 + 700, finish)
   window.addEventListener('keydown', finish, { once: true })
 })
 onBeforeUnmount(() => {

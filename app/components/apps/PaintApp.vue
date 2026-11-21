@@ -773,7 +773,8 @@ onBeforeUnmount(() => {
   .pnt-opts button { width: 26px; height: 26px; }
   .pnt-work { padding: 6px; }
   .pnt-palette { grid-template-columns: repeat(12, 1fr); flex: 1 1 100%; order: 3; }
-  .pnt-palette button { width: auto; height: 22px; }
+  .pnt-palette button { width: auto; height: 32px; }
+  .pnt-tabs [role='tab'] { padding: 8px 14px; }
   .pnt-actions button { padding: 5px 9px; }
 }
 </style>
