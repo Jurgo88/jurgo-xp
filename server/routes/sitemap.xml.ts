@@ -4,11 +4,11 @@ import { appIds } from '../../app/data/app-ids'
 // English (no prefix) and Slovak (/sk), so each entry lists both as alternates.
 // WordPad is left out: its content comes from ?file=, which search engines
 // don't get in the static HTML. The games are left out too: fun, but not what
-// the site should rank for.
+// the site should rank for. Same for the GTA VI prank installer.
 export default defineEventHandler((event) => {
   const site = useRuntimeConfig(event).public.siteUrl.replace(/\/+$/, '')
   const today = new Date().toISOString().slice(0, 10)
-  const paths = ['', 'cv', ...appIds.filter(id => !['wordpad', 'recycle-bin', 'games', 'minesweeper', 'solitaire'].includes(id))]
+  const paths = ['', 'cv', ...appIds.filter(id => !['wordpad', 'recycle-bin', 'games', 'minesweeper', 'solitaire', 'gta-setup'].includes(id))]
   const url = (lang: 'en' | 'sk', p: string) => `${site}${lang === 'sk' ? '/sk' : ''}${p ? `/${p}` : (lang === 'sk' ? '' : '/')}`
   const priority = (p: string) => (p === '' ? '1.0' : ['cv', 'frontend', 'fullstack', 'analyst', 'ai-engineer'].includes(p) ? '0.9' : '0.6')
 

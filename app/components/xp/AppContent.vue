@@ -23,4 +23,5 @@ defineProps<{ id: AppId }>()
   <LazyAppsGamesApp v-else-if="id === 'games'" />
   <LazyAppsMinesweeperApp v-else-if="id === 'minesweeper'" />
   <LazyAppsSolitaireApp v-else-if="id === 'solitaire'" />
+  <LazyAppsGtaSetupApp v-else-if="id === 'gta-setup'" />
 </template>
