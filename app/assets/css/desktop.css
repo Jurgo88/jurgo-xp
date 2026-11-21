@@ -248,6 +248,9 @@ a.file, button.file { cursor: pointer; }
   .xpwin .title-bar-controls button { min-width: 30px; min-height: 30px; background-size: 100% 100%; }
   .tray .lang { font-size: 12px; padding: 4px 7px; }
   .box .lnk { min-height: 34px; }
+  /* iOS Safari zooms the whole page in when a focused field has text under 16 px, which pushed
+     dialogs (guestbook signature) past the right edge once the keyboard opened */
+  input, textarea, select { font-size: 16px !important; }
   /* small print: nothing under 11 px on a phone */
   html .tag, html .file small, html .bigicon small, html .sm-i small, html .pstatus { font-size: 11px; }
   .xpwin { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; min-width: 0; border-radius: 0; }
