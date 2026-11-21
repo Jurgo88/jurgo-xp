@@ -21,7 +21,12 @@ const { $track } = useNuxtApp()
 const status = useState<string>('status-minesweeper', () => '')
 
 const level = ref<Level>('beginner')
-const cfg = computed(() => LEVELS[level.value])
+// phones get wide boards (Expert 30x16) turned upright (16x30) so the cells stay big enough to tap
+const upright = ref(false)
+const cfg = computed(() => {
+  const c = LEVELS[level.value]
+  return upright.value && c.w > c.h ? { ...c, w: c.h, h: c.w } : c
+})
 const cells = ref<Cell[]>([])
 const state = ref<'ready' | 'playing' | 'won' | 'lost'>('ready')
 const time = ref(0)
@@ -228,6 +233,7 @@ watch(state, (s, prev) => { if (s === 'won' || s === 'lost' || prev === 'won' ||
 
 function setLevel(lv: Level) {
   level.value = lv
+  upright.value = isPhone()
   reset()
   layout()
 }

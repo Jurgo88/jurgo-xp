@@ -244,6 +244,15 @@ a.file, button.file { cursor: pointer; }
   .icon { width: auto; }
   .icon img { width: 46px; height: 46px; }
   .icon span { font-size: 12px; } /* 11 px is too small to read comfortably on a phone */
+  /* tap targets: about 32-40 px on a phone */
+  .xpwin .title-bar-controls button { min-width: 30px; min-height: 30px; background-size: 100% 100%; }
+  .tray .lang { font-size: 12px; padding: 4px 7px; }
+  .box .lnk { min-height: 34px; }
+  /* iOS Safari zooms the whole page in when a focused field has text under 16 px, which pushed
+     dialogs (guestbook signature) past the right edge once the keyboard opened */
+  input, textarea, select { font-size: 16px !important; }
+  /* small print: nothing under 11 px on a phone */
+  html .tag, html .file small, html .bigicon small, html .sm-i small, html .pstatus { font-size: 11px; }
   .xpwin { left: 0 !important; top: 0 !important; width: 100% !important; height: 100% !important; min-width: 0; border-radius: 0; }
   .xpwin .title-bar { height: 34px; }
   .xpwin .title-bar-controls button[aria-label=Maximize], .xpwin .title-bar-controls button[aria-label=Restore], .grip { display: none; }
@@ -286,7 +295,7 @@ a.file, button.file { cursor: pointer; }
 .gmenu button.on { font-weight: bold; }
 .gmenu button.on::before { content: '✓ '; }
 .gmenu button:disabled { color: #a0a0a0; }
-@media (max-width: 700px) { .gmenu { flex-wrap: wrap; } .gmenu button { padding: 4px 8px; } }
+@media (max-width: 700px) { .gmenu { flex-wrap: wrap; } .gmenu button { padding: 8px 10px; } }
 
 /* ---------- My Projects folder + Project window ---------- */
 .h3-link { font-weight: normal; color: #0645ad; }

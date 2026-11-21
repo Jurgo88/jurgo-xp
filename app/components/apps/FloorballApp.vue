@@ -220,4 +220,5 @@ const updated = computed(() => new Date(floorball.updatedAt).toLocaleDateString(
 .tabs button.on { background: #fff; font-weight: bold; position: relative; top: -1px; padding-bottom: 4px; }
 .tabs button:focus-visible { outline: 1px dotted #000; outline-offset: -3px; }
 .tabs .upd { margin-left: auto; padding-left: 12px; color: #666; font-size: 11px; white-space: nowrap; }
+@media (max-width: 700px) { .tabs button { padding-top: 8px; padding-bottom: 8px; } .tabs .nav { font-size: 12px; } }
 </style>

@@ -236,4 +236,5 @@ button.linkish { padding: 0; text-decoration: underline; }
 .n { flex: none; width: 22px; text-align: right; }
 .t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .d { flex: none; color: #8fd18f; }
+@media (max-width: 700px) { .tabs button, .ranges button { min-height: 32px; } }
 </style>
