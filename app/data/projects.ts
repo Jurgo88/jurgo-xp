@@ -200,7 +200,7 @@ export const projects: Project[] = [
   {
     id: 'hermantool',
     folder: 'apps',
-    name: L('HermanTool – tool rental system', 'HermanTool – systém pre požičovňu náradia'),
+    name: L('Rent Star – tool rental system', 'Rent Star – systém pre požičovňu náradia'),
     stack: ['Nuxt 4', 'TypeScript', 'Supabase', 'AI', 'QR codes', 'Netlify', 'Sentry', 'Vitest'],
     description: L(
       'Multi-tenant system for running a tool rental business, built so that operating it is as simple as possible: the person at the counter just scans QR codes and the admin menu shows everything.',
