@@ -13,6 +13,8 @@ export const projectFolders: { id: ProjectFolder; name: L10n; icon: string }[] =
 export interface ProjectShot {
   src: string
   tall?: boolean
+  /** small square-ish picture (a UI detail), shown narrower than a full screenshot */
+  narrow?: boolean
   caption?: L10n
   /** intrinsic size, reserves space before the image loads */
   w?: number
@@ -180,6 +182,9 @@ export const projects: Project[] = [
       'A PWA that pairs two user roles around a shared timer, with subscriptions, real-time updates and push notifications. 2,000+ registered users.',
       'PWA, ktorá páruje dve role používateľov okolo spoločného časovača, s predplatným, real-time aktualizáciami a push notifikáciami. 2 000+ registrovaných používateľov.',
     ),
+    gallery: [
+      { src: '/img/projects/subscription-pwa.webp', narrow: true, caption: L('The shared real-time timer', 'Spoločný real-time časovač') },
+    ],
     role: L('End-to-end delivery: architecture, Row Level Security, payments, deployment pipeline (Supabase + GitHub + Netlify).',
       'Dodávka end-to-end: architektúra, Row Level Security, platby, deployment pipeline (Supabase + GitHub + Netlify).'),
     highlights: [

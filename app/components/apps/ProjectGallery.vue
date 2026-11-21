@@ -47,7 +47,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 
 <template>
   <div class="pgal">
-    <figure class="pshot" :class="{ tall: shot.tall }">
+    <figure class="pshot" :class="{ tall: shot.tall, narrow: shot.narrow }">
       <button type="button" class="pshot-open" :title="l({ en: 'Click to enlarge', sk: 'Kliknutím zväčšíš' })" @click="open = true">
         <img :src="shot.src" :alt="alt(cur)" :width="shot.w" :height="shot.h" decoding="async">
       </button>
