@@ -201,7 +201,13 @@ export const projects: Project[] = [
       'Multi-tenant system for running a tool rental business, built so that operating it is as simple as possible: the person at the counter just scans QR codes and the admin menu shows everything.',
       'Multi-tenant systém na prevádzku požičovne náradia, navrhnutý tak, aby bola obsluha čo najjednoduchšia: človek za pultom iba odfotí QR kódy a v admin menu má prehľad o všetkom.',
     ),
+    url: 'https://hermantool.netlify.app',
     repo: 'https://github.com/Jurgo88/HermanTool',
+    image: '/img/projects/hermantool.webp',
+    gallery: [
+      { src: '/img/projects/hermantool-naradie.webp', caption: L('Tool detail with an availability calendar', 'Detail náradia s kalendárom dostupnosti') },
+      { src: '/img/projects/hermantool-mobil.webp', tall: true, caption: L('Catalogue on a phone', 'Katalóg na mobile') },
+    ],
     role: L('Analysis, architecture and development.', 'Analýza, architektúra aj vývoj.'),
     highlights: [
       L('Before any code: a 5-part architecture specification covering the domain, workflows and events, functional and non-functional requirements, risks and an independent review.',
@@ -213,7 +219,7 @@ export const projects: Project[] = [
         'Práca za pultom zjednodušená na skenovanie QR kódov na náradí; admin menu dáva prehľad o sklade, výpožičkách a zákazníkoch.'),
       L('Multi-tenant, so the same system can serve more rental businesses.', 'Multi-tenant, takže ten istý systém môže obsluhovať viac požičovní.'),
     ],
-    status: L('Almost finished, not deployed yet', 'Takmer hotové, zatiaľ nenasadené'),
+    status: L('Almost finished, public demo online', 'Takmer hotové, verejné demo beží online'),
   },
   {
     id: 'ekonomko',

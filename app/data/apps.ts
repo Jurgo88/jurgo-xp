@@ -247,7 +247,7 @@ export const appById = (id: string) => apps.find(a => a.id === id)
 /** Desktop icons in order. Non-window shortcuts use `href`. */
 export type DesktopItem =
   | { type: 'app'; id: AppId; phoneOnly?: boolean }
-  | { type: 'link'; key: 'cv' | 'classic'; icon: string; label: L10n }
+  | { type: 'link'; key: 'cv' | 'classic' | 'portfolio'; icon: string; label: L10n }
 
 export const desktopItems: DesktopItem[] = [
   { type: 'app', id: 'about' },
@@ -258,6 +258,7 @@ export const desktopItems: DesktopItem[] = [
   { type: 'app', id: 'projects' },
   { type: 'link', key: 'cv', icon: '/icons/pdf.svg', label: { en: 'CV.pdf', sk: 'CV.pdf' } },
   { type: 'app', id: 'assistant' },
+  { type: 'link', key: 'portfolio', icon: '/icons/portfolio.svg', label: { en: 'Portfolio (JAPS)', sk: 'Portfólio (JAPS)' } },
   { type: 'app', id: 'blog' },
   { type: 'app', id: 'music' },
   // on desktop Spotify lives inside Winamp (WebampHost); phones get it as a window
