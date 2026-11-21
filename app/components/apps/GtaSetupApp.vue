@@ -154,7 +154,7 @@ function cancel() {
     <!-- welcome and the final page use the big side panel, like real XP wizards -->
     <div v-if="step === 'welcome' || step === 'coffee' || step === 'declined'" class="gs-split">
       <div class="gs-side" aria-hidden="true">
-        <img src="/icons/setup.svg" alt="" width="72" height="72">
+        <img src="/icons/gta6-logo.png" alt="" width="120" height="91">
       </div>
       <div class="gs-text">
         <h2>{{ l(titles[step]) }}</h2>
@@ -198,7 +198,7 @@ function cancel() {
           <b>{{ l(titles[step]) }}</b>
           <span>{{ l(subtitles[step]) }}</span>
         </div>
-        <img src="/icons/setup.svg" alt="" width="40" height="40">
+        <img src="/icons/gta6-logo.png" alt="" width="53" height="40">
       </div>
 
       <div class="gs-content">
@@ -371,7 +371,7 @@ function cancel() {
 @media (max-width: 700px) {
   .gs-split { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
   .gs-side { padding: 12px 0; }
-  .gs-side img { width: 48px; height: 48px; }
+  .gs-side img { width: 80px; height: auto; }
   .gs-head { padding-left: 14px; }
   .gs-head span { padding-left: 0; }
   .gs-content { padding: 12px 14px; }
