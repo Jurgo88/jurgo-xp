@@ -198,7 +198,7 @@ export const projects: Project[] = [
     note: L('Client project under NDA, so no name, link or code.', 'Klientsky projekt pod NDA, preto bez názvu, odkazu a kódu.'),
   },
   {
-    id: 'hermantool',
+    id: 'rent-star',
     folder: 'apps',
     name: L('Rent Star – tool rental system', 'Rent Star – systém pre požičovňu náradia'),
     stack: ['Nuxt 4', 'TypeScript', 'Supabase', 'AI', 'QR codes', 'Netlify', 'Sentry', 'Vitest'],
@@ -208,10 +208,10 @@ export const projects: Project[] = [
     ),
     url: 'https://hermantool.netlify.app',
     repo: 'https://github.com/Jurgo88/HermanTool',
-    image: '/img/projects/hermantool.webp',
+    image: '/img/projects/rent-star.webp',
     gallery: [
-      { src: '/img/projects/hermantool-naradie.webp', caption: L('Tool detail with an availability calendar', 'Detail náradia s kalendárom dostupnosti') },
-      { src: '/img/projects/hermantool-mobil.webp', tall: true, caption: L('Catalogue on a phone', 'Katalóg na mobile') },
+      { src: '/img/projects/rent-star-naradie.webp', caption: L('Tool detail with an availability calendar', 'Detail náradia s kalendárom dostupnosti') },
+      { src: '/img/projects/rent-star-mobil.webp', tall: true, caption: L('Catalogue on a phone', 'Katalóg na mobile') },
     ],
     role: L('Analysis, architecture and development.', 'Analýza, architektúra aj vývoj.'),
     highlights: [
@@ -370,7 +370,13 @@ export const projectShots = (p: Project): ProjectShot[] => [
   ...(p.gallery ?? []),
 ]
 
-export const projectById = (id: string | null | undefined) => projects.find(p => p.id === id)
+/** old ?p= values that still have to open the right project */
+const renamed: Record<string, string> = { hermantool: 'rent-star' }
+
+export const projectById = (id: string | null | undefined) => {
+  const key = id ? (renamed[id] ?? id) : id
+  return projects.find(p => p.id === key)
+}
 
 /** projects shown in a folder: featured first, then in file order */
 export const projectsIn = (folder: ProjectFolder) =>
