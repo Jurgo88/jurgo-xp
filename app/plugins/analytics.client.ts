@@ -18,7 +18,7 @@ import { useWindowsStore } from '~/stores/windows'
  *  - guestbook_submit {has_note, lang}       / guestbook_sent     (Paint guestbook drawing sent; no name/text/image)
  *  - guestbook_submit_error {reason}         / guestbook_error
  *  - guestbook_gallery {lang}                / guestbook_gallery  (guestbook gallery tab opened)
- *  - gta_prank {stage, lang}                 / gta_prank_<stage>  (GTA VI prank installer: license, check, install, coffee, exit_cv, exit_minesweeper)
+ *  - gta_prank {stage, lang}                 / gta_prank_<stage>  (GTA VI prank installer: license, declined, check, install, coffee, exit_cv, exit_minesweeper)
  *
  * Nothing is loaded on localhost or in automated browsers, so dev work and
  * tests don't end up in the stats.

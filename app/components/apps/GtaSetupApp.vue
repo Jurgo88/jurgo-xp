@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { L10n } from '~/data/l10n'
+import { useWindowsStore } from '~/stores/windows'
 
 /**
  * Prank installer behind the GTA_VI_setup.exe desktop icon.
@@ -7,7 +8,7 @@ import type { L10n } from '~/data/l10n'
  * -> install that stalls at 99 % and overheats -> "coffee break" -> CV or Minesweeper.
  * Nothing is downloaded; it is all timers.
  */
-type Step = 'welcome' | 'license' | 'check' | 'install' | 'coffee'
+type Step = 'welcome' | 'license' | 'declined' | 'check' | 'install' | 'coffee'
 
 const { l, locale } = useL10n()
 const { pathFor } = useApps()
@@ -53,6 +54,7 @@ const titles: Record<Step, L10n> = {
   check: { sk: 'Kontrola systému', en: 'System Check' },
   install: { sk: 'Inštaluje sa', en: 'Installing' },
   coffee: { sk: 'Inštalácia prerušená', en: 'Setup interrupted' },
+  declined: { sk: 'Inštalácia zrušená', en: 'Setup cancelled' },
 }
 const subtitles: Record<Step, L10n> = {
   welcome: { sk: '', en: '' },
@@ -60,6 +62,7 @@ const subtitles: Record<Step, L10n> = {
   check: { sk: 'Sprievodca zisťuje, či to váš počítač zvládne.', en: 'Setup is checking whether your computer can handle it.' },
   install: { sk: 'Počkajte, kým sprievodca nainštaluje GTA VI.', en: 'Please wait while Setup installs GTA VI.' },
   coffee: { sk: 'Tvoje PC si dalo pauzu na kávu.', en: 'Your PC is taking a coffee break.' },
+  declined: { sk: '', en: '' },
 }
 
 const failed = computed(() => checks.filter(c => !c.ok).length)
@@ -88,6 +91,7 @@ function go(next: Step) {
   clearTimers()
   step.value = next
   if (next === 'license') track('license')
+  if (next === 'declined') track('declined')
   if (next === 'check') startCheck()
   if (next === 'install') startInstall()
   focusMain()
@@ -139,15 +143,16 @@ function exit(to: 'cv' | 'minesweeper') {
   navigateTo(to === 'cv' ? localePath('/cv') : pathFor('minesweeper'))
 }
 
+const store = useWindowsStore()
 function cancel() {
-  navigateTo(pathFor(null))
+  store.close('gta-setup')
 }
 </script>
 
 <template>
   <div ref="body" class="gs" :class="`step-${step}`">
     <!-- welcome and the final page use the big side panel, like real XP wizards -->
-    <div v-if="step === 'welcome' || step === 'coffee'" class="gs-split">
+    <div v-if="step === 'welcome' || step === 'coffee' || step === 'declined'" class="gs-split">
       <div class="gs-side" aria-hidden="true">
         <img src="/icons/setup.svg" alt="" width="72" height="72">
       </div>
@@ -157,6 +162,18 @@ function cancel() {
           <p>{{ l({ sk: 'Sprievodca vám pomôže nainštalovať GTA VI na tento počítač.', en: 'This wizard will help you install GTA VI on this computer.' }) }}</p>
           <p>{{ l({ sk: 'Pred pokračovaním odporúčame zatvoriť všetky ostatné programy, otvoriť okno a pripraviť hasiaci prístroj.', en: 'Before you continue, close all other programs, open a window and keep a fire extinguisher nearby.' }) }}</p>
           <p class="gs-small">{{ l({ sk: 'Pre pokračovanie kliknite na Ďalej.', en: 'Click Next to continue.' }) }}</p>
+        </template>
+        <template v-else-if="step === 'declined'">
+          <div class="gs-coffee" aria-hidden="true">💤</div>
+          <p><b>{{ l({ sk: 'Rozumné rozhodnutie.', en: 'A wise choice.' }) }}</b></p>
+          <p>{{ l({ sk: 'Bez súhlasu s nespaním to nepôjde. Choď sa vyspať, tvoj procesor ti ďakuje.', en: 'No install without the no-sleep clause. Go get some sleep, your CPU thanks you.' }) }}</p>
+          <p>{{ l({ sk: 'Alebo si medzitým pozri niečo užitočnejšie:', en: 'Or check out something more useful in the meantime:' }) }}</p>
+          <div class="gs-exits">
+            <button type="button" data-main @click="cancel">{{ l({ sk: 'Zavrieť', en: 'Close' }) }}</button>
+            <button type="button" @click="exit('cv')">
+              <img src="/icons/pdf.svg" alt="" width="16" height="16">{{ l({ sk: 'Pozrieť moje CV', en: 'Look at my CV' }) }}
+            </button>
+          </div>
         </template>
         <template v-else>
           <div class="gs-coffee" aria-hidden="true">☕</div>
@@ -271,17 +288,25 @@ function cancel() {
     </template>
 
     <div class="gs-foot">
-      <template v-if="step !== 'coffee'">
+      <template v-if="step === 'declined'">
+        <button type="button" @click="go('license')">{{ l({ sk: '< Späť', en: '< Back' }) }}</button>
+        <button type="button" disabled>{{ l({ sk: 'Ďalej >', en: 'Next >' }) }}</button>
+        <button type="button" class="gs-cancel" @click="cancel">{{ l({ sk: 'Zrušiť', en: 'Cancel' }) }}</button>
+      </template>
+      <template v-else-if="step !== 'coffee'">
         <button v-if="step !== 'welcome'" type="button" :disabled="step === 'install'" @click="go(step === 'license' ? 'welcome' : 'license')">
           {{ l({ sk: '< Späť', en: '< Back' }) }}
         </button>
         <button v-if="step === 'welcome'" type="button" data-main @click="go('license')">{{ l({ sk: 'Ďalej >', en: 'Next >' }) }}</button>
-        <button v-else-if="step === 'license'" type="button" data-main :disabled="!agreed" @click="go('check')">{{ l({ sk: 'Ďalej >', en: 'Next >' }) }}</button>
+        <button v-else-if="step === 'license'" type="button" data-main :disabled="agreed === null" @click="go(agreed ? 'check' : 'declined')">{{ l({ sk: 'Ďalej >', en: 'Next >' }) }}</button>
         <button v-else-if="step === 'check'" type="button" data-main :disabled="!checkDone" @click="go('install')">{{ l({ sk: 'Inštalovať aj tak', en: 'Install anyway' }) }}</button>
         <button v-else type="button" disabled>{{ l({ sk: 'Ďalej >', en: 'Next >' }) }}</button>
         <button type="button" class="gs-cancel" @click="cancel">{{ l({ sk: 'Zrušiť', en: 'Cancel' }) }}</button>
       </template>
-      <button v-else type="button" @click="go('welcome')">{{ l({ sk: 'Skúsiť znova', en: 'Try again' }) }}</button>
+      <template v-else>
+        <button type="button" @click="go('welcome')">{{ l({ sk: 'Skúsiť znova', en: 'Try again' }) }}</button>
+        <button type="button" class="gs-cancel" @click="cancel">{{ l({ sk: 'Zavrieť', en: 'Close' }) }}</button>
+      </template>
     </div>
   </div>
 </template>
