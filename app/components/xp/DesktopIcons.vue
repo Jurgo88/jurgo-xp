@@ -13,6 +13,7 @@ const items = computed(() => desktopItems.map((it) => {
     const a = appById(it.id)!
     return { key: it.id, icon: a.icon, label: l(a.label), to: pathFor(it.id), external: false, phoneOnly: !!it.phoneOnly }
   }
+  if (it.key === 'portfolio') return { key: 'portfolio', icon: it.icon, label: l(it.label), to: 'https://jurgo.japs.app', external: true }
   return it.key === 'cv'
     ? { key: 'cv', icon: it.icon, label: l(it.label), to: cvPdf(locale.value), external: true }
     : { key: 'classic', icon: it.icon, label: l(it.label), to: localePath('/cv'), external: false }
@@ -26,6 +27,7 @@ function go(it: Item) {
   if (it.external) {
     // desktop icons open on double-click, so the global link-click tracking skips them
     if (it.key === 'cv') $track?.('cv_download', { file: it.to.split('/').pop()!, role: 'general', lang: locale.value, from: 'desktop-icon' })
+    else $track?.('portfolio_open', { from: 'desktop-icon' })
     window.open(it.to, '_blank', 'noopener')
   }
   else navigateTo(it.to)

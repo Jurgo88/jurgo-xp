@@ -9,6 +9,18 @@ export const projectFolders: { id: ProjectFolder; name: L10n; icon: string }[] =
   { id: 'web', name: { en: 'Client websites', sk: 'Weby pre klientov' }, icon: '/icons/ie.svg' },
 ]
 
+/** one screenshot in /public/img/projects; `tall` = phone-shaped */
+export interface ProjectShot {
+  src: string
+  tall?: boolean
+  /** small square-ish picture (a UI detail), shown narrower than a full screenshot */
+  narrow?: boolean
+  caption?: L10n
+  /** intrinsic size, reserves space before the image loads */
+  w?: number
+  h?: number
+}
+
 export interface Project {
   /** also the ?p= value in the project window URL */
   id: string
@@ -26,6 +38,8 @@ export interface Project {
   /** screenshot in /public/projects; `tall` = phone-shaped screenshot */
   image?: string
   tall?: boolean
+  /** more screenshots, shown after `image` as a gallery */
+  gallery?: ProjectShot[]
   /** project window details */
   role?: L10n
   highlights?: L10n[]
@@ -168,6 +182,9 @@ export const projects: Project[] = [
       'A PWA that pairs two user roles around a shared timer, with subscriptions, real-time updates and push notifications. 2,000+ registered users.',
       'PWA, ktorá páruje dve role používateľov okolo spoločného časovača, s predplatným, real-time aktualizáciami a push notifikáciami. 2 000+ registrovaných používateľov.',
     ),
+    gallery: [
+      { src: '/img/projects/subscription-pwa.webp', narrow: true, caption: L('The shared real-time timer', 'Spoločný real-time časovač') },
+    ],
     role: L('End-to-end delivery: architecture, Row Level Security, payments, deployment pipeline (Supabase + GitHub + Netlify).',
       'Dodávka end-to-end: architektúra, Row Level Security, platby, deployment pipeline (Supabase + GitHub + Netlify).'),
     highlights: [
@@ -181,15 +198,21 @@ export const projects: Project[] = [
     note: L('Client project under NDA, so no name, link or code.', 'Klientsky projekt pod NDA, preto bez názvu, odkazu a kódu.'),
   },
   {
-    id: 'hermantool',
+    id: 'rent-star',
     folder: 'apps',
-    name: L('HermanTool – tool rental system', 'HermanTool – systém pre požičovňu náradia'),
+    name: L('Rent Star – tool rental system', 'Rent Star – systém pre požičovňu náradia'),
     stack: ['Nuxt 4', 'TypeScript', 'Supabase', 'AI', 'QR codes', 'Netlify', 'Sentry', 'Vitest'],
     description: L(
       'Multi-tenant system for running a tool rental business, built so that operating it is as simple as possible: the person at the counter just scans QR codes and the admin menu shows everything.',
       'Multi-tenant systém na prevádzku požičovne náradia, navrhnutý tak, aby bola obsluha čo najjednoduchšia: človek za pultom iba odfotí QR kódy a v admin menu má prehľad o všetkom.',
     ),
+    url: 'https://hermantool.netlify.app',
     repo: 'https://github.com/Jurgo88/HermanTool',
+    image: '/img/projects/rent-star.webp',
+    gallery: [
+      { src: '/img/projects/rent-star-naradie.webp', caption: L('Tool detail with an availability calendar', 'Detail náradia s kalendárom dostupnosti') },
+      { src: '/img/projects/rent-star-mobil.webp', tall: true, caption: L('Catalogue on a phone', 'Katalóg na mobile') },
+    ],
     role: L('Analysis, architecture and development.', 'Analýza, architektúra aj vývoj.'),
     highlights: [
       L('Before any code: a 5-part architecture specification covering the domain, workflows and events, functional and non-functional requirements, risks and an independent review.',
@@ -201,7 +224,7 @@ export const projects: Project[] = [
         'Práca za pultom zjednodušená na skenovanie QR kódov na náradí; admin menu dáva prehľad o sklade, výpožičkách a zákazníkoch.'),
       L('Multi-tenant, so the same system can serve more rental businesses.', 'Multi-tenant, takže ten istý systém môže obsluhovať viac požičovní.'),
     ],
-    status: L('Almost finished, not deployed yet', 'Takmer hotové, zatiaľ nenasadené'),
+    status: L('Almost finished, public demo online', 'Takmer hotové, verejné demo beží online'),
   },
   {
     id: 'ekonomko',
@@ -341,7 +364,19 @@ export const projects: Project[] = [
   },
 ]
 
-export const projectById = (id: string | null | undefined) => projects.find(p => p.id === id)
+/** all screenshots of a project: `image` first, then `gallery` */
+export const projectShots = (p: Project): ProjectShot[] => [
+  ...(p.image ? [{ src: p.image, tall: p.tall }] : []),
+  ...(p.gallery ?? []),
+]
+
+/** old ?p= values that still have to open the right project */
+const renamed: Record<string, string> = { hermantool: 'rent-star' }
+
+export const projectById = (id: string | null | undefined) => {
+  const key = id ? (renamed[id] ?? id) : id
+  return projects.find(p => p.id === key)
+}
 
 /** projects shown in a folder: featured first, then in file order */
 export const projectsIn = (folder: ProjectFolder) =>

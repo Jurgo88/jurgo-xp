@@ -35,7 +35,7 @@ export const roles: Role[] = [
     },
     skills: ['PHP', 'Laravel', 'Vue', 'Supabase', 'SQL Server', 'REST API'],
     jobs: ['kanadevia', 'nds', 'accenture'],
-    projects: ['subscription-pwa', 'pristupio', 'japs', 'hermantool', 'ekonomko', 'nds-events'],
+    projects: ['subscription-pwa', 'pristupio', 'japs', 'rent-star', 'ekonomko', 'nds-events'],
   },
   {
     id: 'analyst',
@@ -47,7 +47,7 @@ export const roles: Role[] = [
     },
     skills: ['BPMN', 'UML', 'Visio', 'SQL', 'Incident management'],
     jobs: ['vub', 'kanadevia'],
-    projects: ['hermantool', 'vub-processes', 'nds-events', 'parking'],
+    projects: ['rent-star', 'vub-processes', 'nds-events', 'parking'],
   },
   {
     id: 'ai-engineer',
