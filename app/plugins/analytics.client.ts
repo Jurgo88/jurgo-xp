@@ -116,6 +116,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     s.async = true
     s.src = `https://www.clarity.ms/tag/${clarityId}`
     document.head.appendChild(s)
+    // Since Oct 2025 Clarity runs cookieless for EEA visitors unless it gets a consent
+    // signal, and without cookies every page load becomes its own session (the
+    // recordings got split into many short videos). PostHog already keeps its id in
+    // storage, so Clarity gets the same: analytics storage on, no ad storage.
+    clarity('consentv2', { ad_Storage: 'denied', analytics_Storage: 'granted' })
     clarity('set', 'lang', document.documentElement.lang || 'en')
     if (utm.utm_source) clarity('set', 'utm_source', utm.utm_source)
     if (utm.utm_campaign) clarity('set', 'utm_campaign', utm.utm_campaign)
