@@ -37,7 +37,9 @@ body {
 html.boot-pending body { background: #000; }
 html.boot-pending .xp-root { visibility: hidden; }
 
-.xp-root { position: fixed; inset: 0; user-select: none; -webkit-user-select: none; }
+/* absolute, not fixed: fixed would make a stacking context, trapping the taskbar and Start menu
+   under Webamp, which mounts its #webamp straight into <body> with z-index 5000 */
+.xp-root { position: absolute; inset: 0; user-select: none; -webkit-user-select: none; }
 :focus-visible { outline: 1px dotted #000; outline-offset: 1px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
