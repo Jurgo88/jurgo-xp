@@ -38,7 +38,21 @@ export function useSpotify() {
       if (!res.ok && res.status !== 502) throw new Error(String(res.status))
       const ct = res.headers.get('content-type') ?? ''
       if (!ct.includes('json')) throw new Error('no function') // `nuxt dev` serves HTML here
-      data.value = await res.json()
+      const next = await res.json() as SpData
+      // a Spotify hiccup returns empty lists for a moment: keep what was shown until it recovers
+      const prev = data.value
+      if (prev?.configured && next.configured) {
+        if (next.error && prev.top) { next.recent = prev.recent; next.top = prev.top; next.now = prev.now; delete next.error }
+        else if (!next.error) {
+          if (!next.recent?.length && prev.recent?.length) next.recent = prev.recent
+          if (next.top && prev.top) {
+            for (const k of ['short', 'medium', 'long'] as const) {
+              if (!next.top[k]?.length && prev.top[k]?.length) next.top[k] = prev.top[k]
+            }
+          }
+        }
+      }
+      data.value = next
       fetchedAt.value = Date.now()
       failed.value = false
       scheduleTrackEnd()
