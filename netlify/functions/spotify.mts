@@ -115,10 +115,12 @@ export default async () => {
     freshTop ? null : top('medium_term'),
     freshTop ? null : top('long_term'),
   ])
+  // Spotify sometimes answers 503 for a moment: then keep the last good list instead of an empty one
+  const prev = topCache?.value
   const topValue = freshTop ?? {
-    short: short?.items.map(t => pick(t)) ?? [],
-    medium: medium?.items.map(t => pick(t)) ?? [],
-    long: long?.items.map(t => pick(t)) ?? [],
+    short: short?.items.map(t => pick(t)) ?? prev?.short ?? [],
+    medium: medium?.items.map(t => pick(t)) ?? prev?.medium ?? [],
+    long: long?.items.map(t => pick(t)) ?? prev?.long ?? [],
   }
   if (!freshTop && short && medium && long) topCache = { at: Date.now(), value: topValue }
 
